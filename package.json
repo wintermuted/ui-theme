@@ -1,0 +1,32 @@
+{
+  "name": "@wintermuted/ui-theme",
+  "version": "0.1.0",
+  "description": "Shared Wintermuted UI theme derived from the CV styling language.",
+  "type": "module",
+  "main": "./index.js",
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "design-system",
+    "theme",
+    "ui"
+  ],
+  "files": [
+    "index.js",
+    "index.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wintermuted/ui-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wintermuted/ui-theme/issues"
+  },
+  "homepage": "https://github.com/wintermuted/ui-theme#readme",
+  "exports": {
+    ".": "./index.js",
+    "./index.css": "./index.css"
+  }
+}
