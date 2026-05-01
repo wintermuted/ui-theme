@@ -25,6 +25,9 @@
     "url": "https://github.com/wintermuted/ui-theme/issues"
   },
   "homepage": "https://github.com/wintermuted/ui-theme#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "exports": {
     ".": "./index.js",
     "./index.css": "./index.css"

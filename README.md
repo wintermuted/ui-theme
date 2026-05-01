@@ -7,6 +7,8 @@ The package is derived from the styling language introduced in the CV project an
 ## Install
 
 ```bash
+echo "@wintermuted:registry=https://npm.pkg.github.com" >> ~/.npmrc
+export NODE_AUTH_TOKEN=YOUR_GITHUB_TOKEN
 npm install @wintermuted/ui-theme
 ```
 
@@ -37,3 +39,4 @@ Then use the exported CSS variables in application styles:
 
 - The package intentionally avoids application-specific layout opinions.
 - Projects should keep product-specific selectors and layout rules in their own repositories.
+- Publishing is handled through GitHub Packages via GitHub Actions, so the package can stay on GitHub's registry instead of npmjs.
