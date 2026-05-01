@@ -6,10 +6,20 @@ The package is derived from the styling language introduced in the CV project an
 
 ## Install
 
+### GitHub Packages
+
 ```bash
 echo "@wintermuted:registry=https://npm.pkg.github.com" >> ~/.npmrc
 export NODE_AUTH_TOKEN=YOUR_GITHUB_TOKEN
 npm install @wintermuted/ui-theme
+```
+
+### GitHub repository release
+
+If you prefer to consume the package directly from GitHub without GitHub Packages auth, install from a tagged release:
+
+```bash
+npm install github:wintermuted/ui-theme#v0.1.0
 ```
 
 ## Includes
