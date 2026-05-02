@@ -25,7 +25,7 @@ jobs:
           scope: "@wintermuted"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Publish package
         run: npm publish
