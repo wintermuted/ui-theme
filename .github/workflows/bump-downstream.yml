@@ -1,0 +1,55 @@
+name: Bump downstream
+
+# After a release publishes (which triggers publish-package.yml),
+# open dependency-bump PRs in each consuming repo.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Package version to bump to (e.g. 0.2.0)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo:
+          - wintermuted/cv
+          - wintermuted/sub-killer
+
+    steps:
+      - name: Resolve version
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            raw_tag='${{ github.event.release.tag_name }}'
+            version="${raw_tag#v}"
+            echo "version=$version" >> "$GITHUB_OUTPUT"
+            echo "release_tag=$raw_tag" >> "$GITHUB_OUTPUT"
+          else
+            version='${{ inputs.version }}'
+            echo "version=${version#v}" >> "$GITHUB_OUTPUT"
+            echo "release_tag=v${version#v}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Dispatch bump to ${{ matrix.repo }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.DOWNSTREAM_PAT }}
+          script: |
+            const [owner, repo] = '${{ matrix.repo }}'.split('/');
+            await github.rest.repos.createDispatchEvent({
+              owner,
+              repo,
+              event_type: 'ui-theme-release',
+              client_payload: {
+                version: '${{ steps.ver.outputs.version }}',
+                release_tag: '${{ steps.ver.outputs.release_tag }}'
+              }
+            });
