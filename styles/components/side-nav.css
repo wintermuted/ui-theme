@@ -35,3 +35,22 @@
   border-left-color: var(--wm-color-text);
   background: var(--wm-color-surface-muted);
 }
+
+/* Viewport-fixed controls nav (CV-style utility control cluster). */
+
+.floating-nav,
+.wm-floating-nav {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 100;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.floating-nav-left,
+.wm-floating-nav-left {
+  left: 1.25rem;
+  right: auto;
+}

@@ -37,7 +37,8 @@
           <a class="docs-nav-link" data-page="forms.html" href="./forms.html">Forms</a>
           <a class="docs-nav-link" data-page="feedback.html" href="./feedback.html">Feedback</a>
           <a class="docs-nav-link" data-page="data-display.html" href="./data-display.html">Data Display</a>
-    <a class="docs-nav-link" data-page="gallery.html" href="./gallery.html">Gallery</a>          <a class="docs-nav-link active" data-page="navigation.html" href="./navigation.html">Navigation</a>
+              <a class="docs-nav-link" data-page="gallery.html" href="./gallery.html">Gallery</a>
+              <a class="docs-nav-link active" data-page="navigation.html" href="./navigation.html">Navigation</a>
           <a class="docs-nav-link" data-page="modal.html" href="./modal.html">Modal</a>
           <a class="docs-nav-link" data-page="layout.html" href="./layout.html">Layout</a>
         </nav>
@@ -131,6 +132,41 @@
   &lt;button class="tab-btn" role="tab" aria-selected="false"&gt;Pending&lt;/button&gt;
   &lt;button class="tab-btn" role="tab" aria-selected="false"&gt;Archived&lt;/button&gt;
 &lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Viewport-fixed controls nav -->
+          <h3>Viewport-Fixed Controls Nav — <code>.floating-nav</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            CV-style utility nav cluster pinned to the viewport corner. Use for theme/view/print
+            controls that should remain visible while scrolling.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            This pattern mirrors the resume's fixed control cluster (<code>.controls</code>). In this
+            embedded demo we override to <code>position:absolute</code> inside a container so it is
+            visible without covering the whole docs page.
+          </p>
+          <div style="position:relative;min-height:5.2rem;border:1px dashed var(--wm-color-border);border-radius:var(--wm-radius-base);padding:0.75rem 0.75rem 0.9rem;">
+            <div class="floating-nav" style="position:absolute;top:0.6rem;right:0.6rem;">
+              <button class="btn-pill" type="button">Light</button>
+              <button class="btn-pill" type="button">Summary</button>
+              <button class="btn-pill" type="button">Print</button>
+            </div>
+            <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin:2.6rem 0 0;">
+              Scroll content below; this control cluster remains pinned when used with
+              <code>position:fixed</code>.
+            </p>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="floating-nav"&gt;
+  &lt;button class="btn-pill" type="button"&gt;Light&lt;/button&gt;
+  &lt;button class="btn-pill" type="button"&gt;Summary&lt;/button&gt;
+  &lt;button class="btn-pill" type="button"&gt;Print&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Left-pinned variant --&gt;
+&lt;div class="floating-nav floating-nav-left"&gt;...&lt;/div&gt;</code></pre>
           </div>
         <hr>
 
