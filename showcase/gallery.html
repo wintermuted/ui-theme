@@ -170,6 +170,88 @@ flowchart LR
           </div>
         <hr>
 
+          <h3>Gallery + Lightbox Setup</h3>
+          <p>
+            Add <code>data-lightbox-trigger</code> to clickable gallery figures and include a single
+            lightbox overlay at page root. This mirrors the resume interaction pattern where clicking
+            a screenshot opens a focused, full-size preview.
+          </p>
+          <div class="gallery" style="max-width: 56rem; margin: 0.75rem 0;" data-gallery-lightbox-demo>
+            <figure
+              class="gallery-item gallery-item-figure"
+              data-lightbox-trigger
+              data-lightbox-src="https://picsum.photos/seed/wm-lightbox-1/1600/1000"
+              data-lightbox-alt="Deal Monitoring table view"
+            >
+              <img src="https://picsum.photos/seed/wm-lightbox-1/640/400" alt="Deal Monitoring table view" />
+              <figcaption>Click to open full-size table view</figcaption>
+            </figure>
+            <figure
+              class="gallery-item gallery-item-figure"
+              data-lightbox-trigger
+              data-lightbox-src="https://picsum.photos/seed/wm-lightbox-2/1600/1000"
+              data-lightbox-alt="Filter panel and saved views"
+            >
+              <img src="https://picsum.photos/seed/wm-lightbox-2/640/400" alt="Filter panel and saved views" />
+              <figcaption>Click to inspect filters and saved views</figcaption>
+            </figure>
+            <figure
+              class="gallery-item gallery-item-figure"
+              data-lightbox-trigger
+              data-lightbox-src="https://picsum.photos/seed/wm-lightbox-3/1600/1000"
+              data-lightbox-alt="Deal detail overlay"
+            >
+              <img src="https://picsum.photos/seed/wm-lightbox-3/640/400" alt="Deal detail overlay" />
+              <figcaption>Click to inspect detail overlay state</figcaption>
+            </figure>
+          </div>
+
+          <div class="gallery-lightbox-overlay" data-gallery-lightbox aria-hidden="true">
+            <button class="gallery-lightbox-close" type="button" aria-label="Close lightbox">&times;</button>
+            <img class="gallery-lightbox-img" src="" alt="" />
+          </div>
+
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;figure
+  class="gallery-item gallery-item-figure"
+  data-lightbox-trigger
+  data-lightbox-src="/assets/deal-monitoring-table.png"
+  data-lightbox-alt="Deal Monitoring table view"
+&gt;
+  &lt;img src="/assets/deal-monitoring-table-thumb.png" alt="Deal Monitoring table view" /&gt;
+  &lt;figcaption&gt;Click to open full-size table view&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;div class="gallery-lightbox-overlay" data-gallery-lightbox aria-hidden="true"&gt;
+  &lt;button class="gallery-lightbox-close" type="button" aria-label="Close lightbox"&gt;&amp;times;&lt;/button&gt;
+  &lt;img class="gallery-lightbox-img" src="" alt="" /&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">const overlay = document.querySelector('[data-gallery-lightbox]');
+const lightboxImg = overlay.querySelector('.gallery-lightbox-img');
+
+document.querySelectorAll('[data-lightbox-trigger]').forEach((node) =&gt; {
+  node.addEventListener('click', () =&gt; {
+    lightboxImg.src = node.dataset.lightboxSrc;
+    lightboxImg.alt = node.dataset.lightboxAlt || '';
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+  });
+});
+
+overlay.addEventListener('click', (event) =&gt; {
+  if (event.target === overlay || event.target.closest('.gallery-lightbox-close')) {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+});</code></pre>
+          </div>
+        <hr>
+
           <h3>Placeholder Image Design</h3>
           <p>
             Use <code>.gallery-placeholder</code> inside <code>.gallery-item</code> to represent missing
@@ -233,6 +315,47 @@ flowchart LR
           theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "default"
         });
       }
+
+      (function wireGalleryLightbox() {
+        const overlay = document.querySelector("[data-gallery-lightbox]");
+        if (!overlay) return;
+
+        const closeBtn = overlay.querySelector(".gallery-lightbox-close");
+        const img = overlay.querySelector(".gallery-lightbox-img");
+
+        function closeLightbox() {
+          overlay.classList.remove("active");
+          overlay.setAttribute("aria-hidden", "true");
+          if (img) {
+            img.src = "";
+            img.alt = "";
+          }
+        }
+
+        document.querySelectorAll("[data-lightbox-trigger]").forEach((node) => {
+          node.addEventListener("click", () => {
+            if (!img) return;
+            img.src = node.getAttribute("data-lightbox-src") || "";
+            img.alt = node.getAttribute("data-lightbox-alt") || "";
+            overlay.classList.add("active");
+            overlay.setAttribute("aria-hidden", "false");
+          });
+        });
+
+        overlay.addEventListener("click", (event) => {
+          if (event.target === overlay) closeLightbox();
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", closeLightbox);
+        }
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && overlay.classList.contains("active")) {
+            closeLightbox();
+          }
+        });
+      })();
     </script>
   </body>
 </html>
