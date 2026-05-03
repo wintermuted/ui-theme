@@ -70,6 +70,49 @@
 }
 
 /**
+ * .gallery-item-figure / .wm-gallery-item-figure
+ * Resume-style gallery tile with persistent figcaption below the media.
+ */
+.gallery-item-figure,
+.wm-gallery-item-figure {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-item-figure figcaption,
+.wm-gallery-item-figure figcaption {
+  font-size: 0.75rem;
+  color: var(--wm-color-text-muted);
+  padding: 0.4rem 0.6rem;
+  line-height: 1.4;
+  border-top: 1px solid var(--wm-color-border);
+  background: var(--wm-color-surface-solid);
+}
+
+/**
+ * .gallery-item-diagram / .wm-gallery-item-diagram
+ * Mermaid diagram tile used in resume project galleries.
+ */
+.gallery-item-diagram .mermaid,
+.wm-gallery-item-diagram .wm-mermaid {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--wm-color-surface-muted);
+}
+
+.gallery-item-diagram .mermaid svg,
+.wm-gallery-item-diagram .wm-mermaid svg {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+/**
  * .gallery-placeholder / .wm-gallery-placeholder
  * Design-first placeholder tile for when screenshots are not ready yet.
  * Keep aspect ratio consistent with real images so layout does not shift later.

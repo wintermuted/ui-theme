@@ -110,6 +110,66 @@
           </div>
         <hr>
 
+          <h3>Resume-Style Project Entry</h3>
+          <p>
+            The CV uses a project entry block with a title/date row, summary text, and a gallery grid of
+            <code>&lt;figure&gt;</code> tiles. This variant includes both screenshot figures and a Mermaid
+            diagram figure, each with persistent <code>&lt;figcaption&gt;</code> labels.
+          </p>
+          <div style="max-width: 56rem; margin: 0.75rem 0;">
+            <div class="entry-header" style="margin-bottom: 0.35rem;">
+              <strong style="font-size: 0.95rem;">Deal Monitoring UI</strong>
+              <span class="entry-date">Jan 2025 - Oct 2025</span>
+            </div>
+            <p style="margin: 0 0 0.65rem; font-size: 0.88rem; color: var(--wm-color-text-secondary);">
+              Full-stack monitoring surface with virtualized tables, URL-synced filters, and reusable
+              component architecture.
+            </p>
+            <div class="gallery" style="max-width: 56rem;">
+              <figure class="gallery-item gallery-item-figure">
+                <img src="https://picsum.photos/seed/wm-resume-1/640/400" alt="Virtualized table view" />
+                <figcaption>Virtualized table view with reusable column config</figcaption>
+              </figure>
+              <figure class="gallery-item gallery-item-figure">
+                <img src="https://picsum.photos/seed/wm-resume-2/640/400" alt="URL synced filter panel" />
+                <figcaption>URL-synced filter panel with saved views</figcaption>
+              </figure>
+              <figure class="gallery-item gallery-item-figure gallery-item-diagram">
+                <div class="mermaid">flowchart LR
+  A[Data API] --> B[Adapter]
+  B --> C[View Model]
+  C --> D[Virtualized Table]</div>
+                <figcaption>Data flow diagram used in architecture notes</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="entry-header"&gt;
+  &lt;strong&gt;Deal Monitoring UI&lt;/strong&gt;
+  &lt;span class="entry-date"&gt;Jan 2025 - Oct 2025&lt;/span&gt;
+&lt;/div&gt;
+&lt;p&gt;Full-stack monitoring surface with virtualized tables...&lt;/p&gt;
+
+&lt;div class="gallery"&gt;
+  &lt;figure class="gallery-item gallery-item-figure"&gt;
+    &lt;img src="table-view.png" alt="Virtualized table view" /&gt;
+    &lt;figcaption&gt;Virtualized table view with reusable column config&lt;/figcaption&gt;
+  &lt;/figure&gt;
+
+  &lt;figure class="gallery-item gallery-item-figure gallery-item-diagram"&gt;
+    &lt;div class="mermaid"&gt;
+flowchart LR
+  A[Data API] --&gt; B[Adapter]
+  B --&gt; C[View Model]
+  C --&gt; D[Virtualized Table]
+    &lt;/div&gt;
+    &lt;figcaption&gt;Data flow diagram used in architecture notes&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
           <h3>Placeholder Image Design</h3>
           <p>
             Use <code>.gallery-placeholder</code> inside <code>.gallery-item</code> to represent missing
@@ -163,6 +223,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
     <script src="./showcase.js"></script>
+    <script>
+      if (typeof mermaid !== "undefined") {
+        mermaid.initialize({
+          startOnLoad: true,
+          securityLevel: "loose",
+          theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "default"
+        });
+      }
+    </script>
   </body>
 </html>
