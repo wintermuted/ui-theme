@@ -37,6 +37,7 @@
           <a class="docs-nav-link" data-page="feedback.html" href="./feedback.html">Feedback</a>
           <a class="docs-nav-link" data-page="data-display.html" href="./data-display.html">Data Display</a>
           <a class="docs-nav-link" data-page="navigation.html" href="./navigation.html">Navigation</a>
+          <a class="docs-nav-link" data-page="modal.html" href="./modal.html">Modal</a>
         </nav>
       </aside>
 
@@ -128,6 +129,54 @@
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Stat Cards -->
+        <section class="wm-card card panel">
+          <h3>Stat Cards — <code>.stats-grid</code> / <code>.stat-card</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Compact metric display. Use <code>.stats-grid</code> as a responsive wrapper and
+            <code>.stat-card</code> for each cell. Inner <code>.stat-value</code> and
+            <code>.stat-label</code> position the number and descriptor.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/stat-card.css">styles/components/stat-card.css</a>
+          </p>
+          <div class="stats-grid" style="margin-bottom:1rem;">
+            <div class="stat-card">
+              <div class="stat-value">$214</div>
+              <div class="stat-label">Monthly spend</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">7</div>
+              <div class="stat-label">Subscriptions</div>
+            </div>
+            <div class="stat-card stat-card-success">
+              <div class="stat-value">$48</div>
+              <div class="stat-label">Savings realized</div>
+            </div>
+            <div class="stat-card stat-card-warning">
+              <div class="stat-value">$24</div>
+              <div class="stat-label">Projected savings</div>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="stats-grid"&gt;
+  &lt;div class="stat-card"&gt;
+    &lt;div class="stat-value"&gt;$214&lt;/div&gt;
+    &lt;div class="stat-label"&gt;Monthly spend&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-card stat-card-success"&gt;
+    &lt;div class="stat-value"&gt;$48&lt;/div&gt;
+    &lt;div class="stat-label"&gt;Savings realized&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-card stat-card-warning"&gt;
+    &lt;div class="stat-value"&gt;$24&lt;/div&gt;
+    &lt;div class="stat-label"&gt;Projected savings&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
           </div>
         </section>
       </main>

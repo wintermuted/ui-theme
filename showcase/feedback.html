@@ -37,6 +37,7 @@
           <a class="docs-nav-link" data-page="feedback.html" href="./feedback.html">Feedback</a>
           <a class="docs-nav-link" data-page="data-display.html" href="./data-display.html">Data Display</a>
           <a class="docs-nav-link" data-page="navigation.html" href="./navigation.html">Navigation</a>
+          <a class="docs-nav-link" data-page="modal.html" href="./modal.html">Modal</a>
         </nav>
       </aside>
 
@@ -88,6 +89,33 @@
             <pre class="code-block"><code class="language-html">&lt;div class="alert success"&gt;Payment captured successfully.&lt;/div&gt;
 &lt;div class="alert warning"&gt;Card expires in 9 days.&lt;/div&gt;
 &lt;div class="alert danger"&gt;Cancellation failed.&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Empty State -->
+        <section class="wm-card card panel">
+          <h3>Empty State — <code>.empty-state</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Centered placeholder for zero-data views. Use inside any container to communicate that
+            no items exist yet. Pair with a CTA button to guide the next action.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/empty-state.css">styles/components/empty-state.css</a>
+          </p>
+          <div style="border:1px solid var(--wm-color-border);border-radius:var(--wm-radius-base,8px);margin-bottom:1rem;">
+            <div class="empty-state">
+              <h3>No subscriptions yet</h3>
+              <p>Import transactions first, then run detection to find recurring charges.</p>
+              <button class="btn btn-primary btn-sm" type="button">Import Transactions</button>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="empty-state"&gt;
+  &lt;h3&gt;No subscriptions yet&lt;/h3&gt;
+  &lt;p&gt;Import transactions first, then run detection.&lt;/p&gt;
+  &lt;button class="btn btn-primary btn-sm" type="button"&gt;Import Transactions&lt;/button&gt;
+&lt;/div&gt;</code></pre>
           </div>
         </section>
       </main>

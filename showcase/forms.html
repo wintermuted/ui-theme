@@ -37,6 +37,7 @@
           <a class="docs-nav-link" data-page="feedback.html" href="./feedback.html">Feedback</a>
           <a class="docs-nav-link" data-page="data-display.html" href="./data-display.html">Data Display</a>
           <a class="docs-nav-link" data-page="navigation.html" href="./navigation.html">Navigation</a>
+          <a class="docs-nav-link" data-page="modal.html" href="./modal.html">Modal</a>
         </nav>
       </aside>
 
@@ -114,6 +115,102 @@
   &lt;button class="btn btn-primary" type="submit"&gt;Save Changes&lt;/button&gt;
   &lt;button class="btn btn-secondary" type="reset"&gt;Reset&lt;/button&gt;
   &lt;button class="btn btn-ghost" type="button"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- View Header -->
+        <section class="wm-card card panel">
+          <h3>View Header — <code>.view-header</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Flat section header used above a content area. Provides a consistent title + subtitle
+            treatment without borders or background. Pair with a <code>.card</code> if a raised surface
+            is needed, or use standalone when the page background provides sufficient separation.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/view-header.css">styles/components/view-header.css</a>
+          </p>
+          <div style="background:var(--wm-color-surface-muted);border-radius:var(--wm-radius-base,8px);padding:1.25rem;margin-bottom:1rem;">
+            <header class="view-header">
+              <h2>Import Transactions</h2>
+              <p>Upload a CSV export from your bank or credit card provider.</p>
+            </header>
+            <div style="font-size:0.85rem;color:var(--wm-color-text-muted);">(content area below)</div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;header class="view-header"&gt;
+  &lt;h2&gt;Import Transactions&lt;/h2&gt;
+  &lt;p&gt;Upload a CSV export from your bank or credit card provider.&lt;/p&gt;
+&lt;/header&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- File Upload -->
+        <section class="wm-card card panel">
+          <h3>File Upload — <code>.file-upload</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Drag-and-drop file target zone. Wrap a hidden <code>&lt;input type="file"&gt;</code> inside
+            the label — the entire zone becomes clickable. Border dashes and background fill change on
+            hover to signal interactivity.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/file-upload.css">styles/components/file-upload.css</a>
+          </p>
+          <label class="file-upload" style="margin-bottom:1rem;">
+            <input type="file" accept=".csv" />
+            <span>Click or drag a CSV file here</span>
+          </label>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;label class="file-upload"&gt;
+  &lt;input type="file" accept=".csv" /&gt;
+  &lt;span&gt;Click or drag a CSV file here&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <section class="wm-card card panel">
+          <h3>Filter Bar — <code>.filter-bar</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Horizontal strip for sort and filter controls. Uses only a bottom border — no background
+            or card surface — so it reads as an extension of the content below rather than a separate
+            panel. Combine <code>.filter-group</code> + <code>.filter-label</code> +
+            <code>.filter-select</code> for labeled selects.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/view-header.css">styles/components/view-header.css</a>
+          </p>
+          <div class="filter-bar" style="margin-bottom:1rem;">
+            <div class="filter-group">
+              <span class="filter-label">Sort by</span>
+              <select class="filter-select" title="Sort by">
+                <option>Yearly Cost</option>
+                <option>Amount</option>
+                <option>Merchant</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Cadence</span>
+              <select class="filter-select" title="Cadence">
+                <option>All</option>
+                <option>Monthly</option>
+                <option>Annual</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary btn-sm" style="align-self:flex-end;" type="button">↓ Desc</button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="filter-bar"&gt;
+  &lt;div class="filter-group"&gt;
+    &lt;span class="filter-label"&gt;Sort by&lt;/span&gt;
+    &lt;select class="filter-select"&gt;
+      &lt;option&gt;Yearly Cost&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;↓ Desc&lt;/button&gt;
 &lt;/div&gt;</code></pre>
           </div>
         </section>

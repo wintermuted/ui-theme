@@ -7,3 +7,9 @@
 @import "./components/list.css";
 @import "./components/separator.css";
 @import "./components/side-nav.css";
+@import "./components/stat-card.css";
+@import "./components/tab-bar.css";
+@import "./components/modal.css";
+@import "./components/empty-state.css";
+@import "./components/file-upload.css";
+@import "./components/view-header.css";

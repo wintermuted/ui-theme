@@ -41,7 +41,13 @@
     "./styles/components/tag.css": "./styles/components/tag.css",
     "./styles/components/list.css": "./styles/components/list.css",
     "./styles/components/separator.css": "./styles/components/separator.css",
-    "./styles/components/side-nav.css": "./styles/components/side-nav.css"
+    "./styles/components/side-nav.css": "./styles/components/side-nav.css",
+    "./styles/components/stat-card.css": "./styles/components/stat-card.css",
+    "./styles/components/tab-bar.css": "./styles/components/tab-bar.css",
+    "./styles/components/modal.css": "./styles/components/modal.css",
+    "./styles/components/empty-state.css": "./styles/components/empty-state.css",
+    "./styles/components/file-upload.css": "./styles/components/file-upload.css",
+    "./styles/components/view-header.css": "./styles/components/view-header.css"
   },
   "scripts": {
     "showcase:serve": "python3 -m http.server 4174",
