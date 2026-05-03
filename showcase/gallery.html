@@ -252,6 +252,84 @@ overlay.addEventListener('click', (event) =&gt; {
           </div>
         <hr>
 
+          <h3>Paginated Lightbox Setup</h3>
+          <p>
+            For project sets, group figures with <code>data-lightbox-group</code> so the lightbox can
+            paginate between items using previous/next controls.
+          </p>
+          <div class="gallery" style="max-width: 56rem; margin: 0.75rem 0;" data-gallery-lightbox-paginated-demo>
+            <figure class="gallery-item gallery-item-figure" data-lightbox-trigger data-lightbox-group="deal-monitoring" data-lightbox-src="https://picsum.photos/seed/wm-page-1/1600/1000" data-lightbox-alt="Deal Monitoring table view">
+              <img src="https://picsum.photos/seed/wm-page-1/640/400" alt="Deal Monitoring table view" />
+              <figcaption>Slide 1 · Table overview</figcaption>
+            </figure>
+            <figure class="gallery-item gallery-item-figure" data-lightbox-trigger data-lightbox-group="deal-monitoring" data-lightbox-src="https://picsum.photos/seed/wm-page-2/1600/1000" data-lightbox-alt="Deal Monitoring filters">
+              <img src="https://picsum.photos/seed/wm-page-2/640/400" alt="Deal Monitoring filters" />
+              <figcaption>Slide 2 · Filters and facets</figcaption>
+            </figure>
+            <figure class="gallery-item gallery-item-figure" data-lightbox-trigger data-lightbox-group="deal-monitoring" data-lightbox-src="https://picsum.photos/seed/wm-page-3/1600/1000" data-lightbox-alt="Deal Monitoring details">
+              <img src="https://picsum.photos/seed/wm-page-3/640/400" alt="Deal Monitoring details" />
+              <figcaption>Slide 3 · Detail overlay</figcaption>
+            </figure>
+          </div>
+
+          <div class="gallery-lightbox-overlay" data-gallery-lightbox-paginated aria-hidden="true">
+            <button class="gallery-lightbox-close" type="button" aria-label="Close lightbox">&times;</button>
+            <button class="gallery-lightbox-nav gallery-lightbox-nav-prev" type="button" aria-label="Previous image">&#8249;</button>
+            <img class="gallery-lightbox-img" src="" alt="" />
+            <button class="gallery-lightbox-nav gallery-lightbox-nav-next" type="button" aria-label="Next image">&#8250;</button>
+            <div class="gallery-lightbox-status" data-gallery-lightbox-status>1 / 1</div>
+          </div>
+
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;figure
+  class="gallery-item gallery-item-figure"
+  data-lightbox-trigger
+  data-lightbox-group="deal-monitoring"
+  data-lightbox-src="/assets/deal-table.png"
+  data-lightbox-alt="Deal Monitoring table view"
+&gt;
+  &lt;img src="/assets/deal-table-thumb.png" alt="Deal Monitoring table view" /&gt;
+  &lt;figcaption&gt;Slide 1 · Table overview&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;div class="gallery-lightbox-overlay" data-gallery-lightbox-paginated aria-hidden="true"&gt;
+  &lt;button class="gallery-lightbox-close" type="button" aria-label="Close lightbox"&gt;&amp;times;&lt;/button&gt;
+  &lt;button class="gallery-lightbox-nav gallery-lightbox-nav-prev" type="button" aria-label="Previous image"&gt;&amp;#8249;&lt;/button&gt;
+  &lt;img class="gallery-lightbox-img" src="" alt="" /&gt;
+  &lt;button class="gallery-lightbox-nav gallery-lightbox-nav-next" type="button" aria-label="Next image"&gt;&amp;#8250;&lt;/button&gt;
+  &lt;div class="gallery-lightbox-status" data-gallery-lightbox-status&gt;1 / 1&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">const overlay = document.querySelector('[data-gallery-lightbox-paginated]');
+const img = overlay.querySelector('.gallery-lightbox-img');
+const status = overlay.querySelector('[data-gallery-lightbox-status]');
+
+const group = [...document.querySelectorAll('[data-lightbox-group="deal-monitoring"]')];
+let index = 0;
+
+function render() {
+  const node = group[index];
+  img.src = node.dataset.lightboxSrc;
+  img.alt = node.dataset.lightboxAlt || '';
+  status.textContent = `${index + 1} / ${group.length}`;
+}
+
+overlay.querySelector('.gallery-lightbox-nav-prev').addEventListener('click', () =&gt; {
+  index = (index - 1 + group.length) % group.length;
+  render();
+});
+
+overlay.querySelector('.gallery-lightbox-nav-next').addEventListener('click', () =&gt; {
+  index = (index + 1) % group.length;
+  render();
+});</code></pre>
+          </div>
+        <hr>
+
           <h3>Placeholder Image Design</h3>
           <p>
             Use <code>.gallery-placeholder</code> inside <code>.gallery-item</code> to represent missing
@@ -332,7 +410,7 @@ overlay.addEventListener('click', (event) =&gt; {
           }
         }
 
-        document.querySelectorAll("[data-lightbox-trigger]").forEach((node) => {
+        document.querySelectorAll("[data-lightbox-trigger]:not([data-lightbox-group])").forEach((node) => {
           node.addEventListener("click", () => {
             if (!img) return;
             img.src = node.getAttribute("data-lightbox-src") || "";
@@ -353,6 +431,107 @@ overlay.addEventListener('click', (event) =&gt; {
         document.addEventListener("keydown", (event) => {
           if (event.key === "Escape" && overlay.classList.contains("active")) {
             closeLightbox();
+          }
+        });
+      })();
+
+      (function wirePaginatedGalleryLightbox() {
+        const overlay = document.querySelector("[data-gallery-lightbox-paginated]");
+        if (!overlay) return;
+
+        const closeBtn = overlay.querySelector(".gallery-lightbox-close");
+        const prevBtn = overlay.querySelector(".gallery-lightbox-nav-prev");
+        const nextBtn = overlay.querySelector(".gallery-lightbox-nav-next");
+        const status = overlay.querySelector("[data-gallery-lightbox-status]");
+        const img = overlay.querySelector(".gallery-lightbox-img");
+
+        let groupNodes = [];
+        let activeIndex = 0;
+
+        function render() {
+          if (!img || !groupNodes.length) return;
+          const node = groupNodes[activeIndex];
+          img.src = node.getAttribute("data-lightbox-src") || "";
+          img.alt = node.getAttribute("data-lightbox-alt") || "";
+          if (status) {
+            status.textContent = `${activeIndex + 1} / ${groupNodes.length}`;
+          }
+        }
+
+        function open(groupName, startNode) {
+          groupNodes = Array.from(
+            document.querySelectorAll(`[data-lightbox-trigger][data-lightbox-group="${groupName}"]`)
+          );
+          if (!groupNodes.length) return;
+
+          activeIndex = Math.max(0, groupNodes.indexOf(startNode));
+          render();
+          overlay.classList.add("active");
+          overlay.setAttribute("aria-hidden", "false");
+        }
+
+        function close() {
+          overlay.classList.remove("active");
+          overlay.setAttribute("aria-hidden", "true");
+          groupNodes = [];
+          activeIndex = 0;
+          if (img) {
+            img.src = "";
+            img.alt = "";
+          }
+          if (status) {
+            status.textContent = "1 / 1";
+          }
+        }
+
+        document.querySelectorAll("[data-lightbox-trigger][data-lightbox-group]").forEach((node) => {
+          node.addEventListener("click", () => {
+            const groupName = node.getAttribute("data-lightbox-group");
+            if (!groupName) return;
+            open(groupName, node);
+          });
+        });
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            if (!groupNodes.length) return;
+            activeIndex = (activeIndex - 1 + groupNodes.length) % groupNodes.length;
+            render();
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            if (!groupNodes.length) return;
+            activeIndex = (activeIndex + 1) % groupNodes.length;
+            render();
+          });
+        }
+
+        overlay.addEventListener("click", (event) => {
+          if (event.target === overlay) close();
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", close);
+        }
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && overlay.classList.contains("active")) {
+            close();
+            return;
+          }
+
+          if (!overlay.classList.contains("active") || !groupNodes.length) return;
+
+          if (event.key === "ArrowLeft") {
+            activeIndex = (activeIndex - 1 + groupNodes.length) % groupNodes.length;
+            render();
+          }
+
+          if (event.key === "ArrowRight") {
+            activeIndex = (activeIndex + 1) % groupNodes.length;
+            render();
           }
         });
       })();

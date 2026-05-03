@@ -233,3 +233,52 @@
   object-fit: contain;
   border: 1px solid color-mix(in srgb, var(--wm-color-border) 72%, transparent);
 }
+
+.gallery-lightbox-nav,
+.wm-gallery-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: var(--wm-radius-pill);
+  border: 1px solid color-mix(in srgb, var(--wm-color-border) 72%, transparent);
+  background: color-mix(in srgb, var(--wm-color-surface-solid) 84%, transparent);
+  color: var(--wm-color-text);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.gallery-lightbox-nav:hover,
+.wm-gallery-lightbox-nav:hover {
+  background: color-mix(in srgb, var(--wm-color-surface-solid) 96%, transparent);
+}
+
+.gallery-lightbox-nav-prev,
+.wm-gallery-lightbox-nav-prev {
+  left: 1rem;
+}
+
+.gallery-lightbox-nav-next,
+.wm-gallery-lightbox-nav-next {
+  right: 1rem;
+}
+
+.gallery-lightbox-status,
+.wm-gallery-lightbox-status {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--wm-radius-pill);
+  background: color-mix(in srgb, black 42%, transparent);
+  color: #fff;
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+}
