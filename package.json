@@ -47,7 +47,10 @@
     "./styles/components/modal.css": "./styles/components/modal.css",
     "./styles/components/empty-state.css": "./styles/components/empty-state.css",
     "./styles/components/file-upload.css": "./styles/components/file-upload.css",
-    "./styles/components/view-header.css": "./styles/components/view-header.css"
+    "./styles/components/view-header.css": "./styles/components/view-header.css",
+    "./styles/components/layout.css": "./styles/components/layout.css",
+    "./styles/components/inline-panel.css": "./styles/components/inline-panel.css",
+    "./styles/components/checkbox-filter.css": "./styles/components/checkbox-filter.css"
   },
   "scripts": {
     "showcase:serve": "python3 -m http.server 4174",

@@ -179,6 +179,53 @@
           </div>
         </section>
 
+        <!-- Checkbox Filter -->
+        <section class="wm-card card panel">
+          <h3>Checkbox Filter — <code>.checkbox-filter-group</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Vertical list of labeled checkbox rows used inside sidebar filter panels. Each row is a
+            full-width <code>&lt;label&gt;</code> that wraps the checkbox so the entire row is
+            tappable. An optional count badge sits at the far right.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/checkbox-filter.css">styles/components/checkbox-filter.css</a>
+          </p>
+          <div style="width:220px;margin-bottom:1rem;">
+            <div class="checkbox-filter-group">
+              <label class="checkbox-filter-label">
+                <input type="checkbox" checked />
+                <span class="checkbox-filter-name">Monthly</span>
+                <span class="checkbox-filter-count">14</span>
+              </label>
+              <label class="checkbox-filter-label">
+                <input type="checkbox" />
+                <span class="checkbox-filter-name">Annual</span>
+                <span class="checkbox-filter-count">3</span>
+              </label>
+              <label class="checkbox-filter-label">
+                <input type="checkbox" checked />
+                <span class="checkbox-filter-name">Weekly</span>
+                <span class="checkbox-filter-count">1</span>
+              </label>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="checkbox-filter-group"&gt;
+  &lt;label class="checkbox-filter-label"&gt;
+    &lt;input type="checkbox" checked /&gt;
+    &lt;span class="checkbox-filter-name"&gt;Monthly&lt;/span&gt;
+    &lt;span class="checkbox-filter-count"&gt;14&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;label class="checkbox-filter-label"&gt;
+    &lt;input type="checkbox" /&gt;
+    &lt;span class="checkbox-filter-name"&gt;Annual&lt;/span&gt;
+    &lt;span class="checkbox-filter-count"&gt;3&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
       </main>
     </div>
 

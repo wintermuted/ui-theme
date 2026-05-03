@@ -13,3 +13,6 @@
 @import "./components/empty-state.css";
 @import "./components/file-upload.css";
 @import "./components/view-header.css";
+@import "./components/layout.css";
+@import "./components/inline-panel.css";
+@import "./components/checkbox-filter.css";

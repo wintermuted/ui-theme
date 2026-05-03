@@ -38,6 +38,7 @@
           <a class="docs-nav-link" data-page="data-display.html" href="./data-display.html">Data Display</a>
           <a class="docs-nav-link" data-page="navigation.html" href="./navigation.html">Navigation</a>
           <a class="docs-nav-link" data-page="modal.html" href="./modal.html">Modal</a>
+          <a class="docs-nav-link" data-page="layout.html" href="./layout.html">Layout</a>
         </nav>
       </aside>
 
@@ -116,6 +117,34 @@
   &lt;p&gt;Import transactions first, then run detection.&lt;/p&gt;
   &lt;button class="btn btn-primary btn-sm" type="button"&gt;Import Transactions&lt;/button&gt;
 &lt;/div&gt;</code></pre>
+          </div>
+        </section>
+
+        <!-- Inline Panels -->
+        <section class="wm-card card panel">
+          <h3>Inline Panels — <code>.inline-panel</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Tonal in-context info blocks used inside cards or below form fields. Lighter and
+            more contextual than a full <code>.alert</code> bar — surface information at the
+            point of relevance without interrupting the page flow.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/inline-panel.css">styles/components/inline-panel.css</a>
+          </p>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1rem;">
+            <div class="inline-panel">Default muted panel — use for neutral notes or hints.</div>
+            <div class="inline-panel inline-panel-accent">Accent panel — new info, links, or calls to action.</div>
+            <div class="inline-panel inline-panel-success">Success panel — cancellation confirmed. <a href="#">View details</a></div>
+            <div class="inline-panel inline-panel-warning">Warning panel — cancellation flagged as pending.</div>
+            <div class="inline-panel inline-panel-danger">Danger panel — action failed or requires attention.</div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="inline-panel"&gt;Neutral note.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-accent"&gt;Accent info.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-success"&gt;Confirmed.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-warning"&gt;Pending.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-danger"&gt;Failed.&lt;/div&gt;</code></pre>
           </div>
         </section>
       </main>
