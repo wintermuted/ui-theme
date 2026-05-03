@@ -62,7 +62,6 @@
         </header>
 
         <!-- Install -->
-        <section class="docs-section">
           <h3>Install</h3>
           <p>Install from npm:</p>
           <div class="code-sample" data-lang="bash">
@@ -74,10 +73,9 @@
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
             <pre class="code-block"><code class="language-bash">yarn add @wintermuted/ui-theme</code></pre>
           </div>
-        </section>
+        <hr>
 
         <!-- Import the stylesheet -->
-        <section class="docs-section">
           <h3>Import the Stylesheet</h3>
           <p>Import once at your app entry point. In a Vite / bundler project:</p>
           <div class="code-sample" data-lang="js">
@@ -89,10 +87,9 @@
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
             <pre class="code-block"><code class="language-html">&lt;link rel="stylesheet" href="node_modules/@wintermuted/ui-theme/index.css" /&gt;</code></pre>
           </div>
-        </section>
+        <hr>
 
         <!-- Dark mode -->
-        <section class="docs-section">
           <h3>Dark Mode</h3>
           <p>
             Dark tokens activate when the <code>data-theme="dark"</code> attribute is set on
@@ -114,10 +111,9 @@ if (saved === 'dark') {
   document.documentElement.setAttribute('data-theme', 'dark');
 }</code></pre>
           </div>
-        </section>
+        <hr>
 
         <!-- Design tokens -->
-        <section class="docs-section">
           <h3>Design Tokens</h3>
           <p>
             All tokens are CSS custom properties on <code>:root</code>. Dark overrides live on
@@ -150,10 +146,9 @@ if (saved === 'dark') {
             <li><code>--wm-font-sans</code> — system font stack (Inter + fallbacks)</li>
             <li><code>--wm-shadow-soft</code> — card/modal elevation shadow</li>
           </ul>
-        </section>
+        <hr>
 
         <!-- Component classes -->
-        <section class="docs-section">
           <h3>Component Classes</h3>
           <p>
             The stylesheet includes opt-in component classes. All classes ship with both a
@@ -186,10 +181,9 @@ if (saved === 'dark') {
               </tbody>
             </table>
           </table>
-        </section>
+        <hr>
 
         <!-- Local development -->
-        <section class="docs-section">
           <h3>Local Development</h3>
           <p>
             To iterate on the theme without publishing to npm, use <code>npm link</code> to symlink
@@ -220,7 +214,6 @@ export default defineConfig({
   },
 });</code></pre>
           </div>
-        </section>
       </main>
     </div>
 
