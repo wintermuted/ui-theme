@@ -193,6 +193,99 @@
           </table>
         <hr>
 
+        <!-- Entry Header -->
+          <h3>Entry Header — <code>.entry-header</code></h3>
+          <p>
+            Two-column flex row: primary label on the left, secondary metadata (date, status) on the right.
+            Wraps gracefully on narrow viewports. Use for timeline entries, work history rows, list items
+            with a date, or any scan-first two-column label + meta pattern.
+          </p>
+          <div style="max-width: 36rem; border: 1px solid var(--wm-color-border); border-radius: var(--wm-radius-md); overflow: hidden;">
+            <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--wm-color-border);">
+              <div class="entry-header">
+                <strong style="font-size: 0.95rem;">Senior Software Engineer</strong>
+                <span class="entry-date">2021 – Present</span>
+              </div>
+              <span class="entry-meta">Acme Corp · Portland, OR</span>
+            </div>
+            <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--wm-color-border);">
+              <div class="entry-header">
+                <strong style="font-size: 0.95rem;">Software Engineer II</strong>
+                <span class="entry-date">2018 – 2021</span>
+              </div>
+              <span class="entry-meta">Widgets Inc · Seattle, WA</span>
+            </div>
+            <div style="padding: 1rem 1.25rem;">
+              <div class="entry-header">
+                <strong style="font-size: 0.95rem;">Junior Engineer</strong>
+                <span class="entry-date">2016 – 2018</span>
+              </div>
+              <span class="entry-meta">Startup Co · San Francisco, CA</span>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="entry-header"&gt;
+  &lt;strong&gt;Senior Software Engineer&lt;/strong&gt;
+  &lt;span class="entry-date"&gt;2021 – Present&lt;/span&gt;
+&lt;/div&gt;
+&lt;span class="entry-meta"&gt;Acme Corp · Portland, OR&lt;/span&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Content Grid -->
+          <h3>Content Grid — <code>.content-grid</code></h3>
+          <p>
+            Responsive <code>auto-fill</code> grid for equal-width content tiles — skill categories,
+            feature blocks, or grouped metadata. Each cell is at least 220 px and expands to fill
+            available space without a media query.
+          </p>
+          <div class="content-grid" style="max-width: 48rem;">
+            <div>
+              <p style="margin:0 0 0.35rem; font-weight: 600; font-size: 0.9rem;">Frontend</p>
+              <ul class="wm-list" style="margin: 0;">
+                <li>React, TypeScript</li>
+                <li>CSS Modules, Tailwind</li>
+                <li>Vite, Webpack</li>
+              </ul>
+            </div>
+            <div>
+              <p style="margin:0 0 0.35rem; font-weight: 600; font-size: 0.9rem;">Backend</p>
+              <ul class="wm-list" style="margin: 0;">
+                <li>Node.js, Express</li>
+                <li>PostgreSQL, Redis</li>
+                <li>REST, GraphQL</li>
+              </ul>
+            </div>
+            <div>
+              <p style="margin:0 0 0.35rem; font-weight: 600; font-size: 0.9rem;">Tooling</p>
+              <ul class="wm-list" style="margin: 0;">
+                <li>Git, GitHub Actions</li>
+                <li>Docker, Kubernetes</li>
+                <li>Playwright, Vitest</li>
+              </ul>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="content-grid"&gt;
+  &lt;div&gt;
+    &lt;p&gt;Frontend&lt;/p&gt;
+    &lt;ul class="wm-list"&gt;
+      &lt;li&gt;React, TypeScript&lt;/li&gt;
+      &lt;li&gt;CSS Modules, Tailwind&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;p&gt;Backend&lt;/p&gt;
+    &lt;ul class="wm-list"&gt;
+      &lt;li&gt;Node.js, Express&lt;/li&gt;
+      &lt;li&gt;PostgreSQL, Redis&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
       </main>
     </div>
 

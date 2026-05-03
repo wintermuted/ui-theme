@@ -151,6 +151,59 @@
   margin: 0 0 0.75rem;
 }
 
+/* ── Entry Header ───────────────────────────────────────────────────────────── */
+
+/**
+ * .entry-header / .wm-entry-header
+ * Two-column header row: title/name on the left, date or meta on the right.
+ * Use for resume-style entries, work history rows, timeline items, etc.
+ * Wraps gracefully on narrow viewports.
+ */
+.entry-header,
+.wm-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+/**
+ * .entry-date / .wm-entry-date
+ * Small muted timestamp or date range. Right-aligned inside .entry-header.
+ */
+.entry-date,
+.wm-entry-date {
+  font-size: 0.8rem;
+  color: var(--wm-color-text-muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/**
+ * .entry-meta / .wm-entry-meta
+ * Small muted secondary detail (location, category, type) below or beside a title.
+ */
+.entry-meta,
+.wm-entry-meta {
+  font-size: 0.8rem;
+  color: var(--wm-color-text-muted);
+}
+
+/* ── Content Grid ───────────────────────────────────────────────────────────── */
+
+/**
+ * .content-grid / .wm-content-grid
+ * Responsive auto-fill grid for equal-width content tiles (skills, features, cards).
+ * Each cell is at least 220 px wide and expands to fill available space.
+ */
+.content-grid,
+.wm-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem 2rem;
+}
+
 @media (max-width: 768px) {
   .app-header,
   .wm-app-header {

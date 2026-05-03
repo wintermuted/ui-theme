@@ -339,6 +339,45 @@ function SpendChart({ data }) {
   );
 }</code></pre>
           </div>
+        <hr>
+
+        <!-- Gallery -->
+          <h3>Gallery — <code>.gallery</code></h3>
+          <p>
+            Responsive auto-fill image grid. Each <code>.gallery-item</code> clips its image to a 16:10
+            aspect ratio and lifts on hover. An optional <code>.gallery-item-caption</code> overlays as
+            a frosted label on hover.
+          </p>
+          <div class="gallery" style="max-width: 48rem; margin: 0.75rem 0;">
+            <div class="gallery-item">
+              <img src="https://picsum.photos/seed/wm1/400/250" alt="Sample image 1" />
+              <span class="gallery-item-caption">Project screenshot</span>
+            </div>
+            <div class="gallery-item">
+              <img src="https://picsum.photos/seed/wm2/400/250" alt="Sample image 2" />
+              <span class="gallery-item-caption">Dashboard view</span>
+            </div>
+            <div class="gallery-item">
+              <img src="https://picsum.photos/seed/wm3/400/250" alt="Sample image 3" />
+              <span class="gallery-item-caption">Mobile layout</span>
+            </div>
+            <div class="gallery-item">
+              <img src="https://picsum.photos/seed/wm4/400/250" alt="Sample image 4" />
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="gallery"&gt;
+  &lt;div class="gallery-item"&gt;
+    &lt;img src="screenshot.png" alt="Project screenshot" /&gt;
+    &lt;span class="gallery-item-caption"&gt;Project screenshot&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="gallery-item"&gt;
+    &lt;img src="dashboard.png" alt="Dashboard view" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
       </main>
     </div>
 

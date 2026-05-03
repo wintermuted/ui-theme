@@ -124,3 +124,38 @@
   background: none;
   transform: none;
 }
+
+/**
+ * .btn-pill / .wm-btn-pill
+ * Compact muted pill for UI chrome controls (theme toggle, view toggle, print).
+ * No action affordance — use for low-emphasis utility controls only.
+ */
+.btn-pill,
+.wm-btn-pill {
+  background: var(--wm-color-surface-strong);
+  border: 1px solid var(--wm-color-border);
+  border-radius: var(--wm-radius-pill);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--wm-color-text-muted);
+  line-height: 1;
+  min-height: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btn-pill:hover,
+.wm-btn-pill:hover {
+  background: var(--wm-color-surface-muted);
+  color: var(--wm-color-text);
+}
