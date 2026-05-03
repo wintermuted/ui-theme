@@ -142,6 +142,46 @@ yarn add @wintermuted/ui-theme</code></pre>
           </div>
         <hr>
 
+        <!-- Mermaid Diagrams -->
+          <h3>Mermaid Diagrams</h3>
+          <p>
+            Mermaid supports architecture and flow examples directly in docs. Use a regular
+            <code>.code-sample</code> for copyable source and a sibling <code>.mermaid</code> node for the
+            rendered preview.
+          </p>
+          <div class="code-sample" data-lang="mermaid">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-text">flowchart LR
+  A[Tokens] --> B[Components]
+  B --> C[Showcase]
+  C --> D[Consumer App]</code></pre>
+          </div>
+          <div class="wm-card card" style="padding: 0.85rem 1rem; margin-top: 0.75rem;">
+            <div class="mermaid">flowchart LR
+  A[Tokens] --> B[Components]
+  B --> C[Showcase]
+  C --> D[Consumer App]</div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="code-sample" data-lang="mermaid"&gt;
+  &lt;pre class="code-block"&gt;&lt;code class="language-text"&gt;
+flowchart LR
+  A[Tokens] --&gt; B[Components]
+  B --&gt; C[Showcase]
+  C --&gt; D[Consumer App]
+  &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class="mermaid"&gt;
+flowchart LR
+  A[Tokens] --&gt; B[Components]
+  B --&gt; C[Showcase]
+  C --&gt; D[Consumer App]
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
         <!-- Copy Button Behavior -->
           <h3>Copy Button Behavior</h3>
           <p>
@@ -237,6 +277,16 @@ if (typeof Prism !== 'undefined') {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
     <script src="./showcase.js"></script>
+    <script>
+      if (typeof mermaid !== "undefined") {
+        mermaid.initialize({
+          startOnLoad: true,
+          securityLevel: "loose",
+          theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "default"
+        });
+      }
+    </script>
   </body>
 </html>

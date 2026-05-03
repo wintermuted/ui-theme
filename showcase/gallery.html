@@ -108,6 +108,55 @@
   &lt;span class="gallery-item-caption"&gt;Project screenshot&lt;/span&gt;
 &lt;/div&gt;</code></pre>
           </div>
+        <hr>
+
+          <h3>Placeholder Image Design</h3>
+          <p>
+            Use <code>.gallery-placeholder</code> inside <code>.gallery-item</code> to represent missing
+            screenshots without breaking layout rhythm. This keeps spacing and visual weight consistent
+            while teams wait for final assets.
+          </p>
+          <div class="gallery" style="max-width: 52rem; margin: 0.75rem 0;">
+            <div class="gallery-item">
+              <div class="gallery-placeholder">
+                <div class="gallery-placeholder-content">
+                  <p class="gallery-placeholder-title">Screenshot Pending</p>
+                  <p class="gallery-placeholder-meta">Dashboard · Desktop</p>
+                </div>
+              </div>
+              <span class="gallery-item-caption">Planned view</span>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-placeholder">
+                <div class="gallery-placeholder-content">
+                  <p class="gallery-placeholder-title">Asset In Review</p>
+                  <p class="gallery-placeholder-meta">Billing Flow · Mobile</p>
+                </div>
+              </div>
+              <span class="gallery-item-caption">Design review</span>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-placeholder">
+                <div class="gallery-placeholder-content">
+                  <p class="gallery-placeholder-title">Final Export Needed</p>
+                  <p class="gallery-placeholder-meta">Analytics · Dark Theme</p>
+                </div>
+              </div>
+              <span class="gallery-item-caption">Queued for capture</span>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="gallery-item"&gt;
+  &lt;div class="gallery-placeholder"&gt;
+    &lt;div class="gallery-placeholder-content"&gt;
+      &lt;p class="gallery-placeholder-title"&gt;Screenshot Pending&lt;/p&gt;
+      &lt;p class="gallery-placeholder-meta"&gt;Dashboard · Desktop&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;span class="gallery-item-caption"&gt;Planned view&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
 
       </main>
     </div>

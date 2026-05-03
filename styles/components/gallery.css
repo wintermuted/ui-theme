@@ -68,3 +68,69 @@
 .wm-gallery-item:hover .wm-gallery-item-caption {
   opacity: 1;
 }
+
+/**
+ * .gallery-placeholder / .wm-gallery-placeholder
+ * Design-first placeholder tile for when screenshots are not ready yet.
+ * Keep aspect ratio consistent with real images so layout does not shift later.
+ */
+.gallery-placeholder,
+.wm-gallery-placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  padding: 0.9rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--wm-color-surface-strong) 88%, white) 0%,
+      var(--wm-color-surface-muted) 52%,
+      color-mix(in srgb, var(--wm-color-accent-soft) 24%, var(--wm-color-surface-muted)) 100%
+    );
+  color: var(--wm-color-text-muted);
+  text-align: center;
+}
+
+.gallery-placeholder::before,
+.wm-gallery-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    45deg,
+    transparent 0,
+    transparent 46%,
+    color-mix(in srgb, var(--wm-color-border) 64%, transparent) 46%,
+    color-mix(in srgb, var(--wm-color-border) 64%, transparent) 54%,
+    transparent 54%,
+    transparent 100%
+  );
+  background-size: 22px 22px;
+  opacity: 0.25;
+}
+
+.gallery-placeholder-content,
+.wm-gallery-placeholder-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.gallery-placeholder-title,
+.wm-gallery-placeholder-title {
+  margin: 0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wm-color-text-secondary);
+  font-weight: 600;
+}
+
+.gallery-placeholder-meta,
+.wm-gallery-placeholder-meta {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--wm-color-text-muted);
+}
