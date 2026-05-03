@@ -1,0 +1,10 @@
+/* Card / panel primitives. */
+
+.card,
+.wm-card {
+  background: var(--wm-color-surface);
+  border: 1px solid var(--wm-color-border);
+  border-radius: var(--wm-radius-md);
+  box-shadow: var(--wm-shadow-soft);
+  backdrop-filter: blur(16px);
+}

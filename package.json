@@ -14,6 +14,7 @@
   "files": [
     "index.js",
     "index.css",
+    "styles/**/*.css",
     "README.md",
     "LICENSE"
   ],
@@ -30,6 +31,21 @@
   },
   "exports": {
     ".": "./index.js",
-    "./index.css": "./index.css"
+    "./index.css": "./index.css",
+    "./styles/tokens.css": "./styles/tokens.css",
+    "./styles/base.css": "./styles/base.css",
+    "./styles/components.css": "./styles/components.css",
+    "./styles/components/card.css": "./styles/components/card.css",
+    "./styles/components/button.css": "./styles/components/button.css",
+    "./styles/components/badge.css": "./styles/components/badge.css",
+    "./styles/components/tag.css": "./styles/components/tag.css",
+    "./styles/components/list.css": "./styles/components/list.css",
+    "./styles/components/separator.css": "./styles/components/separator.css",
+    "./styles/components/side-nav.css": "./styles/components/side-nav.css"
+  },
+  "scripts": {
+    "showcase:serve": "python3 -m http.server 4174",
+    "link:local": "bash scripts/link-local.sh",
+    "unlink:local": "bash scripts/unlink-local.sh"
   }
 }
