@@ -82,6 +82,31 @@ body {
   gap: 0.5rem;
 }
 
+.docs-topbar-menu {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-family: inherit;
+  padding: 0.3rem 0.55rem;
+  border-radius: var(--wm-radius-xs, 4px);
+  border: 1px solid var(--docs-border);
+  background: transparent;
+  color: var(--wm-color-text-muted);
+  cursor: pointer;
+}
+
+.docs-topbar-menu:hover {
+  background: var(--docs-surface-subtle);
+  color: var(--wm-color-text);
+}
+
+.docs-topbar-menu svg {
+  width: 13px;
+  height: 13px;
+}
+
 .docs-topbar-toggle {
   font-size: 0.72rem;
   font-weight: 500;
@@ -378,6 +403,51 @@ body {
   color: var(--wm-color-text);
   border-left-color: var(--wm-color-accent);
   background: var(--docs-nav-active-bg);
+}
+
+.docs-outline-group {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--docs-border);
+}
+
+.docs-outline-links {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.docs-outline-link {
+  display: block;
+  text-decoration: none;
+  color: var(--wm-color-text-muted);
+  border-left: 2px solid transparent;
+  padding: 0.32rem 0.55rem 0.32rem 0.75rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  transition: color 0.15s ease, border-left-color 0.15s ease, background 0.15s ease;
+}
+
+.docs-outline-link:hover {
+  color: var(--wm-color-text);
+  border-left-color: var(--wm-color-border-strong);
+  background: var(--docs-surface-subtle);
+}
+
+.docs-outline-link.is-active {
+  color: var(--wm-color-text);
+  border-left-color: var(--wm-color-accent);
+  background: var(--docs-nav-active-bg);
+}
+
+.docs-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 29;
+  background: color-mix(in srgb, var(--wm-color-bg) 45%, transparent);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .docs-main {
@@ -715,6 +785,10 @@ pre[class*="language-"].code-block {
     padding-right: 1rem;
   }
 
+  .docs-topbar-menu {
+    display: inline-flex;
+  }
+
   .docs-shell {
     grid-template-columns: 1fr;
     padding-left: 1rem;
@@ -722,7 +796,28 @@ pre[class*="language-"].code-block {
   }
 
   .docs-sidebar {
-    position: static;
+    position: fixed;
+    top: 3.1rem;
+    left: 0;
+    bottom: 0;
+    width: min(320px, 84vw);
+    margin: 0;
+    border-radius: 0;
+    border-right: 1px solid var(--docs-border);
+    background: var(--wm-color-bg);
+    transform: translateX(-105%);
+    transition: transform 0.22s ease;
+    z-index: 30;
+    overflow-y: auto;
+  }
+
+  body.docs-sidebar-open .docs-sidebar {
+    transform: translateX(0);
+  }
+
+  body.docs-sidebar-open .docs-sidebar-backdrop {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
