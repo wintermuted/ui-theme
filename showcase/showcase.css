@@ -471,7 +471,7 @@ body {
   top: 1rem;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
-  padding-right: 0.25rem;
+  padding: 1.15rem 0.25rem 0 0;
 }
 
 /* Docs content sections — contain a section-title + one or more cards */
