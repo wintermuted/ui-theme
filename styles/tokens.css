@@ -2,11 +2,10 @@
 
 :root {
   --wm-font-sans: "Inter", "Sohne", "Söhne", system-ui, -apple-system, "Segoe UI",
-    Helvetica, Arial, sans-serif;
-
+    helvetica, arial, sans-serif;
   --wm-color-text: #0d0d0d;
-  --wm-color-bg: #ffffff;
-  --wm-color-surface: rgba(255, 255, 255, 0.86);
+  --wm-color-bg: #fff;
+  --wm-color-surface: rgb(255 255 255 / 86%);
   --wm-color-surface-solid: #fbfbfb;
   --wm-color-surface-muted: #f7f7f7;
   --wm-color-surface-strong: #efefef;
@@ -16,7 +15,6 @@
   --wm-color-border: #e5e5e5;
   --wm-color-border-strong: #d8d8d8;
   --wm-color-link-underline: #d1d1d1;
-
   --wm-color-accent: #2a4a8a;
   --wm-color-accent-soft: #f0f4ff;
   --wm-color-accent-border: #d8e0f0;
@@ -29,8 +27,7 @@
   --wm-color-danger: #c5221f;
   --wm-color-danger-soft: #fce8e6;
   --wm-color-danger-border: #f4c3c1;
-
-  --wm-shadow-soft: 0 18px 40px -30px rgba(13, 13, 13, 0.28);
+  --wm-shadow-soft: 0 18px 40px -30px rgb(13 13 13 / 28%);
   --wm-radius-xs: 4px;
   --wm-radius-base: 8px;
   --wm-radius-sm: 10px;
@@ -42,17 +39,16 @@
 [data-theme="dark"] {
   --wm-color-text: #e0e0e0;
   --wm-color-bg: #141414;
-  --wm-color-surface: rgba(28, 28, 28, 0.88);
+  --wm-color-surface: rgb(28 28 28 / 88%);
   --wm-color-surface-solid: #1c1c1c;
   --wm-color-surface-muted: #181818;
   --wm-color-surface-strong: #202020;
   --wm-color-text-secondary: #b8b8b8;
-  --wm-color-text-muted: #888888;
-  --wm-color-text-faint: #666666;
+  --wm-color-text-muted: #888;
+  --wm-color-text-faint: #666;
   --wm-color-border: #2e2e2e;
   --wm-color-border-strong: #3a3a3a;
-  --wm-color-link-underline: #444444;
-
+  --wm-color-link-underline: #444;
   --wm-color-accent: #7aa0e8;
   --wm-color-accent-soft: #1a2240;
   --wm-color-accent-border: #2a3560;
