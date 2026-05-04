@@ -69,7 +69,7 @@
     const brand = document.createElement("a");
     brand.className = "docs-topbar-brand";
     brand.href = "./index.html";
-    brand.textContent = "Wintermuted UI Docs";
+    brand.innerHTML = '<img class="docs-topbar-brand-icon" src="./logo.png" alt="" width="20" height="20" aria-hidden="true" /><span>Wintermuted UI Docs</span>';
 
     const actions = document.createElement("div");
     actions.className = "docs-topbar-actions";
