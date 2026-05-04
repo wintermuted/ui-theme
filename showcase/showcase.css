@@ -257,13 +257,13 @@ label {
   text-transform: lowercase;
 }
 
-.code-block {
+pre.code-block {
   background: var(--wm-color-bg);
   border: none;
   border-radius: 0;
   padding: 0.85rem 1rem;
   overflow-x: auto;
-  font-size: 0.775rem;
+  font-size: 0.75rem;
   line-height: 1.7;
   font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Menlo', monospace;
   color: var(--wm-color-text-secondary);
