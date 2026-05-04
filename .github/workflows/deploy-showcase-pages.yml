@@ -68,7 +68,7 @@ jobs:
           git add -A
           if ! git diff --staged --quiet; then
             git commit -m "Deploy: ${{ github.sha }}"
-            git push origin HEAD:refs/heads/gh-pages
+            git push --force origin HEAD:refs/heads/gh-pages
           fi
 
       - name: Ensure GitHub Pages serves from gh-pages branch
