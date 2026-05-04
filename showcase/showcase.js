@@ -32,12 +32,40 @@
     const actions = document.createElement("div");
     actions.className = "docs-topbar-actions";
 
+    const versionSelect = document.createElement("select");
+    versionSelect.className = "docs-topbar-version";
+    versionSelect.setAttribute("aria-label", "Select version");
+    const versions = [
+      { label: "v0.1.1", tag: "v0.1.1" },
+      { label: "v0.1.0", tag: "v0.1.0" },
+    ];
+    versions.forEach(({ label, tag }) => {
+      const opt = document.createElement("option");
+      opt.value = "https://github.com/wintermuted/ui-theme/releases/tag/" + tag;
+      opt.textContent = label;
+      if (tag === "v0.1.1") opt.selected = true;
+      versionSelect.appendChild(opt);
+    });
+    versionSelect.addEventListener("change", () => {
+      window.open(versionSelect.value, "_blank", "noopener");
+      versionSelect.value = versions[0].value;
+    });
+
+    const githubLink = document.createElement("a");
+    githubLink.className = "docs-topbar-github";
+    githubLink.href = "https://github.com/wintermuted/ui-theme";
+    githubLink.target = "_blank";
+    githubLink.rel = "noopener noreferrer";
+    githubLink.setAttribute("aria-label", "View on GitHub");
+    githubLink.innerHTML = '<i data-lucide="github" aria-hidden="true"></i>';
+
     const toggleBtn = document.createElement("button");
     toggleBtn.className = "docs-topbar-toggle";
     toggleBtn.setAttribute("data-theme-toggle", "");
     toggleBtn.setAttribute("aria-label", "Toggle theme");
     toggleBtn.textContent = "Toggle Dark";
-    actions.appendChild(toggleBtn);
+
+    actions.append(versionSelect, githubLink, toggleBtn);
 
     inner.append(brand, actions);
     topbar.appendChild(inner);
