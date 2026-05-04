@@ -133,8 +133,8 @@ body {
   font-family: inherit;
   padding: 0.28rem 1.6rem 0.28rem 0.6rem;
   border-radius: var(--wm-radius-xs, 4px);
-  border: 1px solid var(--docs-border);
-  background: var(--docs-surface-subtle)
+  border: none;
+  background: transparent
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")
     no-repeat right 0.45rem center;
   color: var(--wm-color-text-muted);
@@ -147,9 +147,8 @@ body {
 
 .docs-topbar-version:hover,
 .docs-topbar-version:focus {
-  background-color: var(--wm-color-surface-strong);
+  background-color: var(--docs-surface-subtle);
   color: var(--wm-color-text);
-  border-color: color-mix(in srgb, var(--wm-color-accent) 40%, var(--docs-border));
 }
 
 /* GitHub icon link */
