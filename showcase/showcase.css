@@ -406,14 +406,23 @@ body {
 }
 
 .docs-outline-group {
-  margin-top: 1.1rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--docs-border);
+  margin: 0.2rem 0 0.45rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--docs-border);
+}
+
+.docs-outline-label {
+  margin: 0 0 0.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wm-color-text-muted);
+  font-weight: 600;
 }
 
 .docs-outline-links {
   display: grid;
-  gap: 0.2rem;
+  gap: 0.05rem;
 }
 
 .docs-outline-link {
@@ -421,8 +430,8 @@ body {
   text-decoration: none;
   color: var(--wm-color-text-muted);
   border-left: 2px solid transparent;
-  padding: 0.32rem 0.55rem 0.32rem 0.75rem;
-  font-size: 0.78rem;
+  padding: 0.24rem 0.45rem 0.24rem 0.55rem;
+  font-size: 0.75rem;
   line-height: 1.35;
   transition: color 0.15s ease, border-left-color 0.15s ease, background 0.15s ease;
 }
