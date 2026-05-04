@@ -1,8 +1,8 @@
 name: Deploy Showcase to GitHub Pages
-# NOTE: In your repository Settings → Pages, set the source to
-#       "Deploy from a branch" → branch: gh-pages / folder: / (root).
-#       This workflow manages that branch directly so per-PR preview
-#       subdirectories persist across main-branch deployments.
+# This workflow manages the gh-pages branch directly so per-PR preview
+# subdirectories persist across main-branch deployments.
+# The Pages source is configured automatically via the GitHub API —
+# no manual Settings → Pages configuration is required.
 
 on:
   push:
@@ -24,9 +24,11 @@ on:
   workflow_dispatch:
 
 # contents: write  — push to gh-pages branch
+# pages: write     — configure Pages source via API
 # pull-requests: write — post/update preview comment
 permissions:
   contents: write
+  pages: write
   pull-requests: write
 
 # Per-PR concurrency so different PRs deploy in parallel; main has its own slot.
@@ -81,6 +83,39 @@ jobs:
             git push origin HEAD:refs/heads/gh-pages
           fi
 
+      - name: Ensure GitHub Pages serves from gh-pages branch (main deploy)
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const { data: pages } = await github.rest.repos.getPages({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+              if (!pages.source || pages.source.branch !== 'gh-pages') {
+                await github.rest.repos.updateInformationAboutPagesSite({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  source: { branch: 'gh-pages', path: '/' },
+                });
+                console.log('Updated Pages source to gh-pages branch.');
+              } else {
+                console.log('Pages source is already gh-pages. No change needed.');
+              }
+            } catch (err) {
+              if (err.status === 404) {
+                await github.rest.repos.createPagesSite({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  source: { branch: 'gh-pages', path: '/' },
+                });
+                console.log('Created Pages site from gh-pages branch.');
+              } else {
+                throw err;
+              }
+            }
+
       - name: Deploy PR preview to subdirectory
         if: github.event_name == 'pull_request'
         run: |
@@ -102,6 +137,35 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            // Ensure Pages is serving from the gh-pages branch.
+            // Runs after the deploy steps so the branch is guaranteed to exist.
+            try {
+              const { data: pages } = await github.rest.repos.getPages({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+              if (!pages.source || pages.source.branch !== 'gh-pages') {
+                await github.rest.repos.updateInformationAboutPagesSite({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  source: { branch: 'gh-pages', path: '/' },
+                });
+                console.log('Updated Pages source to gh-pages branch.');
+              }
+            } catch (err) {
+              if (err.status === 404) {
+                await github.rest.repos.createPagesSite({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  source: { branch: 'gh-pages', path: '/' },
+                });
+                console.log('Created Pages site from gh-pages branch.');
+              } else {
+                // Non-fatal — log and continue so the comment is still posted.
+                console.warn('Could not configure Pages source:', err.message);
+              }
+            }
+
             const base = 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}';
             const previewUrl = `${base}/pr-${{ github.event.pull_request.number }}/${{ github.run_id }}/showcase/`;
             const sha = '${{ github.sha }}'.substring(0, 7);
