@@ -17,11 +17,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "showcase/**"
-      - "styles/**"
-      - "index.css"
-      - ".github/workflows/deploy-showcase-pages.yml"
   workflow_dispatch:
 
 # contents: write  — push to gh-pages branch
