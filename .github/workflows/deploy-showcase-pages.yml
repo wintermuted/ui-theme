@@ -119,7 +119,7 @@ jobs:
             }
             core.exportVariable('PAGES_READY', pagesReady ? 'true' : 'false');
 
-      - name: Post or update PR preview comment
+      - name: Post PR preview comment
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
@@ -140,29 +140,11 @@ jobs:
               '> \n' +
               '> The preview URL will resolve once Pages is pointing at the `gh-pages` branch.';
 
-            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open showcase preview](${previewUrl})${setupNotice}\n\n> ℹ️ This preview replaces the current live site. It will be overwritten by the next deployment (from any PR or main).\n\n_commit \`${sha}\`_`;
-            const marker = '<!-- showcase-preview-comment -->';
-            const markedBody = marker + '\n' + body;
+            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open showcase preview](${previewUrl})${setupNotice}\n\n> ℹ️ This preview replaces the current live site. It will be overwritten by the next deployment (from any PR or main).\n\n_Run \`${{ github.run_id }}\` — commit \`${sha}\`_`;
 
-            const { data: comments } = await github.rest.issues.listComments({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
+              body,
             });
-
-            const existing = comments.find(c => c.body && c.body.startsWith(marker));
-            if (existing) {
-              await github.rest.issues.updateComment({
-                comment_id: existing.id,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: markedBody,
-              });
-            } else {
-              await github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: markedBody,
-              });
-            }
