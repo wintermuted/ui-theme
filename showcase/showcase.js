@@ -1,8 +1,65 @@
 (function () {
   const key = "wm-showcase-theme";
   const root = document.documentElement;
-  const toggleButtons = document.querySelectorAll("[data-theme-toggle]");
   const fontStatusNodes = document.querySelectorAll("[data-font-status]");
+
+  function getCurrentPage() {
+    const rawPath = window.location.pathname;
+    return rawPath.endsWith("/") || rawPath.endsWith("/showcase")
+      ? "index.html"
+      : rawPath.split("/").pop() || "index.html";
+  }
+
+  function buildTopNav() {
+    const docsShell = document.querySelector(".docs-shell");
+    const sourceNav = document.querySelector(".docs-nav-group");
+
+    if (!docsShell || !sourceNav || document.querySelector(".docs-topbar-global")) {
+      return;
+    }
+
+    const topbar = document.createElement("header");
+    topbar.className = "docs-topbar docs-topbar-global";
+
+    const inner = document.createElement("div");
+    inner.className = "docs-topbar-inner";
+
+    const brand = document.createElement("a");
+    brand.className = "docs-topbar-brand";
+    brand.href = "./index.html";
+    brand.textContent = "Wintermuted UI Docs";
+
+    const nav = document.createElement("nav");
+    nav.className = "docs-topbar-nav";
+    nav.setAttribute("aria-label", "Top documentation navigation");
+
+    sourceNav.querySelectorAll(".docs-nav-link").forEach((link) => {
+      const topLink = document.createElement("a");
+      topLink.className = "docs-topbar-link";
+      topLink.href = link.getAttribute("href") || "#";
+      topLink.setAttribute("data-page", link.getAttribute("data-page") || "");
+      topLink.textContent = link.textContent?.trim() || "Docs";
+      nav.appendChild(topLink);
+    });
+
+    const actions = document.createElement("div");
+    actions.className = "docs-topbar-actions";
+
+    const toggleBtn = document.createElement("button");
+    toggleBtn.className = "docs-topbar-toggle";
+    toggleBtn.setAttribute("data-theme-toggle", "");
+    toggleBtn.setAttribute("aria-label", "Toggle theme");
+    toggleBtn.textContent = "Toggle Dark";
+    actions.appendChild(toggleBtn);
+
+    inner.append(brand, nav, actions);
+    topbar.appendChild(inner);
+    document.body.insertBefore(topbar, docsShell);
+  }
+
+  function getToggleButtons() {
+    return document.querySelectorAll("[data-theme-toggle]");
+  }
 
   function applyTheme(theme) {
     const dark = theme === "dark";
@@ -13,19 +70,16 @@
       root.removeAttribute("data-theme");
     }
 
-    toggleButtons.forEach((button) => {
+    getToggleButtons().forEach((button) => {
       button.textContent = dark ? "Toggle Light" : "Toggle Dark";
       button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
     });
   }
 
   function setActiveNavLink() {
-    const rawPath = window.location.pathname;
-    const page = rawPath.endsWith("/") || rawPath.endsWith("/showcase")
-      ? "index.html"
-      : rawPath.split("/").pop() || "index.html";
+    const page = getCurrentPage();
 
-    document.querySelectorAll(".docs-nav-link").forEach((link) => {
+    document.querySelectorAll(".docs-nav-link, .docs-topbar-link").forEach((link) => {
       const isActive = link.getAttribute("data-page") === page;
       link.classList.toggle("is-active", isActive);
       if (isActive) {
@@ -41,7 +95,7 @@
     const initial = saved === "dark" ? "dark" : "light";
     applyTheme(initial);
 
-    toggleButtons.forEach((button) => {
+    getToggleButtons().forEach((button) => {
       button.addEventListener("click", function () {
         const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
         localStorage.setItem(key, next);
@@ -72,6 +126,7 @@
     });
   }
 
+  buildTopNav();
   setActiveNavLink();
   wireThemeToggle();
   updateFontStatus();
