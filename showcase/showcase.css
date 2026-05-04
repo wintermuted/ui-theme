@@ -315,7 +315,7 @@ body {
 .docs-sidebar.card,
 .docs-sidebar.wm-card {
   background: transparent;
-  border-color: transparent;
+  border: none;
 }
 
 /* Page header: borderless text header */
@@ -407,7 +407,7 @@ body {
 
 .docs-outline-group {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: 1.15rem;
   border-left: none;
 }
 
