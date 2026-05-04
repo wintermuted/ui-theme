@@ -1,7 +1,49 @@
 (function () {
   const key = "wm-showcase-theme";
+  const repo = "wintermuted/ui-theme";
+  const releaseApiUrl = `https://api.github.com/repos/${repo}/releases?per_page=20`;
+  const fallbackTags = ["v0.1.1", "v0.1.0"];
   const root = document.documentElement;
   const fontStatusNodes = document.querySelectorAll("[data-font-status]");
+
+  function releaseTagUrl(tag) {
+    return `https://github.com/${repo}/releases/tag/${tag}`;
+  }
+
+  function setVersionOptions(selectNode, tags) {
+    selectNode.innerHTML = "";
+
+    tags.forEach((tag, index) => {
+      const opt = document.createElement("option");
+      opt.value = releaseTagUrl(tag);
+      opt.textContent = tag;
+      if (index === 0) {
+        opt.selected = true;
+      }
+      selectNode.appendChild(opt);
+    });
+  }
+
+  async function loadReleaseTags() {
+    try {
+      const response = await fetch(releaseApiUrl, {
+        headers: { Accept: "application/vnd.github+json" },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch releases (${response.status})`);
+      }
+
+      const releases = await response.json();
+      const tags = releases
+        .map((release) => release && release.tag_name)
+        .filter((tag) => typeof tag === "string" && /^v\d+\.\d+\.\d+$/.test(tag));
+
+      return tags.length ? tags : fallbackTags;
+    } catch (_err) {
+      return fallbackTags;
+    }
+  }
 
   function getCurrentPage() {
     const rawPath = window.location.pathname;
@@ -43,20 +85,15 @@
     const versionSelect = document.createElement("select");
     versionSelect.className = "docs-topbar-version";
     versionSelect.setAttribute("aria-label", "Select version");
-    const versions = [
-      { label: "v0.1.1", tag: "v0.1.1" },
-      { label: "v0.1.0", tag: "v0.1.0" },
-    ];
-    versions.forEach(({ label, tag }) => {
-      const opt = document.createElement("option");
-      opt.value = "https://github.com/wintermuted/ui-theme/releases/tag/" + tag;
-      opt.textContent = label;
-      if (tag === "v0.1.1") opt.selected = true;
-      versionSelect.appendChild(opt);
-    });
+    setVersionOptions(versionSelect, fallbackTags);
+
     versionSelect.addEventListener("change", () => {
       window.open(versionSelect.value, "_blank", "noopener");
-      versionSelect.value = versions[0].value;
+      versionSelect.selectedIndex = 0;
+    });
+
+    loadReleaseTags().then((tags) => {
+      setVersionOptions(versionSelect, tags);
     });
 
     const githubLink = document.createElement("a");
