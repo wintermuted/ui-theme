@@ -57,10 +57,17 @@
       root.removeAttribute("data-theme");
     }
 
+    const iconName = dark ? "sun" : "moon";
+    const label = dark ? "Light" : "Dark";
+
     getToggleButtons().forEach((button) => {
-      button.textContent = dark ? "Toggle Light" : "Toggle Dark";
+      button.innerHTML = `<i data-lucide="${iconName}" aria-hidden="true"></i><span>${label}</span>`;
       button.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
     });
+
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
   }
 
   function setActiveNavLink() {
