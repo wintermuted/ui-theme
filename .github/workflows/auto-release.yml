@@ -1,0 +1,64 @@
+name: Auto Release
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - "**"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute next minor version
+        id: version
+        run: |
+          # Get the latest semver tag (vMAJOR.MINOR.PATCH)
+          LATEST=$(git tag --list 'v*' --sort=-version:refname | head -n 1)
+          if [ -z "$LATEST" ]; then
+            NEXT="v0.1.0"
+          else
+            # Strip leading 'v', split on dots
+            VERSION="${LATEST#v}"
+            MAJOR=$(echo "$VERSION" | cut -d. -f1)
+            MINOR=$(echo "$VERSION" | cut -d. -f2)
+            NEXT="v${MAJOR}.$((MINOR + 1)).0"
+          fi
+          echo "tag=$NEXT" >> "$GITHUB_OUTPUT"
+          echo "Next release: $NEXT"
+
+      - name: Create and push tag
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${{ steps.version.outputs.tag }}"
+          git push origin "${{ steps.version.outputs.tag }}"
+
+      - name: Update package.json version
+        run: |
+          VERSION="${{ steps.version.outputs.tag }}"
+          # Strip leading 'v'
+          npm version "${VERSION#v}" --no-git-tag-version
+          git add package.json
+          git commit -m "chore: bump version to ${VERSION#v} [skip ci]" || echo "Nothing to commit"
+          git push origin main || echo "Push skipped"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --generate-notes \
+            --latest
