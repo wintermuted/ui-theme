@@ -1108,6 +1108,49 @@ pre[class*="language-"].code-block {
   }
 }
 
+@media (max-width: 640px) {
+  /* Hide the version selector — reclaim topbar space on phones */
+  .docs-topbar-version {
+    display: none;
+  }
+
+  /* Remove decorative left padding from brand so it sits flush */
+  .docs-topbar-brand {
+    padding-left: 0;
+  }
+
+  /* Tighter shell vertical padding on small screens */
+  .docs-shell {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /* Reduce hero heading to fit narrow viewports comfortably */
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Compress topbar item spacing on very small phones */
+  .docs-topbar-inner {
+    gap: 0.4rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Keep only the brand icon — hide the text label */
+  .docs-topbar-brand span {
+    display: none;
+  }
+
+  /* Keep only icons in the topbar action buttons — hide text labels */
+  .docs-topbar-toggle span,
+  .docs-topbar-menu span {
+    display: none;
+  }
+}
+
 /* Full-page layout examples */
 .layout-mock-banner {
   display: flex;
