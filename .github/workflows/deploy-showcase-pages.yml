@@ -139,6 +139,10 @@ jobs:
           script: |
             // Ensure Pages is serving from the gh-pages branch.
             // Runs after the deploy steps so the branch is guaranteed to exist.
+            // Note: GITHUB_TOKEN cannot change the Pages source when it is already
+            // set to "GitHub Actions" — that requires a one-time manual change in
+            // Settings → Pages → Source → "Deploy from a branch → gh-pages / (root)".
+            let pagesReady = false;
             try {
               const { data: pages } = await github.rest.repos.getPages({
                 owner: context.repo.owner,
@@ -151,25 +155,52 @@ jobs:
                   source: { branch: 'gh-pages', path: '/' },
                 });
                 console.log('Updated Pages source to gh-pages branch.');
+                pagesReady = true;
+              } else {
+                pagesReady = true;
               }
             } catch (err) {
               if (err.status === 404) {
-                await github.rest.repos.createPagesSite({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  source: { branch: 'gh-pages', path: '/' },
-                });
-                console.log('Created Pages site from gh-pages branch.');
+                try {
+                  await github.rest.repos.createPagesSite({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    source: { branch: 'gh-pages', path: '/' },
+                  });
+                  console.log('Created Pages site from gh-pages branch.');
+                  pagesReady = true;
+                } catch (createErr) {
+                  console.warn('Could not create Pages site:', createErr.message);
+                }
               } else {
-                // Non-fatal — log and continue so the comment is still posted.
+                // "Resource not accessible by integration" means the GITHUB_TOKEN
+                // cannot override the current Pages source (e.g. set to GitHub Actions
+                // by a previous actions/deploy-pages workflow on main). The user must
+                // do this once manually.
                 console.warn('Could not configure Pages source:', err.message);
+                console.warn(
+                  'ACTION REQUIRED: Go to Settings → Pages → Source and set it to ' +
+                  '"Deploy from a branch → gh-pages / (root)", then re-run this workflow.'
+                );
               }
             }
 
             const base = 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}';
             const previewUrl = `${base}/pr-${{ github.event.pull_request.number }}/${{ github.run_id }}/showcase/`;
             const sha = '${{ github.sha }}'.substring(0, 7);
-            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open docs preview](${previewUrl})\n\n_Build ID: \`${{ github.run_id }}\` — commit \`${sha}\`_`;
+
+            const setupNotice = pagesReady ? '' :
+              '\n\n> ⚠️ **One-time setup required** — GitHub Pages is currently configured to serve ' +
+              'from GitHub Actions artifacts, not the `gh-pages` branch where previews are deployed.\n' +
+              '> \n' +
+              '> To enable previews:\n' +
+              '> 1. Go to **[Settings → Pages](https://github.com/${{ github.repository }}/settings/pages)**\n' +
+              '> 2. Under **Source**, select **"Deploy from a branch"**\n' +
+              '> 3. Choose branch **`gh-pages`** and folder **`/ (root)`**, then **Save**\n' +
+              '> \n' +
+              '> The preview URL will resolve once Pages is pointing at the `gh-pages` branch.';
+
+            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open docs preview](${previewUrl})${setupNotice}\n\n_Build ID: \`${{ github.run_id }}\` — commit \`${sha}\`_`;
             const marker = '<!-- showcase-preview-comment -->';
             const markedBody = marker + '\n' + body;
 
