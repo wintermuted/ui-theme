@@ -90,18 +90,10 @@
   }
 
   function buildPageOutline() {
-    const sidebar = document.querySelector(".docs-sidebar");
-    const navGroup = sidebar ? sidebar.querySelector(".docs-nav-group") : null;
+    const docsShell = document.querySelector(".docs-shell");
     const main = document.querySelector(".docs-main");
 
-    if (!sidebar || !navGroup || !main || sidebar.querySelector(".docs-outline-group")) {
-      return;
-    }
-
-    const page = getCurrentPage();
-    const activeNavLink = navGroup.querySelector(`.docs-nav-link[data-page="${page}"]`);
-
-    if (!activeNavLink) {
+    if (!docsShell || !main || docsShell.querySelector(".docs-outline-rail")) {
       return;
     }
 
@@ -142,6 +134,9 @@
     outline.className = "docs-outline-group";
     outline.setAttribute("aria-label", "Page outline");
 
+    const outlineRail = document.createElement("aside");
+    outlineRail.className = "docs-outline-rail";
+
     const label = document.createElement("p");
     label.className = "docs-outline-label";
     label.textContent = "On This Page";
@@ -159,7 +154,8 @@
     });
 
     outline.append(label, links);
-    activeNavLink.insertAdjacentElement("afterend", outline);
+    outlineRail.appendChild(outline);
+    docsShell.appendChild(outlineRail);
 
     const outlineLinks = Array.from(links.querySelectorAll(".docs-outline-link"));
     const updateActive = () => {
