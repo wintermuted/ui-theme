@@ -128,3 +128,13 @@ th {
   letter-spacing: 0.08em;
   color: var(--wm-color-text-muted);
 }
+
+:not(pre) > code {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Menlo', monospace;
+  font-size: 0.8em;
+  background: var(--wm-color-surface-strong);
+  color: var(--wm-color-accent);
+  padding: 0.15em 0.4em;
+  border-radius: var(--wm-radius-xs);
+  border: 1px solid var(--wm-color-border);
+}
