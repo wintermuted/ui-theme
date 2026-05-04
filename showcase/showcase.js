@@ -29,19 +29,6 @@
     brand.href = "./index.html";
     brand.textContent = "Wintermuted UI Docs";
 
-    const nav = document.createElement("nav");
-    nav.className = "docs-topbar-nav";
-    nav.setAttribute("aria-label", "Top documentation navigation");
-
-    sourceNav.querySelectorAll(".docs-nav-link").forEach((link) => {
-      const topLink = document.createElement("a");
-      topLink.className = "docs-topbar-link";
-      topLink.href = link.getAttribute("href") || "#";
-      topLink.setAttribute("data-page", link.getAttribute("data-page") || "");
-      topLink.textContent = link.textContent?.trim() || "Docs";
-      nav.appendChild(topLink);
-    });
-
     const actions = document.createElement("div");
     actions.className = "docs-topbar-actions";
 
@@ -52,7 +39,7 @@
     toggleBtn.textContent = "Toggle Dark";
     actions.appendChild(toggleBtn);
 
-    inner.append(brand, nav, actions);
+    inner.append(brand, actions);
     topbar.appendChild(inner);
     document.body.insertBefore(topbar, docsShell);
   }
