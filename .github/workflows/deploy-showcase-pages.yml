@@ -1,8 +1,9 @@
 name: Deploy Showcase to GitHub Pages
-# This workflow manages the gh-pages branch directly so per-PR preview
-# subdirectories persist across main-branch deployments.
+# Deploys the showcase by replacing the entire gh-pages branch on every run.
+# Both main-branch pushes and PR builds land at the same root URL.
 # The Pages source is configured automatically via the GitHub API —
-# no manual Settings → Pages configuration is required.
+# if the token lacks permission (e.g. Pages set to "GitHub Actions" source),
+# a one-time manual change in Settings → Pages is required.
 
 on:
   push:
@@ -31,9 +32,8 @@ permissions:
   pages: write
   pull-requests: write
 
-# Per-PR concurrency so different PRs deploy in parallel; main has its own slot.
 concurrency:
-  group: ${{ github.event_name == 'pull_request' && format('pages-pr-{0}', github.event.pull_request.number) || 'pages-main' }}
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -49,99 +49,37 @@ jobs:
           cp -R showcase _site/
           cp -R styles _site/
           cp index.css _site/
+          touch _site/.nojekyll
 
       - name: Configure git identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Checkout gh-pages worktree
+      - name: Deploy to gh-pages (full replace)
         run: |
           if git ls-remote --exit-code --heads origin gh-pages > /dev/null 2>&1; then
             git fetch origin gh-pages
             git worktree add --detach ./gh-pages-out FETCH_HEAD
           else
-            # First run: create an empty orphan branch
             git worktree add --orphan -b gh-pages ./gh-pages-out
-            touch ./gh-pages-out/.nojekyll
           fi
 
-      - name: Deploy main site to gh-pages root
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-        run: |
-          # Sync site to root, preserving pr-*/ preview subdirectories
-          rsync -a --delete \
-            --exclude='pr-*' \
-            --exclude='.nojekyll' \
-            --exclude='.git' \
-            _site/ gh-pages-out/
-          touch gh-pages-out/.nojekyll
+          # Wipe and replace with the freshly-built site
+          rm -rf gh-pages-out/* gh-pages-out/.[!.]*
+          cp -R _site/. gh-pages-out/
+
           cd gh-pages-out
           git add -A
           if ! git diff --staged --quiet; then
-            git commit -m "Deploy main: ${{ github.sha }}"
+            git commit -m "Deploy: ${{ github.sha }}"
             git push origin HEAD:refs/heads/gh-pages
           fi
 
-      - name: Ensure GitHub Pages serves from gh-pages branch (main deploy)
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+      - name: Ensure GitHub Pages serves from gh-pages branch
         uses: actions/github-script@v7
         with:
           script: |
-            try {
-              const { data: pages } = await github.rest.repos.getPages({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-              });
-              if (!pages.source || pages.source.branch !== 'gh-pages') {
-                await github.rest.repos.updateInformationAboutPagesSite({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  source: { branch: 'gh-pages', path: '/' },
-                });
-                console.log('Updated Pages source to gh-pages branch.');
-              } else {
-                console.log('Pages source is already gh-pages. No change needed.');
-              }
-            } catch (err) {
-              if (err.status === 404) {
-                await github.rest.repos.createPagesSite({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  source: { branch: 'gh-pages', path: '/' },
-                });
-                console.log('Created Pages site from gh-pages branch.');
-              } else {
-                throw err;
-              }
-            }
-
-      - name: Deploy PR preview to subdirectory
-        if: github.event_name == 'pull_request'
-        run: |
-          PREVIEW_DIR="pr-${{ github.event.pull_request.number }}/${{ github.run_id }}"
-          mkdir -p "gh-pages-out/${PREVIEW_DIR}"
-          cp -R _site/. "gh-pages-out/${PREVIEW_DIR}/"
-          # Store Unix epoch timestamp for age-based cleanup
-          date -u +%s > "gh-pages-out/${PREVIEW_DIR}/.deployed-at"
-          touch gh-pages-out/.nojekyll
-          cd gh-pages-out
-          git add -A
-          if ! git diff --staged --quiet; then
-            git commit -m "PR preview: pr-${{ github.event.pull_request.number }} / run-${{ github.run_id }}"
-            git push origin HEAD:refs/heads/gh-pages
-          fi
-
-      - name: Post or update PR preview comment
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            // Ensure Pages is serving from the gh-pages branch.
-            // Runs after the deploy steps so the branch is guaranteed to exist.
-            // Note: GITHUB_TOKEN cannot change the Pages source when it is already
-            // set to "GitHub Actions" — that requires a one-time manual change in
-            // Settings → Pages → Source → "Deploy from a branch → gh-pages / (root)".
             let pagesReady = false;
             try {
               const { data: pages } = await github.rest.repos.getPages({
@@ -173,20 +111,22 @@ jobs:
                   console.warn('Could not create Pages site:', createErr.message);
                 }
               } else {
-                // "Resource not accessible by integration" means the GITHUB_TOKEN
-                // cannot override the current Pages source (e.g. set to GitHub Actions
-                // by a previous actions/deploy-pages workflow on main). The user must
-                // do this once manually.
+                // "Resource not accessible by integration" — GITHUB_TOKEN cannot
+                // reconfigure Pages when it is already set to "GitHub Actions" source.
+                // The user must do this once manually in Settings → Pages.
                 console.warn('Could not configure Pages source:', err.message);
-                console.warn(
-                  'ACTION REQUIRED: Go to Settings → Pages → Source and set it to ' +
-                  '"Deploy from a branch → gh-pages / (root)", then re-run this workflow.'
-                );
               }
             }
+            core.exportVariable('PAGES_READY', pagesReady ? 'true' : 'false');
 
+      - name: Post or update PR preview comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pagesReady = process.env.PAGES_READY === 'true';
             const base = 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}';
-            const previewUrl = `${base}/pr-${{ github.event.pull_request.number }}/${{ github.run_id }}/showcase/`;
+            const previewUrl = `${base}/showcase/`;
             const sha = '${{ github.sha }}'.substring(0, 7);
 
             const setupNotice = pagesReady ? '' :
@@ -200,7 +140,7 @@ jobs:
               '> \n' +
               '> The preview URL will resolve once Pages is pointing at the `gh-pages` branch.';
 
-            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open docs preview](${previewUrl})${setupNotice}\n\n_Build ID: \`${{ github.run_id }}\` — commit \`${sha}\`_`;
+            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open showcase preview](${previewUrl})${setupNotice}\n\n> ℹ️ This preview replaces the current live site. It will be overwritten by the next deployment (from any PR or main).\n\n_commit \`${sha}\`_`;
             const marker = '<!-- showcase-preview-comment -->';
             const markedBody = marker + '\n' + body;
 
