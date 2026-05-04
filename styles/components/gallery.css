@@ -19,6 +19,7 @@
 .gallery-item,
 .wm-gallery-item {
   position: relative;
+  margin: 0;
   border-radius: var(--wm-radius-base, 6px);
   overflow: hidden;
   border: 1px solid var(--wm-color-border);
@@ -77,6 +78,7 @@
 .wm-gallery-item-figure {
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
 .gallery-item-figure figcaption,
