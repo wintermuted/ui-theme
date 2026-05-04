@@ -57,6 +57,11 @@
   "scripts": {
     "showcase:serve": "python3 -m http.server 4174",
     "link:local": "bash scripts/link-local.sh",
-    "unlink:local": "bash scripts/unlink-local.sh"
+    "unlink:local": "bash scripts/unlink-local.sh",
+    "lint": "stylelint \"styles/**/*.css\" \"index.css\""
+  },
+  "devDependencies": {
+    "stylelint": "^17.10.0",
+    "stylelint-config-standard": "^40.0.0"
   }
 }
