@@ -1,6 +1,67 @@
 (function () {
   const key = "wm-showcase-theme";
   const repo = "wintermuted/ui-theme";
+
+  const NAV_STRUCTURE = [
+    {
+      sectionLabel: "Foundations",
+      items: [
+        { page: "index.html", label: "Introduction" },
+        { page: "installation.html", label: "Installation" },
+        { page: "typography.html", label: "Typography" },
+        { page: "cards.html", label: "Cards" },
+      ],
+    },
+    {
+      sectionLabel: "Inputs and Actions",
+      items: [
+        { page: "buttons.html", label: "Buttons" },
+        { page: "tags.html", label: "Tags" },
+        { page: "forms.html", label: "Forms" },
+      ],
+    },
+    {
+      sectionLabel: "Navigation and Structure",
+      items: [
+        { page: "navigation.html", label: "Navigation" },
+        { page: "modal.html", label: "Modal" },
+        {
+          label: "Layout",
+          disclosure: [
+            { page: "layout.html", label: "Overview" },
+            { page: "layout-topnav.html", label: "Top Nav" },
+            { page: "layout-app-shell.html", label: "App Shell" },
+            { page: "layout-sidebar.html", label: "Sidebar Layout" },
+            { page: "layout-entry-header.html", label: "Entry Header" },
+            { page: "layout-content-grid.html", label: "Content Grid" },
+          ],
+        },
+      ],
+    },
+    {
+      sectionLabel: "Visual Data",
+      items: [
+        { page: "code-block.html", label: "Code Block" },
+        { page: "mermaid.html", label: "Mermaid" },
+        { page: "data-display.html", label: "Data Display" },
+        { page: "gallery.html", label: "Gallery" },
+      ],
+    },
+    {
+      sectionLabel: "Status and Messaging",
+      items: [
+        { page: "feedback.html", label: "Feedback" },
+      ],
+    },
+    {
+      sectionLabel: "Utilities",
+      items: [
+        { page: "icons.html", label: "Icons" },
+      ],
+    },
+  ];
+
+
   const releaseApiUrl = `https://api.github.com/repos/${repo}/releases?per_page=20`;
   const fallbackTags = ["v0.1.1", "v0.1.0"];
   const root = document.documentElement;
@@ -54,9 +115,8 @@
 
   function buildTopNav() {
     const docsShell = document.querySelector(".docs-shell");
-    const sourceNav = document.querySelector(".docs-nav-group");
 
-    if (!docsShell || !sourceNav || document.querySelector(".docs-topbar-global")) {
+    if (!docsShell || document.querySelector(".docs-topbar-global")) {
       return;
     }
 
@@ -115,6 +175,60 @@
     inner.append(brand, actions);
     topbar.appendChild(inner);
     document.body.insertBefore(topbar, docsShell);
+  }
+
+  function buildSidebar() {
+    const sidebar = document.querySelector(".docs-sidebar");
+    if (!sidebar || sidebar.querySelector(".docs-nav-group")) {
+      return;
+    }
+
+    const nav = document.createElement("nav");
+    nav.className = "docs-nav-group";
+    nav.setAttribute("aria-label", "Showcase pages");
+
+    const chevronSvg = '<svg class="docs-nav-disclosure-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+
+    NAV_STRUCTURE.forEach((section) => {
+      const label = document.createElement("p");
+      label.className = "docs-nav-label";
+      label.textContent = section.sectionLabel;
+      nav.appendChild(label);
+
+      section.items.forEach((item) => {
+        if (item.disclosure) {
+          const details = document.createElement("details");
+          details.className = "docs-nav-disclosure";
+
+          const summary = document.createElement("summary");
+          summary.innerHTML = item.label + chevronSvg;
+
+          const body = document.createElement("div");
+          body.className = "docs-nav-disclosure-body";
+
+          item.disclosure.forEach((subItem) => {
+            const a = document.createElement("a");
+            a.className = "docs-nav-sub-link";
+            a.setAttribute("data-page", subItem.page);
+            a.href = "./" + subItem.page;
+            a.textContent = subItem.label;
+            body.appendChild(a);
+          });
+
+          details.append(summary, body);
+          nav.appendChild(details);
+        } else {
+          const a = document.createElement("a");
+          a.className = "docs-nav-link";
+          a.setAttribute("data-page", item.page);
+          a.href = "./" + item.page;
+          a.textContent = item.label;
+          nav.appendChild(a);
+        }
+      });
+    });
+
+    sidebar.appendChild(nav);
   }
 
   function slugify(text) {
@@ -319,6 +433,23 @@
         link.removeAttribute("aria-current");
       }
     });
+
+    // Handle disclosure sub-links
+    document.querySelectorAll(".docs-nav-sub-link").forEach((link) => {
+      const isActive = link.getAttribute("data-page") === page;
+      link.classList.toggle("is-active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+        // Auto-open parent disclosure and mark it as having an active child
+        const disclosure = link.closest(".docs-nav-disclosure");
+        if (disclosure) {
+          disclosure.open = true;
+          disclosure.classList.add("has-active");
+        }
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
   }
 
   function wireThemeToggle() {
@@ -357,6 +488,7 @@
     });
   }
 
+  buildSidebar();
   buildTopNav();
   buildPageOutline();
   setActiveNavLink();
