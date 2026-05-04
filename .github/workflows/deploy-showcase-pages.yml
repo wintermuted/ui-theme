@@ -1,4 +1,8 @@
 name: Deploy Showcase to GitHub Pages
+# NOTE: In your repository Settings → Pages, set the source to
+#       "Deploy from a branch" → branch: gh-pages / folder: / (root).
+#       This workflow manages that branch directly so per-PR preview
+#       subdirectories persist across main-branch deployments.
 
 on:
   push:
@@ -19,55 +23,89 @@ on:
       - ".github/workflows/deploy-showcase-pages.yml"
   workflow_dispatch:
 
+# contents: write  — push to gh-pages branch
+# pull-requests: write — post/update preview comment
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
   pull-requests: write
 
+# Per-PR concurrency so different PRs deploy in parallel; main has its own slot.
 concurrency:
-  group: pages
+  group: ${{ github.event_name == 'pull_request' && format('pages-pr-{0}', github.event.pull_request.number) || 'pages-main' }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Prepare Pages artifact
+      - name: Build site
         run: |
           mkdir -p _site
           cp -R showcase _site/
           cp -R styles _site/
           cp index.css _site/
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout gh-pages worktree
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages > /dev/null 2>&1; then
+            git fetch origin gh-pages
+            git worktree add --detach ./gh-pages-out FETCH_HEAD
+          else
+            # First run: create an empty orphan branch
+            git worktree add --orphan -b gh-pages ./gh-pages-out
+            touch ./gh-pages-out/.nojekyll
+          fi
 
-      - name: Comment preview URL on PR
+      - name: Deploy main site to gh-pages root
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          # Sync site to root, preserving pr-*/ preview subdirectories
+          rsync -a --delete \
+            --exclude='pr-*' \
+            --exclude='.nojekyll' \
+            --exclude='.git' \
+            _site/ gh-pages-out/
+          touch gh-pages-out/.nojekyll
+          cd gh-pages-out
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "Deploy main: ${{ github.sha }}"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+
+      - name: Deploy PR preview to subdirectory
+        if: github.event_name == 'pull_request'
+        run: |
+          PREVIEW_DIR="pr-${{ github.event.pull_request.number }}/${{ github.run_id }}"
+          mkdir -p "gh-pages-out/${PREVIEW_DIR}"
+          cp -R _site/. "gh-pages-out/${PREVIEW_DIR}/"
+          # Store Unix epoch timestamp for age-based cleanup
+          date -u +%s > "gh-pages-out/${PREVIEW_DIR}/.deployed-at"
+          touch gh-pages-out/.nojekyll
+          cd gh-pages-out
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "PR preview: pr-${{ github.event.pull_request.number }} / run-${{ github.run_id }}"
+            git push origin HEAD:refs/heads/gh-pages
+          fi
+
+      - name: Post or update PR preview comment
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
-            const pageUrl = '${{ steps.deployment.outputs.page_url }}';
-            const previewUrl = pageUrl.replace(/\/*$/, '/') + 'showcase/';
+            const base = 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}';
+            const previewUrl = `${base}/pr-${{ github.event.pull_request.number }}/${{ github.run_id }}/showcase/`;
             const sha = '${{ github.sha }}'.substring(0, 7);
-            const body = `🚀 **Live preview deployed!**\n\n📖 [Open docs preview](${previewUrl})\n\n> ⚠️ **Note:** this is a shared GitHub Pages URL — the preview reflects the most recent deployment from any branch. It will be overwritten once \`main\` is updated.\n\n_Last deployed: commit \`${sha}\`_`;
+            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open docs preview](${previewUrl})\n\n_Build ID: \`${{ github.run_id }}\` — commit \`${sha}\`_`;
             const marker = '<!-- showcase-preview-comment -->';
             const markedBody = marker + '\n' + body;
 
@@ -78,7 +116,6 @@ jobs:
             });
 
             const existing = comments.find(c => c.body && c.body.startsWith(marker));
-
             if (existing) {
               await github.rest.issues.updateComment({
                 comment_id: existing.id,
