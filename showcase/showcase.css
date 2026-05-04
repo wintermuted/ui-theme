@@ -519,6 +519,11 @@ body {
 
 .page-title {
   margin: 0;
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  line-height: 1.15;
 }
 
 .page-lead {
