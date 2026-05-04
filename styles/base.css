@@ -8,7 +8,7 @@
 
 html {
   font-size: 16px;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,7 +18,7 @@ body {
   font-family: var(--wm-font-sans);
   color: var(--wm-color-text);
   background:
-    radial-gradient(circle at top, rgba(42, 74, 138, 0.08), transparent 32rem),
+    radial-gradient(circle at top, rgb(42 74 138 / 8%), transparent 32rem),
     linear-gradient(180deg, var(--wm-color-surface-muted) 0%, var(--wm-color-bg) 18rem);
   line-height: 1.6;
   transition: color 0.2s ease, background 0.2s ease;
@@ -130,7 +130,7 @@ th {
 }
 
 :not(pre) > code {
-  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Menlo', monospace;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, monospace;
   font-size: 0.8em;
   background: var(--wm-color-surface-strong);
   color: var(--wm-color-accent);

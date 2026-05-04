@@ -62,7 +62,7 @@
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--wm-color-text-muted);
-  background: rgba(0, 0, 0, 0.07);
+  background: rgb(0 0 0 / 7%);
   padding: 0.05rem 0.35rem;
   border-radius: var(--wm-radius-base, 8px);
   margin-left: auto;
