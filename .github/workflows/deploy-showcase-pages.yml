@@ -1,9 +1,6 @@
 name: Deploy Showcase to GitHub Pages
-# Deploys the showcase by replacing the entire gh-pages branch on every run.
-# Both main-branch pushes and PR builds land at the same root URL.
-# The Pages source is configured automatically via the GitHub API —
-# if the token lacks permission (e.g. Pages set to "GitHub Actions" source),
-# a one-time manual change in Settings → Pages is required.
+# Deploys main to the Pages root while keeping PR previews under previews/pr-<number>/.
+# This allows production and preview deployments to coexist on gh-pages.
 
 on:
   push:
@@ -17,19 +14,22 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - "showcase/**"
+      - "styles/**"
+      - "index.css"
+      - ".github/workflows/deploy-showcase-pages.yml"
   workflow_dispatch:
 
 # contents: write  — push to gh-pages branch
-# pages: write     — configure Pages source via API
 # pull-requests: write — post/update preview comment
 permissions:
   contents: write
-  pages: write
   pull-requests: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -60,82 +60,34 @@ jobs:
             git worktree add --orphan -b gh-pages ./gh-pages-out
           fi
 
-          # Wipe and replace with the freshly-built site
-          rm -rf gh-pages-out/* gh-pages-out/.[!.]*
-          cp -R _site/. gh-pages-out/
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            preview_dir="gh-pages-out/previews/pr-${{ github.event.pull_request.number }}"
+            rm -rf "$preview_dir"
+            mkdir -p "$preview_dir"
+            cp -R _site/. "$preview_dir/"
+          else
+            # Replace root content but preserve previews so PR links remain valid.
+            find gh-pages-out -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'previews' -exec rm -rf {} +
+            cp -R _site/. gh-pages-out/
+          fi
 
           cd gh-pages-out
           git add -A
           if ! git diff --staged --quiet; then
-            git commit -m "Deploy: ${{ github.sha }}"
+            git commit -m "Deploy (${{ github.event_name }}): ${{ github.sha }}"
             git push --force origin HEAD:refs/heads/gh-pages
           fi
-
-      - name: Ensure GitHub Pages serves from gh-pages branch
-        uses: actions/github-script@v7
-        with:
-          script: |
-            let pagesReady = false;
-            try {
-              const { data: pages } = await github.rest.repos.getPages({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-              });
-              if (!pages.source || pages.source.branch !== 'gh-pages') {
-                await github.rest.repos.updateInformationAboutPagesSite({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  source: { branch: 'gh-pages', path: '/' },
-                });
-                console.log('Updated Pages source to gh-pages branch.');
-                pagesReady = true;
-              } else {
-                pagesReady = true;
-              }
-            } catch (err) {
-              if (err.status === 404) {
-                try {
-                  await github.rest.repos.createPagesSite({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    source: { branch: 'gh-pages', path: '/' },
-                  });
-                  console.log('Created Pages site from gh-pages branch.');
-                  pagesReady = true;
-                } catch (createErr) {
-                  console.warn('Could not create Pages site:', createErr.message);
-                }
-              } else {
-                // "Resource not accessible by integration" — GITHUB_TOKEN cannot
-                // reconfigure Pages when it is already set to "GitHub Actions" source.
-                // The user must do this once manually in Settings → Pages.
-                console.warn('Could not configure Pages source:', err.message);
-              }
-            }
-            core.exportVariable('PAGES_READY', pagesReady ? 'true' : 'false');
 
       - name: Post PR preview comment
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
-            const pagesReady = process.env.PAGES_READY === 'true';
             const base = 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}';
-            const previewUrl = `${base}/showcase/`;
+            const previewUrl = `${base}/previews/pr-${{ github.event.pull_request.number }}/showcase/`;
             const sha = '${{ github.sha }}'.substring(0, 7);
 
-            const setupNotice = pagesReady ? '' :
-              '\n\n> ⚠️ **One-time setup required** — GitHub Pages is currently configured to serve ' +
-              'from GitHub Actions artifacts, not the `gh-pages` branch where previews are deployed.\n' +
-              '> \n' +
-              '> To enable previews:\n' +
-              '> 1. Go to **[Settings → Pages](https://github.com/${{ github.repository }}/settings/pages)**\n' +
-              '> 2. Under **Source**, select **"Deploy from a branch"**\n' +
-              '> 3. Choose branch **`gh-pages`** and folder **`/ (root)`**, then **Save**\n' +
-              '> \n' +
-              '> The preview URL will resolve once Pages is pointing at the `gh-pages` branch.';
-
-            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open showcase preview](${previewUrl})${setupNotice}\n\n> ℹ️ This preview replaces the current live site. It will be overwritten by the next deployment (from any PR or main).\n\n_Run \`${{ github.run_id }}\` — commit \`${sha}\`_`;
+            const body = `🚀 **PR Preview deployed!**\n\n📖 [Open showcase preview](${previewUrl})\n\n> ℹ️ Production remains at root Pages URL. This preview is isolated to PR #${{ github.event.pull_request.number }}.\n\n_Run \`${{ github.run_id }}\` — commit \`${sha}\`_`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
