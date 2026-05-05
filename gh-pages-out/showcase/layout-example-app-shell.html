@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Shell Mock Page | Wintermuted UI Theme</title>
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="./showcase.css?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="layout-mock-banner" role="region" aria-label="Mock page banner">
+      <p class="layout-mock-banner-title">Full-Page Mock: App Shell</p>
+      <p class="layout-mock-banner-text">This page demonstrates app-shell composition at realistic page scale.</p>
+      <a class="layout-mock-banner-link" href="./layout-app-shell.html">Back to App Shell docs</a>
+    </div>
+
+    <div class="app-shell" style="padding-top: 1rem;">
+      <header class="app-header">
+        <div class="app-brand">
+          <h1 style="margin: 0; font-size: 1.15rem;">Subscription Killer</h1>
+          <p class="app-byline">Recurring spend command center</p>
+        </div>
+        <nav class="app-nav" aria-label="Main app navigation">
+          <a class="active" href="#">Dashboard</a>
+          <a href="#">Subscriptions</a>
+          <a href="#">Insights</a>
+          <a href="#">Settings</a>
+        </nav>
+        <div class="app-header-actions">
+          <button class="btn btn-secondary btn-sm" type="button">Export</button>
+          <button class="btn btn-primary btn-sm" type="button">Import CSV</button>
+        </div>
+      </header>
+
+      <section class="content-grid">
+        <article class="wm-card card" style="padding: 1rem; min-height: 130px;">
+          <h2 style="margin-top: 0; font-size: 1rem;">Monthly Total</h2>
+          <p style="font-size: 1.3rem; margin: 0.25rem 0;">$487.22</p>
+          <p style="margin: 0; color: var(--wm-color-text-muted);">12 active subscriptions</p>
+        </article>
+        <article class="wm-card card" style="padding: 1rem; min-height: 130px;">
+          <h2 style="margin-top: 0; font-size: 1rem;">Annual Burn</h2>
+          <p style="font-size: 1.3rem; margin: 0.25rem 0;">$5,846.64</p>
+          <p style="margin: 0; color: var(--wm-color-text-muted);">Projected from recurring cadence</p>
+        </article>
+        <article class="wm-card card" style="padding: 1rem; min-height: 130px;">
+          <h2 style="margin-top: 0; font-size: 1rem;">At Risk</h2>
+          <p style="font-size: 1.3rem; margin: 0.25rem 0;">7 subscriptions</p>
+          <p style="margin: 0; color: var(--wm-color-text-muted);">No usage in last 60 days</p>
+        </article>
+      </section>
+
+      <section class="wm-card card" style="padding: 1rem; margin-top: 1rem;">
+        <h2 style="margin-top: 0; font-size: 1rem;">Recent Activity</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Merchant</th>
+              <th>Amount</th>
+              <th>Next charge</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Figma</td>
+              <td>$15.00</td>
+              <td>2026-05-18</td>
+              <td><span class="tag tag-success">Active</span></td>
+            </tr>
+            <tr>
+              <td>Notion</td>
+              <td>$8.00</td>
+              <td>2026-05-10</td>
+              <td><span class="tag">Review</span></td>
+            </tr>
+            <tr>
+              <td>HBO Max</td>
+              <td>$16.99</td>
+              <td>2026-05-07</td>
+              <td><span class="tag tag-warning">Unused</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

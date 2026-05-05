@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Wintermuted UI Theme Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Components</span>
+          <h2 class="page-title">Gallery</h2>
+          <p class="page-lead">
+            Responsive screenshot and thumbnail grids with subtle lift and optional caption overlays.
+            This pattern was extracted from CV project screenshots and generalized for product galleries.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/gallery.css">styles/components/gallery.css</a>
+          </p>
+        </header>
+
+          <h3>Base Gallery</h3>
+          <p>
+            Use <code>.gallery</code> for the grid and <code>.gallery-item</code> for each tile.
+            The component enforces a consistent 16:10 image ratio and token-based surface styling.
+          </p>
+          <div class="gallery" style="max-width: 52rem; margin: 0.75rem 0;">
+            <div class="gallery-item"><img src="https://picsum.photos/seed/wm-gallery-1/640/400" alt="Dashboard overview" /></div>
+            <div class="gallery-item"><img src="https://picsum.photos/seed/wm-gallery-2/640/400" alt="Subscription list" /></div>
+            <div class="gallery-item"><img src="https://picsum.photos/seed/wm-gallery-3/640/400" alt="Charts and trends" /></div>
+            <div class="gallery-item"><img src="https://picsum.photos/seed/wm-gallery-4/640/400" alt="Settings panel" /></div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="gallery"&gt;
+  &lt;div class="gallery-item"&gt;
+    &lt;img src="screenshot-1.png" alt="Dashboard overview" /&gt;
+  &lt;/div&gt;
+  &lt;div class="gallery-item"&gt;
+    &lt;img src="screenshot-2.png" alt="Subscription list" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+          <h3>Caption Overlay</h3>
+          <p>
+            Add an optional <code>.gallery-item-caption</code> to reveal context on hover.
+            Useful for project names, environments, or release tags.
+          </p>
+          <div class="gallery" style="max-width: 52rem; margin: 0.75rem 0;">
+            <div class="gallery-item">
+              <img src="https://picsum.photos/seed/wm-caption-1/640/400" alt="Portfolio site" />
+              <span class="gallery-item-caption">Portfolio redesign · 2026</span>
+            </div>
+            <div class="gallery-item">
+              <img src="https://picsum.photos/seed/wm-caption-2/640/400" alt="Mobile dashboard" />
+              <span class="gallery-item-caption">Mobile dashboard · beta</span>
+            </div>
+            <div class="gallery-item">
+              <img src="https://picsum.photos/seed/wm-caption-3/640/400" alt="Analytics view" />
+              <span class="gallery-item-caption">Analytics view · dark theme</span>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="gallery-item"&gt;
+  &lt;img src="project-shot.png" alt="Project screenshot" /&gt;
+  &lt;span class="gallery-item-caption"&gt;Project screenshot&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+          <h3>Resume-Style Project Entry</h3>
+          <p>
+            The CV uses a project entry block with a title/date row, summary text, and a gallery grid of
+            <code>&lt;figure&gt;</code> tiles. This variant includes both screenshot figures and a Mermaid
+            diagram figure, each with persistent <code>&lt;figcaption&gt;</code> labels.
+          </p>
+          <div style="max-width: 56rem; margin: 0.75rem 0;">
+            <div class="entry-header" style="margin-bottom: 0.35rem;">
+              <strong style="font-size: 0.95rem;">Deal Monitoring UI</strong>
+              <span class="entry-date">Jan 2025 - Oct 2025</span>
+            </div>
+            <p style="margin: 0 0 0.65rem; font-size: 0.88rem; color: var(--wm-color-text-secondary);">
+              Full-stack monitoring surface with virtualized tables, URL-synced filters, and reusable
+              component architecture.
+            </p>
+            <div class="gallery" style="max-width: 56rem;">
+              <figure class="gallery-item gallery-item-figure">
+                <img src="https://picsum.photos/seed/wm-resume-1/640/400" alt="Virtualized table view" />
+                <figcaption>Virtualized table view with reusable column config</figcaption>
+              </figure>
+              <figure class="gallery-item gallery-item-figure">
+                <img src="https://picsum.photos/seed/wm-resume-2/640/400" alt="URL synced filter panel" />
+                <figcaption>URL-synced filter panel with saved views</figcaption>
+              </figure>
+              <figure class="gallery-item gallery-item-figure gallery-item-diagram">
+                <div class="mermaid">flowchart LR
+  A[Data API] --> B[Adapter]
+  B --> C[View Model]
+  C --> D[Virtualized Table]</div>
+                <figcaption>Data flow diagram used in architecture notes</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="entry-header"&gt;
+  &lt;strong&gt;Deal Monitoring UI&lt;/strong&gt;
+  &lt;span class="entry-date"&gt;Jan 2025 - Oct 2025&lt;/span&gt;
+&lt;/div&gt;
+&lt;p&gt;Full-stack monitoring surface with virtualized tables...&lt;/p&gt;
+
+&lt;div class="gallery"&gt;
+  &lt;figure class="gallery-item gallery-item-figure"&gt;
+    &lt;img src="table-view.png" alt="Virtualized table view" /&gt;
+    &lt;figcaption&gt;Virtualized table view with reusable column config&lt;/figcaption&gt;
+  &lt;/figure&gt;
+
+  &lt;figure class="gallery-item gallery-item-figure gallery-item-diagram"&gt;
+    &lt;div class="mermaid"&gt;
+flowchart LR
+  A[Data API] --&gt; B[Adapter]
+  B --&gt; C[View Model]
+  C --&gt; D[Virtualized Table]
+    &lt;/div&gt;
+    &lt;figcaption&gt;Data flow diagram used in architecture notes&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+          <h3>Gallery + Lightbox Setup</h3>
+          <p>
+            Add <code>data-lightbox-trigger</code> to clickable gallery figures and include a single
+            lightbox overlay at page root. This mirrors the resume interaction pattern where clicking
+            a screenshot opens a focused, full-size preview.
+          </p>
+          <div class="gallery" style="max-width: 52rem; margin: 0.75rem 0;" data-gallery-lightbox-demo>
+            <figure
+              class="gallery-item gallery-item-figure"
+              data-lightbox-trigger
+              data-lightbox-src="https://picsum.photos/seed/wm-lightbox-1/1600/1000"
+              data-lightbox-alt="Deal Monitoring table view"
+            >
+              <img src="https://picsum.photos/seed/wm-lightbox-1/640/400" alt="Deal Monitoring table view" />
+              <figcaption>Click to open full-size table view</figcaption>
+            </figure>
+            <figure
+              class="gallery-item gallery-item-figure"
+              data-lightbox-trigger
+              data-lightbox-src="https://picsum.photos/seed/wm-lightbox-2/1600/1000"
+              data-lightbox-alt="Filter panel and saved views"
+            >
+              <img src="https://picsum.photos/seed/wm-lightbox-2/640/400" alt="Filter panel and saved views" />
+              <figcaption>Click to inspect filters and saved views</figcaption>
+            </figure>
+            <figure
+              class="gallery-item gallery-item-figure"
+              data-lightbox-trigger
+              data-lightbox-src="https://picsum.photos/seed/wm-lightbox-3/1600/1000"
+              data-lightbox-alt="Deal detail overlay"
+            >
+              <img src="https://picsum.photos/seed/wm-lightbox-3/640/400" alt="Deal detail overlay" />
+              <figcaption>Click to inspect detail overlay state</figcaption>
+            </figure>
+          </div>
+
+          <div class="gallery-lightbox-overlay" data-gallery-lightbox aria-hidden="true">
+            <button class="gallery-lightbox-close" type="button" aria-label="Close lightbox">&times;</button>
+            <img class="gallery-lightbox-img" src="" alt="" />
+          </div>
+
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;figure
+  class="gallery-item gallery-item-figure"
+  data-lightbox-trigger
+  data-lightbox-src="/assets/deal-monitoring-table.png"
+  data-lightbox-alt="Deal Monitoring table view"
+&gt;
+  &lt;img src="/assets/deal-monitoring-table-thumb.png" alt="Deal Monitoring table view" /&gt;
+  &lt;figcaption&gt;Click to open full-size table view&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;div class="gallery-lightbox-overlay" data-gallery-lightbox aria-hidden="true"&gt;
+  &lt;button class="gallery-lightbox-close" type="button" aria-label="Close lightbox"&gt;&amp;times;&lt;/button&gt;
+  &lt;img class="gallery-lightbox-img" src="" alt="" /&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">const overlay = document.querySelector('[data-gallery-lightbox]');
+const lightboxImg = overlay.querySelector('.gallery-lightbox-img');
+
+document.querySelectorAll('[data-lightbox-trigger]').forEach((node) =&gt; {
+  node.addEventListener('click', () =&gt; {
+    lightboxImg.src = node.dataset.lightboxSrc;
+    lightboxImg.alt = node.dataset.lightboxAlt || '';
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+  });
+});
+
+overlay.addEventListener('click', (event) =&gt; {
+  if (event.target === overlay || event.target.closest('.gallery-lightbox-close')) {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+});</code></pre>
+          </div>
+        <hr>
+
+          <h3>Paginated Lightbox Setup</h3>
+          <p>
+            For project sets, group figures with <code>data-lightbox-group</code> so the lightbox can
+            paginate between items using previous/next controls.
+          </p>
+          <div class="gallery" style="max-width: 52rem; margin: 0.75rem 0;" data-gallery-lightbox-paginated-demo>
+            <figure class="gallery-item gallery-item-figure" data-lightbox-trigger data-lightbox-group="deal-monitoring" data-lightbox-src="https://picsum.photos/seed/wm-page-1/1600/1000" data-lightbox-alt="Deal Monitoring table view">
+              <img src="https://picsum.photos/seed/wm-page-1/640/400" alt="Deal Monitoring table view" />
+              <figcaption>Slide 1 · Table overview</figcaption>
+            </figure>
+            <figure class="gallery-item gallery-item-figure" data-lightbox-trigger data-lightbox-group="deal-monitoring" data-lightbox-src="https://picsum.photos/seed/wm-page-2/1600/1000" data-lightbox-alt="Deal Monitoring filters">
+              <img src="https://picsum.photos/seed/wm-page-2/640/400" alt="Deal Monitoring filters" />
+              <figcaption>Slide 2 · Filters and facets</figcaption>
+            </figure>
+            <figure class="gallery-item gallery-item-figure" data-lightbox-trigger data-lightbox-group="deal-monitoring" data-lightbox-src="https://picsum.photos/seed/wm-page-3/1600/1000" data-lightbox-alt="Deal Monitoring details">
+              <img src="https://picsum.photos/seed/wm-page-3/640/400" alt="Deal Monitoring details" />
+              <figcaption>Slide 3 · Detail overlay</figcaption>
+            </figure>
+          </div>
+
+          <div class="gallery-lightbox-overlay" data-gallery-lightbox-paginated aria-hidden="true">
+            <button class="gallery-lightbox-close" type="button" aria-label="Close lightbox">&times;</button>
+            <button class="gallery-lightbox-nav gallery-lightbox-nav-prev" type="button" aria-label="Previous image">&#8249;</button>
+            <img class="gallery-lightbox-img" src="" alt="" />
+            <button class="gallery-lightbox-nav gallery-lightbox-nav-next" type="button" aria-label="Next image">&#8250;</button>
+            <div class="gallery-lightbox-status" data-gallery-lightbox-status>1 / 1</div>
+          </div>
+
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;figure
+  class="gallery-item gallery-item-figure"
+  data-lightbox-trigger
+  data-lightbox-group="deal-monitoring"
+  data-lightbox-src="/assets/deal-table.png"
+  data-lightbox-alt="Deal Monitoring table view"
+&gt;
+  &lt;img src="/assets/deal-table-thumb.png" alt="Deal Monitoring table view" /&gt;
+  &lt;figcaption&gt;Slide 1 · Table overview&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;div class="gallery-lightbox-overlay" data-gallery-lightbox-paginated aria-hidden="true"&gt;
+  &lt;button class="gallery-lightbox-close" type="button" aria-label="Close lightbox"&gt;&amp;times;&lt;/button&gt;
+  &lt;button class="gallery-lightbox-nav gallery-lightbox-nav-prev" type="button" aria-label="Previous image"&gt;&amp;#8249;&lt;/button&gt;
+  &lt;img class="gallery-lightbox-img" src="" alt="" /&gt;
+  &lt;button class="gallery-lightbox-nav gallery-lightbox-nav-next" type="button" aria-label="Next image"&gt;&amp;#8250;&lt;/button&gt;
+  &lt;div class="gallery-lightbox-status" data-gallery-lightbox-status&gt;1 / 1&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">const overlay = document.querySelector('[data-gallery-lightbox-paginated]');
+const img = overlay.querySelector('.gallery-lightbox-img');
+const status = overlay.querySelector('[data-gallery-lightbox-status]');
+
+const group = [...document.querySelectorAll('[data-lightbox-group="deal-monitoring"]')];
+let index = 0;
+
+function render() {
+  const node = group[index];
+  img.src = node.dataset.lightboxSrc;
+  img.alt = node.dataset.lightboxAlt || '';
+  status.textContent = `${index + 1} / ${group.length}`;
+}
+
+overlay.querySelector('.gallery-lightbox-nav-prev').addEventListener('click', () =&gt; {
+  index = (index - 1 + group.length) % group.length;
+  render();
+});
+
+overlay.querySelector('.gallery-lightbox-nav-next').addEventListener('click', () =&gt; {
+  index = (index + 1) % group.length;
+  render();
+});</code></pre>
+          </div>
+        <hr>
+
+          <h3>Placeholder Image Design</h3>
+          <p>
+            Use <code>.gallery-placeholder</code> inside <code>.gallery-item</code> to represent missing
+            screenshots without breaking layout rhythm. This keeps spacing and visual weight consistent
+            while teams wait for final assets.
+          </p>
+          <div class="gallery" style="max-width: 52rem; margin: 0.75rem 0;">
+            <div class="gallery-item">
+              <div class="gallery-placeholder">
+                <div class="gallery-placeholder-content">
+                  <p class="gallery-placeholder-title">Screenshot Pending</p>
+                  <p class="gallery-placeholder-meta">Dashboard · Desktop</p>
+                </div>
+              </div>
+              <span class="gallery-item-caption">Planned view</span>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-placeholder">
+                <div class="gallery-placeholder-content">
+                  <p class="gallery-placeholder-title">Asset In Review</p>
+                  <p class="gallery-placeholder-meta">Billing Flow · Mobile</p>
+                </div>
+              </div>
+              <span class="gallery-item-caption">Design review</span>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-placeholder">
+                <div class="gallery-placeholder-content">
+                  <p class="gallery-placeholder-title">Final Export Needed</p>
+                  <p class="gallery-placeholder-meta">Analytics · Dark Theme</p>
+                </div>
+              </div>
+              <span class="gallery-item-caption">Queued for capture</span>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="gallery-item"&gt;
+  &lt;div class="gallery-placeholder"&gt;
+    &lt;div class="gallery-placeholder-content"&gt;
+      &lt;p class="gallery-placeholder-title"&gt;Screenshot Pending&lt;/p&gt;
+      &lt;p class="gallery-placeholder-meta"&gt;Dashboard · Desktop&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;span class="gallery-item-caption"&gt;Planned view&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+    <script>
+      if (typeof mermaid !== "undefined") {
+        mermaid.initialize({
+          startOnLoad: true,
+          securityLevel: "loose",
+          theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "default"
+        });
+      }
+
+      (function wireGalleryLightbox() {
+        const overlay = document.querySelector("[data-gallery-lightbox]");
+        if (!overlay) return;
+
+        const closeBtn = overlay.querySelector(".gallery-lightbox-close");
+        const img = overlay.querySelector(".gallery-lightbox-img");
+
+        function closeLightbox() {
+          overlay.classList.remove("active");
+          overlay.setAttribute("aria-hidden", "true");
+          if (img) {
+            img.src = "";
+            img.alt = "";
+          }
+        }
+
+        document.querySelectorAll("[data-lightbox-trigger]:not([data-lightbox-group])").forEach((node) => {
+          node.addEventListener("click", () => {
+            if (!img) return;
+            img.src = node.getAttribute("data-lightbox-src") || "";
+            img.alt = node.getAttribute("data-lightbox-alt") || "";
+            overlay.classList.add("active");
+            overlay.setAttribute("aria-hidden", "false");
+          });
+        });
+
+        overlay.addEventListener("click", (event) => {
+          if (event.target === overlay) closeLightbox();
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", closeLightbox);
+        }
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && overlay.classList.contains("active")) {
+            closeLightbox();
+          }
+        });
+      })();
+
+      (function wirePaginatedGalleryLightbox() {
+        const overlay = document.querySelector("[data-gallery-lightbox-paginated]");
+        if (!overlay) return;
+
+        const closeBtn = overlay.querySelector(".gallery-lightbox-close");
+        const prevBtn = overlay.querySelector(".gallery-lightbox-nav-prev");
+        const nextBtn = overlay.querySelector(".gallery-lightbox-nav-next");
+        const status = overlay.querySelector("[data-gallery-lightbox-status]");
+        const img = overlay.querySelector(".gallery-lightbox-img");
+
+        let groupNodes = [];
+        let activeIndex = 0;
+
+        function render() {
+          if (!img || !groupNodes.length) return;
+          const node = groupNodes[activeIndex];
+          img.src = node.getAttribute("data-lightbox-src") || "";
+          img.alt = node.getAttribute("data-lightbox-alt") || "";
+          if (status) {
+            status.textContent = `${activeIndex + 1} / ${groupNodes.length}`;
+          }
+        }
+
+        function open(groupName, startNode) {
+          groupNodes = Array.from(
+            document.querySelectorAll(`[data-lightbox-trigger][data-lightbox-group="${groupName}"]`)
+          );
+          if (!groupNodes.length) return;
+
+          activeIndex = Math.max(0, groupNodes.indexOf(startNode));
+          render();
+          overlay.classList.add("active");
+          overlay.setAttribute("aria-hidden", "false");
+        }
+
+        function close() {
+          overlay.classList.remove("active");
+          overlay.setAttribute("aria-hidden", "true");
+          groupNodes = [];
+          activeIndex = 0;
+          if (img) {
+            img.src = "";
+            img.alt = "";
+          }
+          if (status) {
+            status.textContent = "1 / 1";
+          }
+        }
+
+        document.querySelectorAll("[data-lightbox-trigger][data-lightbox-group]").forEach((node) => {
+          node.addEventListener("click", () => {
+            const groupName = node.getAttribute("data-lightbox-group");
+            if (!groupName) return;
+            open(groupName, node);
+          });
+        });
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            if (!groupNodes.length) return;
+            activeIndex = (activeIndex - 1 + groupNodes.length) % groupNodes.length;
+            render();
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            if (!groupNodes.length) return;
+            activeIndex = (activeIndex + 1) % groupNodes.length;
+            render();
+          });
+        }
+
+        overlay.addEventListener("click", (event) => {
+          if (event.target === overlay) close();
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", close);
+        }
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && overlay.classList.contains("active")) {
+            close();
+            return;
+          }
+
+          if (!overlay.classList.contains("active") || !groupNodes.length) return;
+
+          if (event.key === "ArrowLeft") {
+            activeIndex = (activeIndex - 1 + groupNodes.length) % groupNodes.length;
+            render();
+          }
+
+          if (event.key === "ArrowRight") {
+            activeIndex = (activeIndex + 1) % groupNodes.length;
+            render();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

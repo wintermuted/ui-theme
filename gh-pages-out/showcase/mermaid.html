@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mermaid | Wintermuted UI Theme Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Components</span>
+          <h2 class="page-title">Mermaid Diagrams</h2>
+          <p class="page-lead">
+            Mermaid lets you author architecture diagrams as text in docs. Use it when you want
+            a high-level visual map before code demos.
+          </p>
+          <p>
+            Official docs:
+            <a href="https://mermaid.js.org/intro/" target="_blank" rel="noopener">Intro</a>,
+            <a href="https://mermaid.js.org/intro/getting-started.html" target="_blank" rel="noopener">Getting Started</a>,
+            <a href="https://mermaid.js.org/syntax/flowchart.html" target="_blank" rel="noopener">Flowchart Syntax</a>,
+            <a href="https://mermaid.js.org/syntax/" target="_blank" rel="noopener">All Syntax</a>.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/ui-theme/blob/main/showcase/mermaid.html">showcase/mermaid.html</a>
+          </p>
+        </header>
+
+        <h3>When To Use Mermaid</h3>
+        <ul class="token-list">
+          <li>Show overall structure before implementation details.</li>
+          <li>Communicate layout regions, data flow, or lifecycle at a glance.</li>
+          <li>Keep diagrams versionable in plain text inside docs pages.</li>
+        </ul>
+        <hr>
+
+        <h3>Setup</h3>
+        <p>
+          Include Mermaid from CDN and initialize it after the page loads.
+          For bundlers, deployment options, and advanced configuration, see
+          <a href="https://mermaid.js.org/config/usage.html" target="_blank" rel="noopener">Usage</a>
+          and
+          <a href="https://mermaid.js.org/config/setup/mermaid/interfaces/MermaidConfig.html" target="_blank" rel="noopener">MermaidConfig reference</a>.
+        </p>
+        <div class="code-sample" data-lang="html">
+          <button class="code-copy-btn" type="button" data-copy>Copy</button>
+          <pre class="code-block"><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  if (typeof mermaid !== "undefined") {
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: "loose",
+      theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "default"
+    });
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+        <hr>
+
+        <h3>Basic Flow Diagram</h3>
+        <p>Write diagram text in a <code>.mermaid</code> block; Mermaid renders it into an SVG.</p>
+        <div class="wm-card card" style="padding: 0.85rem 1rem;">
+          <div class="mermaid">flowchart LR
+  A[Design Tokens] --> B[Components]
+  B --> C[Showcase Docs]
+  C --> D[Consumer App]</div>
+        </div>
+        <div class="code-sample" data-lang="mermaid">
+          <button class="code-copy-btn" type="button" data-copy>Copy</button>
+          <pre class="code-block"><code class="language-text">flowchart LR
+  A[Design Tokens] --> B[Components]
+  B --> C[Showcase Docs]
+  C --> D[Consumer App]</code></pre>
+        </div>
+        <hr>
+
+        <h3>Layout Architecture Example</h3>
+        <p>Use Mermaid to describe high-level regions before inset demos.</p>
+        <div class="wm-card card" style="padding: 0.85rem 1rem;">
+          <div class="mermaid">flowchart TB
+  A[Topbar] --> B[Page Frame]
+  B --> C[Sidebar]
+  B --> D[Main Content]
+  B --> E[Outline Rail]</div>
+        </div>
+        <div class="code-sample" data-lang="mermaid">
+          <button class="code-copy-btn" type="button" data-copy>Copy</button>
+          <pre class="code-block"><code class="language-text">flowchart TB
+  A[Topbar] --> B[Page Frame]
+  B --> C[Sidebar]
+  B --> D[Main Content]
+  B --> E[Outline Rail]</code></pre>
+        </div>
+        <hr>
+
+        <h3>Recommended Pattern In Docs</h3>
+        <ol class="wm-list" style="margin: 0.75rem 0;">
+          <li>Title the section as "Architecture".</li>
+          <li>Place Mermaid diagram first for context.</li>
+          <li>Follow with concise explanation and a live inset component demo.</li>
+          <li>Optionally link to a full-page mock for complete context.</li>
+        </ol>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+    <script>
+      if (typeof mermaid !== "undefined") {
+        mermaid.initialize({
+          startOnLoad: true,
+          securityLevel: "loose",
+          theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "default"
+        });
+      }
+    </script>
+  </body>
+</html>

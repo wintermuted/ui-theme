@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards | Wintermuted UI Theme Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Surface</span>
+          <h2 class="page-title">Cards</h2>
+          <p class="page-lead">
+            The card is the primary surface container. It groups related content with a background,
+            border, radius, and optional elevation shadow. Structural slots
+            (<code>.card-header</code>, <code>.card-body</code>, <code>.card-footer</code>) and
+            left-border accent variants communicate semantic tone.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/card.css">styles/components/card.css</a>
+          </p>
+        </header>
+
+        <!-- Base Card -->
+          <h3>Base card — <code>.card</code> / <code>.wm-card</code></h3>
+          <p>
+            Minimal surface with border, radius, and backdrop blur. Add padding via
+            <code>.card-body</code> or inline as needed.
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:0.5rem;">
+            <div class="card wm-card" style="padding:1.25rem;">
+              <strong>Simple card</strong>
+              <p style="margin:0.5rem 0 0;font-size:0.875rem;color:var(--wm-color-text-muted);">
+                Any content can live inside the base card.
+              </p>
+            </div>
+            <div class="card wm-card" style="padding:1.25rem;">
+              <strong>Another card</strong>
+              <p style="margin:0.5rem 0 0;font-size:0.875rem;color:var(--wm-color-text-muted);">
+                Cards sit side-by-side in a grid naturally.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-sample">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="card wm-card" style="padding: 1.25rem;"&gt;
+  &lt;strong&gt;Card title&lt;/strong&gt;
+  &lt;p&gt;Card body text.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Structural Slots -->
+          <h3>Structural slots — <code>.card-header</code> / <code>.card-body</code> / <code>.card-footer</code></h3>
+          <p>
+            Use structural slots for cards with clear title rows, action footers, or both. Each slot
+            handles its own padding and separator borders automatically.
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:0.5rem;">
+            <!-- Header + Body -->
+            <div class="card wm-card">
+              <div class="card-header">
+                <h4>Card header</h4>
+              </div>
+              <div class="card-body">
+                <p style="margin:0;font-size:0.875rem;">
+                  Content lives in <code>.card-body</code>. The header and body are separated by a
+                  1 px border.
+                </p>
+              </div>
+            </div>
+
+            <!-- Header + Body + Footer -->
+            <div class="card wm-card">
+              <div class="card-header">
+                <h4>Header + footer</h4>
+                <span class="badge badge-accent" style="font-size:0.75rem;">Active</span>
+              </div>
+              <div class="card-body">
+                <p style="margin:0;font-size:0.875rem;">
+                  A <code>.card-footer</code> provides a muted action row at the bottom with a
+                  top border.
+                </p>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-secondary" type="button" style="font-size:0.8rem;">Cancel</button>
+                <button class="btn btn-primary" type="button" style="font-size:0.8rem;">Save</button>
+              </div>
+            </div>
+
+            <!-- Header with actions -->
+            <div class="card wm-card">
+              <div class="card-header">
+                <h4>Header actions</h4>
+                <button class="btn btn-secondary" type="button" style="font-size:0.8rem;padding:0.25rem 0.75rem;">Edit</button>
+              </div>
+              <div class="card-body">
+                <p style="margin:0;font-size:0.875rem;">
+                  The header uses <code>justify-content: space-between</code>, so any trailing
+                  element becomes a header action.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-sample">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;!-- Header + Body + Footer --&gt;
+&lt;div class="card wm-card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h4&gt;Card title&lt;/h4&gt;
+    &lt;span class="badge badge-accent"&gt;Active&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;p&gt;Main content area.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn btn-secondary"&gt;Cancel&lt;/button&gt;
+    &lt;button class="btn btn-primary"&gt;Save&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Accent variants -->
+          <h3>Accent border variants</h3>
+          <p>
+            A 4 px left border communicates semantic tone. Compose with the base
+            <code>.card</code> class. Pairs well with structural slots.
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:0.5rem;">
+            <div class="card wm-card card-accent-info" style="padding:1.25rem;">
+              <strong style="color:var(--wm-color-accent);">Info</strong>
+              <p style="margin:0.5rem 0 0;font-size:0.875rem;">.card-accent-info</p>
+            </div>
+            <div class="card wm-card card-accent-success" style="padding:1.25rem;">
+              <strong style="color:var(--wm-color-success);">Success</strong>
+              <p style="margin:0.5rem 0 0;font-size:0.875rem;">.card-accent-success</p>
+            </div>
+            <div class="card wm-card card-accent-warning" style="padding:1.25rem;">
+              <strong style="color:var(--wm-color-warning);">Warning</strong>
+              <p style="margin:0.5rem 0 0;font-size:0.875rem;">.card-accent-warning</p>
+            </div>
+            <div class="card wm-card card-accent-danger" style="padding:1.25rem;">
+              <strong style="color:var(--wm-color-danger);">Danger</strong>
+              <p style="margin:0.5rem 0 0;font-size:0.875rem;">.card-accent-danger</p>
+            </div>
+          </div>
+
+          <div class="code-sample">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="card wm-card card-accent-success" style="padding: 1.25rem;"&gt;
+  &lt;strong&gt;Realized savings&lt;/strong&gt;
+  &lt;p&gt;$34.00 saved this month.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="card wm-card card-accent-warning" style="padding: 1.25rem;"&gt;
+  &lt;strong&gt;Projected savings&lt;/strong&gt;
+  &lt;p&gt;$12.00 if you cancel 2 more.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Accent + structural slots -->
+          <h3>Accent + structural slots</h3>
+          <p>Accent variants compose naturally with <code>.card-header</code> and <code>.card-body</code>.</p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:0.5rem;">
+            <div class="card wm-card card-accent-success">
+              <div class="card-header">
+                <h4 style="color:var(--wm-color-success);">Cancelled subscriptions</h4>
+              </div>
+              <div class="card-body">
+                <p style="margin:0;font-size:0.875rem;">
+                  You've cancelled 3 subscriptions saving $34.00/mo.
+                </p>
+              </div>
+            </div>
+            <div class="card wm-card card-accent-warning">
+              <div class="card-header">
+                <h4 style="color:var(--wm-color-warning);">Pending cancellation</h4>
+              </div>
+              <div class="card-body">
+                <p style="margin:0;font-size:0.875rem;">
+                  2 subscriptions marked for review. Projected saving: $12.00/mo.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-sample">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="card wm-card card-accent-success"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h4&gt;Cancelled subscriptions&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;p&gt;You've cancelled 3 subscriptions saving $34.00/mo.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Card in a grid -->
+          <h3>Card grid layout</h3>
+          <p>
+            Cards naturally fill a CSS grid. Use <code>auto-fill</code> with
+            <code>minmax</code> for responsive columns without media queries.
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:0.5rem;">
+            <div class="card wm-card">
+              <div class="card-header"><h4>Item A</h4></div>
+              <div class="card-body" style="font-size:0.875rem;">Description for item A.</div>
+            </div>
+            <div class="card wm-card">
+              <div class="card-header"><h4>Item B</h4></div>
+              <div class="card-body" style="font-size:0.875rem;">Description for item B.</div>
+            </div>
+            <div class="card wm-card">
+              <div class="card-header"><h4>Item C</h4></div>
+              <div class="card-body" style="font-size:0.875rem;">Description for item C.</div>
+            </div>
+            <div class="card wm-card">
+              <div class="card-header"><h4>Item D</h4></div>
+              <div class="card-body" style="font-size:0.875rem;">Description for item D.</div>
+            </div>
+          </div>
+
+          <div class="code-sample">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;"&gt;
+  &lt;div class="card wm-card"&gt;
+    &lt;div class="card-header"&gt;&lt;h4&gt;Item A&lt;/h4&gt;&lt;/div&gt;
+    &lt;div class="card-body"&gt;Description.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- repeat … --&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Combination: Card + Badge + Button -->
+          <h3>Composition examples</h3>
+          <p>
+            Cards are intentionally bare — they provide the surface; other components handle their
+            own styling inside.
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:0.5rem;">
+            <!-- Subscription row card -->
+            <div class="card wm-card">
+              <div class="card-header">
+                <h4>Netflix</h4>
+                <span class="badge badge-success">Active</span>
+              </div>
+              <div class="card-body" style="font-size:0.875rem;">
+                <p style="margin:0 0 0.5rem;">$15.49 / month · Streaming</p>
+                <p style="margin:0;color:var(--wm-color-text-muted);">Next charge: Jun 1, 2026</p>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-secondary" type="button" style="font-size:0.8rem;padding:0.25rem 0.75rem;">Cancel</button>
+              </div>
+            </div>
+
+            <!-- Savings summary card -->
+            <div class="card wm-card card-accent-success">
+              <div class="card-header">
+                <h4 style="color:var(--wm-color-success);">Monthly savings</h4>
+                <span class="badge badge-success">+$34.00</span>
+              </div>
+              <div class="card-body" style="font-size:0.875rem;">
+                <p style="margin:0;">3 subscriptions cancelled. You're saving $408.00/yr.</p>
+              </div>
+            </div>
+          </div>
+        <hr>
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+  </body>
+</html>
