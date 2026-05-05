@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icons | Wintermuted UI Theme Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Utilities</span>
+          <h2 class="page-title">Icons</h2>
+          <p class="page-lead">
+            Wintermuted UI uses <a href="https://lucide.dev" target="_blank" rel="noopener">Lucide Icons</a> —
+            a clean, open-source icon library with 1,500+ icons available as SVG or framework components.
+            Icons are rendered at 16&times;16 by default, inheriting <code>currentColor</code> for seamless
+            theming.
+          </p>
+          <p class="component-source">
+            Library: <a href="https://lucide.dev" target="_blank" rel="noopener">lucide.dev</a>
+            &nbsp;&middot;&nbsp;
+            License: <a href="https://github.com/lucide-icons/lucide/blob/main/LICENSE" target="_blank" rel="noopener">ISC</a>
+          </p>
+        </header>
+
+        <!-- Installation -->
+        <section class="docs-section">
+          <h3 class="section-title">Installation</h3>
+          <div class="wm-card card">
+            <h4 class="subsection-title">CDN (static HTML)</h4>
+            <p>Add the Lucide UMD bundle before your script, then call <code>lucide.createIcons()</code> to
+            replace <code>&lt;i data-lucide="name"&gt;</code> elements with inline SVG.</p>
+            <div class="code-sample" data-lang="html">
+              <button class="code-copy-btn" data-copy type="button">Copy</button>
+              <pre class="code-block"><code class="language-html">&lt;!-- 1. Load Lucide --&gt;
+&lt;script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin&gt;&lt;/script&gt;
+
+&lt;!-- 2. Place icon placeholders --&gt;
+&lt;i data-lucide="sun"&gt;&lt;/i&gt;
+&lt;i data-lucide="moon"&gt;&lt;/i&gt;
+
+&lt;!-- 3. Activate --&gt;
+&lt;script&gt;
+  lucide.createIcons();
+&lt;/script&gt;</code></pre>
+            </div>
+
+            <h4 class="subsection-title" style="margin-top: 1.5rem;">npm (React / Vue / Svelte)</h4>
+            <div class="code-sample" data-lang="bash">
+              <button class="code-copy-btn" data-copy type="button">Copy</button>
+              <pre class="code-block"><code class="language-bash">npm install lucide-react   # React
+npm install lucide-vue-next  # Vue 3
+npm install lucide-svelte    # Svelte</code></pre>
+            </div>
+            <div class="code-sample" data-lang="tsx" style="margin-top: 0.75rem;">
+              <button class="code-copy-btn" data-copy type="button">Copy</button>
+              <pre class="code-block"><code class="language-tsx">import { Sun, Moon, Settings } from 'lucide-react';
+
+function ThemeToggle() {
+  return &lt;button&gt;&lt;Moon size={16} /&gt; Dark&lt;/button&gt;;
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sizes -->
+        <section class="docs-section">
+          <h3 class="section-title">Sizes</h3>
+          <div class="wm-card card">
+            <p>Lucide icons accept a <code>size</code> prop (framework) or a CSS <code>width</code>/<code>height</code>
+            attribute. All sizes below use <code>currentColor</code> for the stroke.</p>
+            <div class="icon-size-row">
+              <div class="icon-size-demo">
+                <i data-lucide="star" width="12" height="12"></i>
+                <span class="icon-size-label">12</span>
+              </div>
+              <div class="icon-size-demo">
+                <i data-lucide="star" width="16" height="16"></i>
+                <span class="icon-size-label">16</span>
+              </div>
+              <div class="icon-size-demo">
+                <i data-lucide="star" width="20" height="20"></i>
+                <span class="icon-size-label">20</span>
+              </div>
+              <div class="icon-size-demo">
+                <i data-lucide="star" width="24" height="24"></i>
+                <span class="icon-size-label">24</span>
+              </div>
+              <div class="icon-size-demo">
+                <i data-lucide="star" width="32" height="32"></i>
+                <span class="icon-size-label">32</span>
+              </div>
+              <div class="icon-size-demo">
+                <i data-lucide="star" width="48" height="48"></i>
+                <span class="icon-size-label">48</span>
+              </div>
+            </div>
+            <div class="code-sample" data-lang="html" style="margin-top: 1.25rem;">
+              <button class="code-copy-btn" data-copy type="button">Copy</button>
+              <pre class="code-block"><code class="language-html">&lt;i data-lucide="star" width="16" height="16"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" width="24" height="24"&gt;&lt;/i&gt;
+&lt;i data-lucide="star" width="32" height="32"&gt;&lt;/i&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Color & Stroke -->
+        <section class="docs-section">
+          <h3 class="section-title">Color &amp; Stroke</h3>
+          <div class="wm-card card">
+            <p>Icons inherit <code>currentColor</code> by default. Wrap in a <code>color</code>-bearing
+            element or set <code>stroke</code> / <code>stroke-width</code> directly on the SVG for
+            customisation.</p>
+            <div class="icon-color-row">
+              <div class="icon-color-demo" style="color: var(--wm-color-text);">
+                <i data-lucide="check-circle" width="24" height="24"></i>
+                <span>text</span>
+              </div>
+              <div class="icon-color-demo" style="color: var(--wm-color-accent);">
+                <i data-lucide="check-circle" width="24" height="24"></i>
+                <span>accent</span>
+              </div>
+              <div class="icon-color-demo" style="color: var(--wm-color-success, #3fb950);">
+                <i data-lucide="check-circle" width="24" height="24"></i>
+                <span>success</span>
+              </div>
+              <div class="icon-color-demo" style="color: var(--wm-color-warning, #d29922);">
+                <i data-lucide="check-circle" width="24" height="24"></i>
+                <span>warning</span>
+              </div>
+              <div class="icon-color-demo" style="color: var(--wm-color-danger, #f85149);">
+                <i data-lucide="check-circle" width="24" height="24"></i>
+                <span>danger</span>
+              </div>
+              <div class="icon-color-demo" style="color: var(--wm-color-text-muted);">
+                <i data-lucide="check-circle" width="24" height="24"></i>
+                <span>muted</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Icon button pattern -->
+        <section class="docs-section">
+          <h3 class="section-title">Icon + Label Button</h3>
+          <div class="wm-card card">
+            <p>The theme toggle in the showcase topbar uses this pattern: an icon followed by a text label,
+            both inside a single <code>&lt;button&gt;</code>. The icon is marked
+            <code>aria-hidden="true"</code> and the button carries an <code>aria-label</code>.</p>
+            <div class="icon-button-demo-row">
+              <button class="btn btn-secondary icon-btn" type="button">
+                <i data-lucide="moon" width="14" height="14" aria-hidden="true"></i>
+                <span>Dark</span>
+              </button>
+              <button class="btn btn-secondary icon-btn" type="button">
+                <i data-lucide="sun" width="14" height="14" aria-hidden="true"></i>
+                <span>Light</span>
+              </button>
+              <button class="btn btn-primary icon-btn" type="button">
+                <i data-lucide="download" width="14" height="14" aria-hidden="true"></i>
+                <span>Download</span>
+              </button>
+              <button class="btn btn-ghost icon-btn" type="button">
+                <i data-lucide="settings" width="14" height="14" aria-hidden="true"></i>
+                <span>Settings</span>
+              </button>
+            </div>
+            <div class="code-sample" data-lang="html" style="margin-top: 1.25rem;">
+              <button class="code-copy-btn" data-copy type="button">Copy</button>
+              <pre class="code-block"><code class="language-html">&lt;button class="btn btn-secondary icon-btn" type="button"
+        aria-label="Switch to dark theme"&gt;
+  &lt;i data-lucide="moon" width="14" height="14" aria-hidden="true"&gt;&lt;/i&gt;
+  &lt;span&gt;Dark&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Navigation icons -->
+        <section class="docs-section">
+          <h3 class="section-title">Icon Reference</h3>
+
+          <div class="wm-card card">
+            <h4 class="subsection-title">Navigation</h4>
+            <div class="icon-grid">
+              <div class="icon-tile"><i data-lucide="arrow-left"></i><span>arrow-left</span></div>
+              <div class="icon-tile"><i data-lucide="arrow-right"></i><span>arrow-right</span></div>
+              <div class="icon-tile"><i data-lucide="arrow-up"></i><span>arrow-up</span></div>
+              <div class="icon-tile"><i data-lucide="arrow-down"></i><span>arrow-down</span></div>
+              <div class="icon-tile"><i data-lucide="chevron-left"></i><span>chevron-left</span></div>
+              <div class="icon-tile"><i data-lucide="chevron-right"></i><span>chevron-right</span></div>
+              <div class="icon-tile"><i data-lucide="chevron-up"></i><span>chevron-up</span></div>
+              <div class="icon-tile"><i data-lucide="chevron-down"></i><span>chevron-down</span></div>
+              <div class="icon-tile"><i data-lucide="menu"></i><span>menu</span></div>
+              <div class="icon-tile"><i data-lucide="x"></i><span>x</span></div>
+              <div class="icon-tile"><i data-lucide="home"></i><span>home</span></div>
+              <div class="icon-tile"><i data-lucide="external-link"></i><span>external-link</span></div>
+            </div>
+          </div>
+
+          <div class="wm-card card">
+            <h4 class="subsection-title">Actions</h4>
+            <div class="icon-grid">
+              <div class="icon-tile"><i data-lucide="search"></i><span>search</span></div>
+              <div class="icon-tile"><i data-lucide="edit"></i><span>edit</span></div>
+              <div class="icon-tile"><i data-lucide="trash-2"></i><span>trash-2</span></div>
+              <div class="icon-tile"><i data-lucide="copy"></i><span>copy</span></div>
+              <div class="icon-tile"><i data-lucide="download"></i><span>download</span></div>
+              <div class="icon-tile"><i data-lucide="upload"></i><span>upload</span></div>
+              <div class="icon-tile"><i data-lucide="plus"></i><span>plus</span></div>
+              <div class="icon-tile"><i data-lucide="minus"></i><span>minus</span></div>
+              <div class="icon-tile"><i data-lucide="refresh-cw"></i><span>refresh-cw</span></div>
+              <div class="icon-tile"><i data-lucide="share-2"></i><span>share-2</span></div>
+              <div class="icon-tile"><i data-lucide="filter"></i><span>filter</span></div>
+              <div class="icon-tile"><i data-lucide="sort-asc"></i><span>sort-asc</span></div>
+            </div>
+          </div>
+
+          <div class="wm-card card">
+            <h4 class="subsection-title">Status &amp; Feedback</h4>
+            <div class="icon-grid">
+              <div class="icon-tile"><i data-lucide="check"></i><span>check</span></div>
+              <div class="icon-tile"><i data-lucide="check-circle"></i><span>check-circle</span></div>
+              <div class="icon-tile"><i data-lucide="x-circle"></i><span>x-circle</span></div>
+              <div class="icon-tile"><i data-lucide="alert-circle"></i><span>alert-circle</span></div>
+              <div class="icon-tile"><i data-lucide="alert-triangle"></i><span>alert-triangle</span></div>
+              <div class="icon-tile"><i data-lucide="info"></i><span>info</span></div>
+              <div class="icon-tile"><i data-lucide="loader-2"></i><span>loader-2</span></div>
+              <div class="icon-tile"><i data-lucide="clock"></i><span>clock</span></div>
+            </div>
+          </div>
+
+          <div class="wm-card card">
+            <h4 class="subsection-title">Interface</h4>
+            <div class="icon-grid">
+              <div class="icon-tile"><i data-lucide="sun"></i><span>sun</span></div>
+              <div class="icon-tile"><i data-lucide="moon"></i><span>moon</span></div>
+              <div class="icon-tile"><i data-lucide="settings"></i><span>settings</span></div>
+              <div class="icon-tile"><i data-lucide="user"></i><span>user</span></div>
+              <div class="icon-tile"><i data-lucide="lock"></i><span>lock</span></div>
+              <div class="icon-tile"><i data-lucide="unlock"></i><span>unlock</span></div>
+              <div class="icon-tile"><i data-lucide="eye"></i><span>eye</span></div>
+              <div class="icon-tile"><i data-lucide="eye-off"></i><span>eye-off</span></div>
+              <div class="icon-tile"><i data-lucide="star"></i><span>star</span></div>
+              <div class="icon-tile"><i data-lucide="heart"></i><span>heart</span></div>
+              <div class="icon-tile"><i data-lucide="bell"></i><span>bell</span></div>
+              <div class="icon-tile"><i data-lucide="bookmark"></i><span>bookmark</span></div>
+            </div>
+          </div>
+
+          <div class="wm-card card">
+            <h4 class="subsection-title">Communication</h4>
+            <div class="icon-grid">
+              <div class="icon-tile"><i data-lucide="mail"></i><span>mail</span></div>
+              <div class="icon-tile"><i data-lucide="message-circle"></i><span>message-circle</span></div>
+              <div class="icon-tile"><i data-lucide="message-square"></i><span>message-square</span></div>
+              <div class="icon-tile"><i data-lucide="phone"></i><span>phone</span></div>
+              <div class="icon-tile"><i data-lucide="send"></i><span>send</span></div>
+              <div class="icon-tile"><i data-lucide="at-sign"></i><span>at-sign</span></div>
+            </div>
+          </div>
+
+          <div class="wm-card card">
+            <h4 class="subsection-title">Files &amp; Media</h4>
+            <div class="icon-grid">
+              <div class="icon-tile"><i data-lucide="file"></i><span>file</span></div>
+              <div class="icon-tile"><i data-lucide="file-text"></i><span>file-text</span></div>
+              <div class="icon-tile"><i data-lucide="folder"></i><span>folder</span></div>
+              <div class="icon-tile"><i data-lucide="image"></i><span>image</span></div>
+              <div class="icon-tile"><i data-lucide="video"></i><span>video</span></div>
+              <div class="icon-tile"><i data-lucide="play"></i><span>play</span></div>
+              <div class="icon-tile"><i data-lucide="pause"></i><span>pause</span></div>
+              <div class="icon-tile"><i data-lucide="volume-2"></i><span>volume-2</span></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=8"></script>
+    <script>
+      // Activate all data-lucide icons on this page (including grid tiles)
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      });
+    </script>
+  </body>
+</html>
