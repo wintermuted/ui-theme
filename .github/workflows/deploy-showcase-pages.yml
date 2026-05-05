@@ -27,6 +27,8 @@ permissions:
   contents: write
   pull-requests: write
   deployments: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
@@ -114,6 +116,18 @@ jobs:
               repo: context.repo.repo,
               body,
             });
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: gh-pages-out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Mark PR deployment success
         if: github.event_name == 'pull_request' && success()
