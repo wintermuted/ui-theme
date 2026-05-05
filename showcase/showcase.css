@@ -862,10 +862,15 @@ pre[class*="language-"].code-block {
     transition: transform 0.22s ease;
     z-index: 30;
     overflow-y: auto;
+    overscroll-behavior-y: contain;
   }
 
   body.docs-sidebar-open .docs-sidebar {
     transform: translateX(0);
+  }
+
+  body.docs-sidebar-open {
+    overflow: hidden;
   }
 
   body.docs-sidebar-open .docs-sidebar-backdrop {
