@@ -805,11 +805,6 @@ pre[class*="language-"].code-block {
   font-size: 0.84rem;
 }
 
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-}
-
 .chart-demo-container {
   margin-bottom: 1rem;
 }
