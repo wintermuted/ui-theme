@@ -18,6 +18,9 @@
         { page: "buttons.html", label: "Buttons" },
         { page: "tags.html", label: "Tags" },
         { page: "forms.html", label: "Forms" },
+        { page: "toggle.html", label: "Toggle Switch" },
+        { page: "slider.html", label: "Slider" },
+        { page: "toggle-group.html", label: "Toggle Group" },
       ],
     },
     {
@@ -51,6 +54,7 @@
       sectionLabel: "Status and Messaging",
       items: [
         { page: "feedback.html", label: "Feedback" },
+        { page: "toast.html", label: "Toast" },
       ],
     },
     {
