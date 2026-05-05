@@ -43,9 +43,7 @@
       items: [
         { page: "code-block.html", label: "Code Block" },
         { page: "mermaid.html", label: "Mermaid" },
-        { page: "data-display.html", label: "Data Display Overview" },
-        { page: "tables.html", label: "Tables" },
-        { page: "charts.html", label: "Charts" },
+        { page: "data-display.html", label: "Data Display" },
         { page: "gallery.html", label: "Gallery" },
       ],
     },

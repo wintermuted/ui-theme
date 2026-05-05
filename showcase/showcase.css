@@ -810,26 +810,6 @@ pre[class*="language-"].code-block {
   overflow-x: auto;
 }
 
-.chart-demo-container {
-  margin-bottom: 1rem;
-}
-
-.chart-demo-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.chart-subheading {
-  margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-}
-
-.chart-token-table {
-  margin-bottom: 1rem;
-  font-size: 0.85rem;
-}
-
 .token-list {
   margin: 0;
   padding-left: 1.1rem;
