@@ -24,7 +24,7 @@
   display: inline-flex;
   flex-direction: row;
   border: 1px solid var(--wm-color-border);
-  border-radius: var(--wm-radius-base);
+  border-radius: var(--wm-radius-xs);
   overflow: hidden;
 }
 

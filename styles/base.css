@@ -58,7 +58,7 @@ textarea {
   color: var(--wm-color-text);
   background: var(--wm-color-bg);
   border: 1px solid var(--wm-color-border-strong);
-  border-radius: var(--wm-radius-sm);
+  border-radius: var(--wm-radius-xs);
   padding: 0.7rem 0.85rem;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }

@@ -32,6 +32,10 @@
             Source file:
             <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/toggle.css">styles/components/toggle.css</a>
           </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-top:0.5rem;">
+            Toggle colors use the shared control tokens for OpenAI-style contrast: on = <code>#0285ff</code>,
+            off = neutral gray, thumb = light neutral.
+          </p>
         </header>
 
         <!-- Default -->
@@ -99,10 +103,10 @@
         <!-- Stacked group -->
           <h3>Stacked Group</h3>
           <p>
-            Wrap multiple toggles in <code>.wm-toggle-group</code> for consistent vertical spacing.
+            Wrap multiple toggles in <code>.wm-toggle-list</code> for consistent vertical spacing.
             Ideal for settings panels.
           </p>
-          <div class="wm-toggle-group" style="margin: 0.75rem 0; max-width: 400px;">
+          <div class="wm-toggle-list" style="margin: 0.75rem 0; max-width: 400px;">
             <div>
               <label class="wm-toggle">
                 <input type="checkbox" class="wm-toggle-input" checked />
@@ -130,7 +134,7 @@
           </div>
           <div class="code-sample" data-lang="html">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
-            <pre class="code-block"><code class="language-html">&lt;div class="wm-toggle-group"&gt;
+            <pre class="code-block"><code class="language-html">&lt;div class="wm-toggle-list"&gt;
   &lt;div&gt;
     &lt;label class="wm-toggle"&gt;
       &lt;input type="checkbox" class="wm-toggle-input" checked /&gt;

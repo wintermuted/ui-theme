@@ -21,7 +21,7 @@
   height: 0.25rem;
   padding: 0;
   margin: 0.5rem 0;
-  background: var(--wm-color-border-strong);
+  background: var(--wm-control-off);
   border: none;
   border-radius: var(--wm-radius-pill);
   outline: none;
@@ -30,7 +30,7 @@
 }
 
 .wm-slider:hover {
-  background: var(--wm-color-border);
+  background: color-mix(in srgb, var(--wm-control-off) 82%, white);
 }
 
 /* ── Filled progress track (WebKit) ──────────────────────────────────────── */
@@ -40,9 +40,9 @@
   border-radius: var(--wm-radius-pill);
   background: linear-gradient(
     to right,
-    var(--wm-color-accent) 0%,
-    var(--wm-color-accent) var(--_progress, 50%),
-    var(--wm-color-border-strong) var(--_progress, 50%)
+    var(--wm-control-on) 0%,
+    var(--wm-control-on) var(--_progress, 50%),
+    var(--wm-control-off) var(--_progress, 50%)
   );
 }
 
@@ -54,8 +54,8 @@
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background: var(--wm-color-bg);
-  border: 2px solid var(--wm-color-accent);
+  background: var(--wm-control-thumb);
+  border: 2px solid var(--wm-control-on);
   box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
   margin-top: -0.375rem; /* center on track */
   transition: transform 0.12s ease, box-shadow 0.12s ease;
@@ -72,13 +72,13 @@
 .wm-slider::-moz-range-track {
   height: 0.25rem;
   border-radius: var(--wm-radius-pill);
-  background: var(--wm-color-border-strong);
+  background: var(--wm-control-off);
 }
 
 .wm-slider::-moz-range-progress {
   height: 0.25rem;
   border-radius: var(--wm-radius-pill);
-  background: var(--wm-color-accent);
+  background: var(--wm-control-on);
 }
 
 /* ── Thumb (Firefox) ─────────────────────────────────────────────────────── */
@@ -87,8 +87,8 @@
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background: var(--wm-color-bg);
-  border: 2px solid var(--wm-color-accent);
+  background: var(--wm-control-thumb);
+  border: 2px solid var(--wm-control-on);
   box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
   cursor: pointer;
   transition: transform 0.12s ease;
@@ -101,7 +101,7 @@
 /* ── Focus ring ──────────────────────────────────────────────────────────── */
 
 .wm-slider:focus-visible {
-  outline: 2px solid var(--wm-color-accent);
+  outline: 2px solid var(--wm-control-on);
   outline-offset: 3px;
 }
 
@@ -137,7 +137,7 @@
 .wm-slider-value {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--wm-color-accent);
+  color: var(--wm-control-on);
   min-width: 1.5rem;
   text-align: right;
 }
