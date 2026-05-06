@@ -125,7 +125,6 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   background: color-mix(in srgb, var(--wm-color-bg) 84%, transparent);
   border-bottom: 1px solid var(--wm-color-border);
@@ -268,7 +267,6 @@
     no-repeat right 0.45rem center;
   color: var(--wm-color-text-muted);
   cursor: pointer;
-  -webkit-appearance: none;
   appearance: none;
   outline: none;
   transition: background-color 0.15s ease, color 0.15s ease;
@@ -307,7 +305,7 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .docs-topbar-inner,
   .wm-docs-topbar-inner {
     flex-wrap: wrap;

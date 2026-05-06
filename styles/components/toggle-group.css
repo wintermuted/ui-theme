@@ -41,11 +41,6 @@
   width: 100%;
 }
 
-.wm-toggle-group-full .wm-toggle-group-btn {
-  flex: 1;
-  justify-content: flex-start;
-}
-
 /* ── Button ──────────────────────────────────────────────────────────────── */
 
 .wm-toggle-group-btn {
@@ -68,6 +63,25 @@
   border-right: none;
 }
 
+.wm-toggle-group-btn:hover {
+  background: var(--wm-color-surface-strong);
+  color: var(--wm-color-text);
+}
+
+/* ── Disabled ────────────────────────────────────────────────────────────── */
+
+.wm-toggle-group-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Full-width modifier button override ─────────────────────────────────── */
+
+.wm-toggle-group-full .wm-toggle-group-btn {
+  flex: 1;
+  justify-content: flex-start;
+}
+
 /* In vertical layout replace right border with bottom border */
 .wm-toggle-group-vertical .wm-toggle-group-btn {
   border-right: none;
@@ -76,11 +90,6 @@
 
 .wm-toggle-group-vertical .wm-toggle-group-btn:last-child {
   border-bottom: none;
-}
-
-.wm-toggle-group-btn:hover {
-  background: var(--wm-color-surface-strong);
-  color: var(--wm-color-text);
 }
 
 /* ── Active / selected state ─────────────────────────────────────────────── */
@@ -102,13 +111,6 @@
 .wm-toggle-group-vertical .wm-toggle-group-btn-active,
 .wm-toggle-group-vertical .wm-toggle-group-btn[aria-pressed="true"] {
   border-bottom-color: var(--wm-color-accent-border);
-}
-
-/* ── Disabled ────────────────────────────────────────────────────────────── */
-
-.wm-toggle-group-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 /* ── Color swatch variant ────────────────────────────────────────────────── */
