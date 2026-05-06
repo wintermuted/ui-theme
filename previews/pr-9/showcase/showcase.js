@@ -35,6 +35,7 @@
             { page: "layout-topnav.html", label: "Top Nav" },
             { page: "layout-app-shell.html", label: "App Shell" },
             { page: "layout-sidebar.html", label: "Sidebar Layout" },
+            { page: "layout-utilities.html", label: "Layout Utilities" },
             { page: "layout-entry-header.html", label: "Entry Header" },
             { page: "layout-content-grid.html", label: "Content Grid" },
           ],

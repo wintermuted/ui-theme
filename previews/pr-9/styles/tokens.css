@@ -27,6 +27,9 @@
   --wm-color-danger: #c5221f;
   --wm-color-danger-soft: #fce8e6;
   --wm-color-danger-border: #f4c3c1;
+  --wm-control-on: #0285ff;
+  --wm-control-off: #d2d2d2;
+  --wm-control-thumb: #ffffff;
   --wm-shadow-soft: 0 18px 40px -30px rgb(13 13 13 / 28%);
   --wm-radius-xs: 4px;
   --wm-radius-base: 8px;
@@ -61,4 +64,7 @@
   --wm-color-danger: #ff978f;
   --wm-color-danger-soft: #351615;
   --wm-color-danger-border: #5d2623;
+  --wm-control-on: #0285ff;
+  --wm-control-off: #414141;
+  --wm-control-thumb: #dcdcdc;
 }
