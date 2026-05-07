@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entry Header Layout | Wintermuted UI Theme Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=4" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Layout</span>
+          <h2 class="page-title">Entry Header — <code>.entry-header</code></h2>
+          <p class="page-lead">
+            Two-column flex row: primary label on the left, secondary metadata (date, status) on the right.
+            Wraps gracefully on narrow viewports.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/layout.css">styles/components/layout.css</a>
+          </p>
+        </header>
+
+        <p style="margin-bottom:1rem;">
+          Use for timeline entries, work history rows, list items with a date, or any
+          scan-first two-column label + meta pattern.
+        </p>
+
+        <div style="max-width: 36rem; border: 1px solid var(--wm-color-border); border-radius: var(--wm-radius-md); overflow: hidden;">
+          <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--wm-color-border);">
+            <div class="entry-header">
+              <strong style="font-size: 0.95rem;">Senior Software Engineer</strong>
+              <span class="entry-date">2021 – Present</span>
+            </div>
+            <span class="entry-meta">Acme Corp · Portland, OR</span>
+          </div>
+          <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--wm-color-border);">
+            <div class="entry-header">
+              <strong style="font-size: 0.95rem;">Software Engineer II</strong>
+              <span class="entry-date">2018 – 2021</span>
+            </div>
+            <span class="entry-meta">Widgets Inc · Seattle, WA</span>
+          </div>
+          <div style="padding: 1rem 1.25rem;">
+            <div class="entry-header">
+              <strong style="font-size: 0.95rem;">Junior Engineer</strong>
+              <span class="entry-date">2016 – 2018</span>
+            </div>
+            <span class="entry-meta">Startup Co · San Francisco, CA</span>
+          </div>
+        </div>
+
+        <div class="code-sample" data-lang="html">
+          <button class="code-copy-btn" type="button" data-copy>Copy</button>
+          <pre class="code-block"><code class="language-html">&lt;div class="entry-header"&gt;
+  &lt;strong&gt;Senior Software Engineer&lt;/strong&gt;
+  &lt;span class="entry-date"&gt;2021 – Present&lt;/span&gt;
+&lt;/div&gt;
+&lt;span class="entry-meta"&gt;Acme Corp · Portland, OR&lt;/span&gt;</code></pre>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+  </body>
+</html>
