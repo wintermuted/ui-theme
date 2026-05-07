@@ -886,6 +886,10 @@ pre[class*="language-"].code-block {
     overflow-y: auto;
   }
 
+  body.docs-sidebar-open {
+    overflow: hidden;
+  }
+
   body.docs-sidebar-open .docs-sidebar {
     transform: translateX(0);
   }
