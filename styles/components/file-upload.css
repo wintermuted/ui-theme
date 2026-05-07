@@ -8,7 +8,7 @@
   justify-content: center;
   gap: 0.5rem;
   border: 2px dashed var(--wm-color-border-strong);
-  border-radius: var(--wm-radius-base, 8px);
+  border-radius: var(--wm-radius-xs, 4px);
   padding: 2rem;
   text-align: center;
   cursor: pointer;

@@ -91,6 +91,18 @@
                 and actions with no strong directional signal.
               </p>
             </div>
+
+            <div>
+              <div style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button class="btn btn-primary-neutral" type="button">Primary Neutral</button>
+                <button class="btn btn-secondary-neutral" type="button">Secondary Neutral</button>
+              </div>
+              <p style="font-size: 0.82rem; margin: 0;">
+                <code>.btn.btn-primary-neutral</code> / <code>.btn.btn-secondary-neutral</code> — Non-colored
+                primary and secondary treatments for dense toolbars, command rows, and utility controls.
+                In dark mode, <code>.btn-primary-neutral</code> renders as a white high-contrast action.
+              </p>
+            </div>
           </div>
 
           <div class="code-sample" data-lang="html">
@@ -99,19 +111,23 @@
 &lt;button class="btn btn-secondary" type="button"&gt;Secondary&lt;/button&gt;
 &lt;button class="btn btn-ghost" type="button"&gt;Ghost&lt;/button&gt;
 &lt;button class="btn btn-danger" type="button"&gt;Danger&lt;/button&gt;
-&lt;button class="btn btn-neutral" type="button"&gt;Neutral&lt;/button&gt;</code></pre>
+&lt;button class="btn btn-neutral" type="button"&gt;Neutral&lt;/button&gt;
+&lt;button class="btn btn-primary-neutral" type="button"&gt;Primary Neutral&lt;/button&gt;
+&lt;button class="btn btn-secondary-neutral" type="button"&gt;Secondary Neutral&lt;/button&gt;</code></pre>
           </div>
         <hr>
 
         <!-- All Variants Together -->
           <h3>Row View</h3>
-          <p>All five variants at a glance.</p>
+          <p>All variants at a glance.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0;">
             <button class="btn btn-primary" type="button">Primary</button>
             <button class="btn btn-secondary" type="button">Secondary</button>
             <button class="btn btn-ghost" type="button">Ghost</button>
             <button class="btn btn-danger" type="button">Danger</button>
             <button class="btn btn-neutral" type="button">Neutral</button>
+            <button class="btn btn-primary-neutral" type="button">Primary Neutral</button>
+            <button class="btn btn-secondary-neutral" type="button">Secondary Neutral</button>
           </div>
         <hr>
 
@@ -127,11 +143,14 @@
             <button class="btn btn-ghost btn-sm" type="button">Ghost</button>
             <button class="btn btn-danger btn-sm" type="button">Danger</button>
             <button class="btn btn-neutral btn-sm" type="button">Neutral</button>
+            <button class="btn btn-primary-neutral btn-sm" type="button">Primary Neutral</button>
+            <button class="btn btn-secondary-neutral btn-sm" type="button">Secondary Neutral</button>
           </div>
           <div class="code-sample" data-lang="html">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
             <pre class="code-block"><code class="language-html">&lt;button class="btn btn-primary btn-sm" type="button"&gt;Small Primary&lt;/button&gt;
-&lt;button class="btn btn-secondary btn-sm" type="button"&gt;Small Secondary&lt;/button&gt;</code></pre>
+&lt;button class="btn btn-secondary btn-sm" type="button"&gt;Small Secondary&lt;/button&gt;
+&lt;button class="btn btn-primary-neutral btn-sm" type="button"&gt;Small Primary Neutral&lt;/button&gt;</code></pre>
           </div>
         <hr>
 
@@ -147,6 +166,8 @@
             <button class="btn btn-ghost" type="button" disabled>Ghost</button>
             <button class="btn btn-danger" type="button" disabled>Danger</button>
             <button class="btn btn-neutral" type="button" disabled>Neutral</button>
+            <button class="btn btn-primary-neutral" type="button" disabled>Primary Neutral</button>
+            <button class="btn btn-secondary-neutral" type="button" disabled>Secondary Neutral</button>
           </div>
           <div class="code-sample" data-lang="html">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
@@ -222,6 +243,39 @@
           <div class="code-sample" data-lang="html">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
             <pre class="code-block"><code class="language-html">&lt;button class="btn-link" type="button"&gt;view all charges&lt;/button&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Squared Shape Modifier -->
+          <h3>Squared Shape — <code>.btn-square</code></h3>
+          <p>
+            Shape modifier that replaces the default pill radius with <code>--wm-radius-xs</code> (4px).
+            Combine with any semantic variant for a compact, rectangular button style — useful in dense
+            control panels and game-style UIs.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0;">
+            <button class="btn btn-primary btn-square" type="button">Start</button>
+            <button class="btn btn-secondary btn-square" type="button">Next</button>
+            <button class="btn btn-danger btn-square" type="button">Reset</button>
+            <button class="btn btn-ghost btn-square" type="button">Ghost</button>
+            <button class="btn btn-success btn-square" type="button">Success</button>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0;">
+            <button class="btn btn-primary btn-square btn-sm" type="button">Small Primary</button>
+            <button class="btn btn-secondary btn-square btn-sm" type="button">Small Secondary</button>
+            <button class="btn btn-danger btn-square btn-sm" type="button">Small Danger</button>
+          </div>
+          <div style="max-width: 24rem; margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <button class="btn btn-secondary btn-square" type="button" style="width: 100%;">Copy URL</button>
+            <button class="btn btn-ghost btn-square" type="button" style="width: 100%;">Edit Mode</button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;button class="btn btn-primary btn-square" type="button"&gt;Start&lt;/button&gt;
+&lt;button class="btn btn-secondary btn-square" type="button"&gt;Next&lt;/button&gt;
+&lt;button class="btn btn-danger btn-square" type="button"&gt;Reset&lt;/button&gt;
+&lt;!-- Small size --&gt;
+&lt;button class="btn btn-primary btn-square btn-sm" type="button"&gt;Small&lt;/button&gt;</code></pre>
           </div>
         <hr>
 

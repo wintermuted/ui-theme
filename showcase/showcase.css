@@ -174,8 +174,8 @@ body {
     no-repeat right 0.45rem center;
   color: var(--wm-color-text-muted);
   cursor: pointer;
-  appearance: none;
   -webkit-appearance: none;
+  appearance: none;
   outline: none;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
@@ -312,6 +312,7 @@ body {
   display: grid;
   grid-template-columns: 270px minmax(0, 1fr) 230px;
   gap: 2rem;
+  align-items: start;
 }
 
 /* Optional legacy layout: keep previous centered 1280px docs frame */
@@ -347,6 +348,10 @@ body.docs-layout-constrained .docs-shell {
   align-self: start;
   position: sticky;
   top: 1rem;
+  height: calc(100dvh - 5.2rem);
+  max-height: calc(100vh - 5.2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border-radius: var(--wm-radius-sm);
 }
 
@@ -868,6 +873,8 @@ pre[class*="language-"].code-block {
     top: 3.1rem;
     left: 0;
     bottom: 0;
+    height: auto;
+    max-height: none;
     width: min(320px, 84vw);
     margin: 0;
     border-radius: 0;
@@ -1113,6 +1120,64 @@ pre[class*="language-"].code-block {
 .layout-rect-nav {
   background: color-mix(in srgb, #22d3ee 22%, var(--wm-color-bg));
   border-color: color-mix(in srgb, #22d3ee 55%, var(--docs-border));
+}
+
+.layout-utils-demo-frame {
+  border: 1px solid var(--wm-color-border);
+  border-radius: var(--wm-radius-base, 8px);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.layout-utils-demo-shell {
+  background: var(--wm-color-surface-muted);
+  margin: 0;
+  max-width: none;
+  padding: 1rem;
+}
+
+.layout-utils-demo-header {
+  margin-bottom: 1rem;
+}
+
+.layout-utils-demo-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.layout-utils-demo-nav {
+  max-width: 38ch;
+}
+
+.layout-utils-demo-workspace {
+  --wm-sidebar-aside-width: 320px;
+  min-height: 220px;
+}
+
+.layout-utils-demo-aside {
+  padding-left: 0.25rem;
+}
+
+.layout-utils-demo-aside-copy {
+  margin: 0;
+  color: var(--wm-color-text-muted);
+  font-size: 0.8rem;
+}
+
+.layout-utils-demo-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.layout-utils-demo-main-surface {
+  background: var(--wm-color-surface-strong);
+  border-radius: var(--wm-radius-base, 8px);
+  padding: 0.75rem;
+}
+
+.layout-utils-demo-controls {
+  background: var(--wm-color-surface-raised);
 }
 
 @media (max-width: 720px) {
