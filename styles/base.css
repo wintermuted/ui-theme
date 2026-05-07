@@ -114,6 +114,11 @@ table {
   border-collapse: collapse;
 }
 
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
 th,
 td {
   text-align: left;
