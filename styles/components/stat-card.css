@@ -58,6 +58,17 @@
   color: var(--wm-color-warning);
 }
 
+.stat-card-danger,
+.wm-stat-card-danger {
+  background: var(--wm-color-danger-soft);
+  border-color: var(--wm-color-danger-border);
+}
+
+.stat-card-danger .stat-value,
+.wm-stat-card-danger .wm-stat-value {
+  color: var(--wm-color-danger);
+}
+
 /* Accent-left-border variants (used on card rows) */
 
 .card-accent-success,
