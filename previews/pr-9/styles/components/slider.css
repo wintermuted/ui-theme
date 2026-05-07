@@ -15,7 +15,6 @@
 
 .wm-slider {
   /* Reset */
-  -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 0.25rem;
@@ -41,15 +40,14 @@
   background: linear-gradient(
     to right,
     var(--wm-control-on) 0%,
-    var(--wm-control-on) var(--_progress, 50%),
-    var(--wm-control-off) var(--_progress, 50%)
+    var(--wm-control-on) var(--wm-slider-progress, 50%),
+    var(--wm-control-off) var(--wm-slider-progress, 50%)
   );
 }
 
 /* ── Thumb (WebKit) ──────────────────────────────────────────────────────── */
 
 .wm-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
   appearance: none;
   width: 1rem;
   height: 1rem;

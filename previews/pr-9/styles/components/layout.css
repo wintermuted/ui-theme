@@ -125,7 +125,6 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   background: color-mix(in srgb, var(--wm-color-bg) 84%, transparent);
   border-bottom: 1px solid var(--wm-color-border);
@@ -211,6 +210,44 @@
 }
 
 /**
+ * .docs-topbar-link-devdocs / .wm-docs-topbar-link-devdocs
+ * Minimal docs-tab link style modeled after developer docs top nav patterns.
+ * Designed for product-level tabs like Home/About where active state is shown
+ * via a bottom border rather than pill backgrounds.
+ */
+.docs-topbar-link-devdocs,
+.wm-docs-topbar-link-devdocs {
+  text-decoration: none;
+  color: var(--wm-color-text-muted);
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.46rem 0.12rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-bottom-color 0.15s ease;
+}
+
+.docs-topbar-link-devdocs:hover,
+.wm-docs-topbar-link-devdocs:hover {
+  color: var(--wm-color-text);
+  border-bottom-color: var(--wm-color-border-strong);
+  background: transparent;
+}
+
+.docs-topbar-link-devdocs.is-active,
+.wm-docs-topbar-link-devdocs.is-active,
+.docs-topbar-link-devdocs[aria-current="page"],
+.wm-docs-topbar-link-devdocs[aria-current="page"] {
+  color: var(--wm-color-text);
+  border-bottom-color: var(--wm-color-text);
+  background: transparent;
+}
+
+/**
  * .docs-topbar-actions / .wm-docs-topbar-actions
  * Right-aligned utility control row.
  */
@@ -268,7 +305,6 @@
     no-repeat right 0.45rem center;
   color: var(--wm-color-text-muted);
   cursor: pointer;
-  -webkit-appearance: none;
   appearance: none;
   outline: none;
   transition: background-color 0.15s ease, color 0.15s ease;
@@ -307,7 +343,7 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .docs-topbar-inner,
   .wm-docs-topbar-inner {
     flex-wrap: wrap;
