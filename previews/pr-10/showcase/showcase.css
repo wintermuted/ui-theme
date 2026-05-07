@@ -883,7 +883,9 @@ pre[class*="language-"].code-block {
     transform: translateX(-105%);
     transition: transform 0.22s ease;
     z-index: 30;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   html.docs-sidebar-open,
