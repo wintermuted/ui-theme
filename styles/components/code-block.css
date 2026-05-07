@@ -29,7 +29,7 @@
   border-bottom: 1px solid var(--wm-color-border);
   font-size: 0.68rem;
   font-weight: 600;
-  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Menlo', monospace;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, monospace;
   letter-spacing: 0.06em;
   color: var(--wm-color-text-muted);
   text-transform: lowercase;
@@ -74,7 +74,7 @@ pre.code-block {
   overflow-x: auto;
   font-size: 0.75rem;
   line-height: 1.7;
-  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Menlo', monospace;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, monospace;
   color: var(--wm-color-text-secondary);
   margin: 0;
   tab-size: 2;
