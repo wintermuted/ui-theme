@@ -265,3 +265,55 @@
   position: relative;
   z-index: 1;
 }
+
+/**
+ * .btn-expand / .wm-btn-expand
+ * Borderless disclosure / section-expansion trigger. Use for inline "Show
+ * more", "Show examples", expand-collapse controls where a full button
+ * treatment would be too heavy. Renders as a muted text row with a leading
+ * chevron that rotates when the [aria-expanded="true"] state is set.
+ *
+ *   <button class="btn btn-expand" aria-expanded="false">Show examples</button>
+ *   <button class="btn btn-expand" aria-expanded="true">Hide examples</button>
+ */
+.btn-expand,
+.wm-btn-expand {
+  background: none;
+  border: none;
+  padding: 0.2rem 0;
+  min-height: unset;
+  gap: 0.3rem;
+  color: var(--wm-color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 0;
+  transition: color 0.15s ease;
+}
+
+.btn-expand::before,
+.wm-btn-expand::before {
+  content: '▶';
+  display: inline-block;
+  font-size: 0.6em;
+  transition: transform 0.2s ease;
+}
+
+.btn-expand[aria-expanded="true"]::before,
+.wm-btn-expand[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+.btn-expand:hover,
+.wm-btn-expand:hover {
+  color: var(--wm-color-text);
+  background: none;
+  transform: none;
+}
+
+.btn-expand:disabled,
+.wm-btn-expand:disabled {
+  color: var(--wm-color-text-muted);
+  opacity: 0.5;
+}

@@ -56,7 +56,8 @@
     "./styles/components/toggle.css": "./styles/components/toggle.css",
     "./styles/components/slider.css": "./styles/components/slider.css",
     "./styles/components/toggle-group.css": "./styles/components/toggle-group.css",
-    "./styles/components/toast.css": "./styles/components/toast.css"
+    "./styles/components/toast.css": "./styles/components/toast.css",
+    "./styles/components/code-block.css": "./styles/components/code-block.css"
   },
   "scripts": {
     "showcase:serve": "python3 -m http.server 4174",
