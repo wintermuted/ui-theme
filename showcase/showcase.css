@@ -805,9 +805,24 @@ pre[class*="language-"].code-block {
   font-size: 0.84rem;
 }
 
-.table-responsive {
+.chart-demo-container {
+  margin-bottom: 1rem;
+}
+
+.chart-demo-svg {
   width: 100%;
-  overflow-x: auto;
+  height: auto;
+  display: block;
+}
+
+.chart-subheading {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.chart-token-table {
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
 }
 
 .token-list {
