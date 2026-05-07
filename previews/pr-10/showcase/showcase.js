@@ -360,6 +360,7 @@
 
     const mobile = window.matchMedia("(max-width: 1000px)");
     const setOpen = (open) => {
+      document.documentElement.classList.toggle("docs-sidebar-open", open);
       document.body.classList.toggle("docs-sidebar-open", open);
       toggleButtons.forEach((button) => {
         button.setAttribute("aria-expanded", open ? "true" : "false");
