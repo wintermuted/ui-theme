@@ -37,14 +37,13 @@
           <h3>How Discovery Works</h3>
           <ul class="token-list">
             <li>Searches GitHub code for <code>@wintermuted/ui-theme</code> within <code>package.json</code>.</li>
-            <li>Filters to public repositories under the <code>wintermuted</code> owner.</li>
+            <li>Filters to public repositories under the <code>wintermuted</code> organization.</li>
             <li>Excludes this repository (<code>wintermuted/ui-theme</code>) from the gallery list.</li>
+            <li>Uses unauthenticated GitHub API requests (subject to public rate limits).</li>
           </ul>
       </main>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
     <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
     <script src="./showcase.js?v=9"></script>
     <script>
