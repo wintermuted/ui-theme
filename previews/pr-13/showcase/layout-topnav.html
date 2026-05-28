@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Nav Layout | Wintermuted UI Theme Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=5" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Layout</span>
+          <h2 class="page-title">Docs Extension — Horizontal Top Nav</h2>
+          <p class="page-lead">
+            A sticky, horizontally scrollable top navigation bar inspired by modern developer docs.
+            Designed to complement, not replace, the existing sidebar layout.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components/layout.css">styles/components/layout.css</a>
+          </p>
+        </header>
+
+        <p style="margin-bottom:0.5rem;">
+          The top bar surfaces key component entries for faster lateral movement while the sidebar
+          continues to provide full sectioned navigation.
+        </p>
+        <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+          The top bar surfaces key component entries for faster lateral movement (Typography,
+          Cards, Buttons, Forms, Feedback, Data Display, Gallery, Navigation, Modal, Layout)
+          while the sidebar continues to provide full sectioned navigation.
+        </p>
+
+        <h3>Architecture</h3>
+        <div class="layout-architecture-card" style="margin-bottom:1rem;">
+          <div class="layout-rect-diagram" aria-label="Top nav architecture">
+            <div class="layout-rect layout-rect-topbar">Sticky Topbar</div>
+            <div class="layout-rect-row layout-rect-row-2col">
+              <div class="layout-rect layout-rect-actions">Global Actions</div>
+              <div class="layout-rect layout-rect-nav">Primary Section Links</div>
+            </div>
+            <div class="layout-rect layout-rect-surface">Body Content: Section Cards / Data Views</div>
+          </div>
+          <p style="margin:0.7rem 0 0;">
+            Pair this with deeper left-rail navigation when users need both broad and granular wayfinding.
+          </p>
+          <p style="margin:0.7rem 0 0;">
+            <a class="btn btn-primary btn-sm" href="./layout-example-topnav.html" target="_blank" rel="noopener">Open full-page top nav mock</a>
+          </p>
+        </div>
+
+        <div style="border:1px solid var(--wm-color-border);border-radius:var(--wm-radius-base,8px);overflow:hidden;margin-bottom:1rem;background:var(--wm-color-surface-muted);">
+          <div class="docs-topbar" style="position: static; border-bottom: 1px solid var(--wm-color-border);">
+            <div class="docs-topbar-inner" style="padding:0.55rem 0.75rem;">
+              <a class="docs-topbar-brand" href="#">Wintermuted UI Docs</a>
+              <nav class="docs-topbar-nav" aria-label="Top documentation navigation">
+                <a class="docs-topbar-link" href="#">Typography</a>
+                <a class="docs-topbar-link" href="#">Cards</a>
+                <a class="docs-topbar-link" href="#">Buttons</a>
+                <a class="docs-topbar-link" href="#">Forms</a>
+                <a class="docs-topbar-link" href="#">Feedback</a>
+                <a class="docs-topbar-link" href="#">Data Display</a>
+                <a class="docs-topbar-link" href="#">Gallery</a>
+                <a class="docs-topbar-link" href="#">Navigation</a>
+                <a class="docs-topbar-link" href="#">Modal</a>
+                <a class="docs-topbar-link is-active" href="#">Layout</a>
+              </nav>
+            </div>
+          </div>
+          <div style="padding:0.75rem 0.95rem; font-size:0.78rem; color:var(--wm-color-text-muted);">
+            Sticky horizontal nav with active page highlighting and overflow-safe scroll behavior.
+          </div>
+        </div>
+
+        <div class="code-sample" data-lang="html">
+          <button class="code-copy-btn" type="button" data-copy>Copy</button>
+          <pre class="code-block"><code class="language-html">&lt;header class="docs-topbar"&gt;
+  &lt;div class="docs-topbar-inner"&gt;
+    &lt;a class="docs-topbar-brand" href="./index.html"&gt;Wintermuted UI Docs&lt;/a&gt;
+
+    &lt;nav class="docs-topbar-nav" aria-label="Top documentation navigation"&gt;
+      &lt;a class="docs-topbar-link" data-page="typography.html" href="./typography.html"&gt;Typography&lt;/a&gt;
+      &lt;a class="docs-topbar-link" data-page="cards.html" href="./cards.html"&gt;Cards&lt;/a&gt;
+      &lt;a class="docs-topbar-link" data-page="buttons.html" href="./buttons.html"&gt;Buttons&lt;/a&gt;
+      &lt;a class="docs-topbar-link" data-page="forms.html" href="./forms.html"&gt;Forms&lt;/a&gt;
+      &lt;a class="docs-topbar-link" data-page="gallery.html" href="./gallery.html"&gt;Gallery&lt;/a&gt;
+      &lt;a class="docs-topbar-link" data-page="navigation.html" href="./navigation.html"&gt;Navigation&lt;/a&gt;
+      &lt;a class="docs-topbar-link" data-page="layout.html" href="./layout.html"&gt;Layout&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+  </body>
+</html>
