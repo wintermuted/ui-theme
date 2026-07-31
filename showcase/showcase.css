@@ -24,7 +24,7 @@ body {
 .docs-topbar-inner {
   max-width: none;
   margin: 0 auto;
-  padding: 0.65rem 1.6rem;
+  padding: 0.65rem 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.9rem;
@@ -40,7 +40,6 @@ body {
   font-weight: 600;
   letter-spacing: 0.01em;
   white-space: nowrap;
-  padding-left: 1.15rem;
 }
 
 .docs-topbar-brand-icon {
@@ -308,7 +307,7 @@ body {
 .docs-shell {
   max-width: none;
   margin: 0 auto;
-  padding: 1.9rem 1.6rem;
+  padding: 1.9rem 1.5rem;
   display: grid;
   grid-template-columns: 270px minmax(0, 1fr) 230px;
   gap: 2rem;
@@ -344,7 +343,7 @@ body.docs-layout-constrained .docs-shell {
 }
 
 .docs-sidebar {
-  padding: 1.15rem;
+  padding: 0.25rem;
   align-self: start;
   position: sticky;
   top: 1rem;
@@ -407,8 +406,7 @@ body.docs-layout-constrained .docs-shell {
   border: none;
   border-left: 2px solid transparent;
   border-radius: 0;
-  padding: 0.45rem 0.62rem;
-  padding-left: 0.75rem;
+  padding: 0.45rem 0.62rem 0.45rem 0.5rem;
   font-size: 0.84rem;
   font-weight: 500;
   transition: background 0.15s ease, color 0.15s ease, border-left-color 0.15s ease;
