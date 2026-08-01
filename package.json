@@ -1,7 +1,7 @@
 {
-  "name": "@wintermuted/wintermuted-ui-library",
+  "name": "@wintermuted/ui-theme",
   "version": "0.21.0",
-  "description": "Shared Wintermuted UI library (design tokens, base resets, and component styles) derived from the CV styling language.",
+  "description": "Shared Wintermuted UI theme (design tokens, base resets, and component styles) derived from the CV styling language.",
   "type": "module",
   "main": "./index.js",
   "license": "MIT",
@@ -20,12 +20,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wintermuted/wintermuted-ui-library.git"
+    "url": "git+https://github.com/wintermuted/wintermuted-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/wintermuted/wintermuted-ui-library/issues"
+    "url": "https://github.com/wintermuted/wintermuted-ui/issues"
   },
-  "homepage": "https://github.com/wintermuted/wintermuted-ui-library#readme",
+  "homepage": "https://github.com/wintermuted/wintermuted-ui#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },

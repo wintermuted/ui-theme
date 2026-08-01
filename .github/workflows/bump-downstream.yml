@@ -47,7 +47,7 @@ jobs:
             await github.rest.repos.createDispatchEvent({
               owner,
               repo,
-              event_type: 'wintermuted-ui-library-release',
+              event_type: 'ui-theme-release',
               client_payload: {
                 version: '${{ steps.ver.outputs.version }}',
                 release_tag: '${{ steps.ver.outputs.release_tag }}'

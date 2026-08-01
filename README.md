@@ -1,4 +1,4 @@
-# `@wintermuted/wintermuted-ui-library`
+# `@wintermuted/ui-theme`
 
 Shared design tokens and base component styles for Wintermuted projects.
 
@@ -11,7 +11,7 @@ The package is derived from the styling language introduced in the CV project an
 ```bash
 echo "@wintermuted:registry=https://npm.pkg.github.com" >> ~/.npmrc
 export NODE_AUTH_TOKEN=YOUR_GITHUB_TOKEN
-npm install @wintermuted/wintermuted-ui-library
+npm install @wintermuted/ui-theme
 ```
 
 ### GitHub repository release
@@ -19,7 +19,7 @@ npm install @wintermuted/wintermuted-ui-library
 If you prefer to consume the package directly from GitHub without GitHub Packages auth, install from a tagged release:
 
 ```bash
-npm install github:wintermuted/wintermuted-ui-library#v0.1.0
+npm install github:wintermuted/wintermuted-ui#v0.1.0
 ```
 
 ## Includes
@@ -34,7 +34,7 @@ npm install github:wintermuted/wintermuted-ui-library#v0.1.0
 ### Full Theme (single import)
 
 ```ts
-import "@wintermuted/wintermuted-ui-library";
+import "@wintermuted/ui-theme";
 ```
 
 Then use the exported CSS variables in application styles:
@@ -52,24 +52,24 @@ Then use the exported CSS variables in application styles:
 Import only the slices you need. Most component files require tokens, and many apps also want base element styles.
 
 ```ts
-import "@wintermuted/wintermuted-ui-library/styles/tokens.css";
-import "@wintermuted/wintermuted-ui-library/styles/base.css";
-import "@wintermuted/wintermuted-ui-library/styles/components/button.css";
-import "@wintermuted/wintermuted-ui-library/styles/components/card.css";
+import "@wintermuted/ui-theme/styles/tokens.css";
+import "@wintermuted/ui-theme/styles/base.css";
+import "@wintermuted/ui-theme/styles/components/button.css";
+import "@wintermuted/ui-theme/styles/components/card.css";
 ```
 
 Available modular entry points:
 
-- `@wintermuted/wintermuted-ui-library/styles/tokens.css`
-- `@wintermuted/wintermuted-ui-library/styles/base.css`
-- `@wintermuted/wintermuted-ui-library/styles/components.css` (all components)
-- `@wintermuted/wintermuted-ui-library/styles/components/button.css`
-- `@wintermuted/wintermuted-ui-library/styles/components/card.css`
-- `@wintermuted/wintermuted-ui-library/styles/components/badge.css`
-- `@wintermuted/wintermuted-ui-library/styles/components/tag.css`
-- `@wintermuted/wintermuted-ui-library/styles/components/list.css`
-- `@wintermuted/wintermuted-ui-library/styles/components/separator.css`
-- `@wintermuted/wintermuted-ui-library/styles/components/side-nav.css`
+- `@wintermuted/ui-theme/styles/tokens.css`
+- `@wintermuted/ui-theme/styles/base.css`
+- `@wintermuted/ui-theme/styles/components.css` (all components)
+- `@wintermuted/ui-theme/styles/components/button.css`
+- `@wintermuted/ui-theme/styles/components/card.css`
+- `@wintermuted/ui-theme/styles/components/badge.css`
+- `@wintermuted/ui-theme/styles/components/tag.css`
+- `@wintermuted/ui-theme/styles/components/list.css`
+- `@wintermuted/ui-theme/styles/components/separator.css`
+- `@wintermuted/ui-theme/styles/components/side-nav.css`
 
 
 ## Static Design System Test Page
