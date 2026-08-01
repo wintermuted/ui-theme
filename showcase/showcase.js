@@ -8,6 +8,7 @@
       items: [
         { page: "index.html", label: "Introduction" },
         { page: "installation.html", label: "Installation" },
+        { page: "theme-gallery.html", label: "Theme Gallery" },
         { page: "typography.html", label: "Typography" },
         { page: "cards.html", label: "Cards" },
       ],
