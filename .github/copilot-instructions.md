@@ -2,7 +2,7 @@
 
 ## Project overview
 
-`@wintermuted/ui-theme` is a shared CSS/JS design-system package that publishes design tokens, base resets, and component styles. It is distributed via the GitHub Package Registry as an npm package.
+`@wintermuted/ui-theme` is a shared CSS/JS design-system package that publishes design tokens, base resets, and component styles. It is distributed via npmjs.
 
 ## Repository structure
 
