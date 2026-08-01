@@ -50,11 +50,14 @@ jobs:
           echo "Next release: $NEXT"
 
       - name: Update package.json version
+        id: version_files
         run: |
           VERSION="${{ steps.version.outputs.tag }}"
           TARGET_VERSION="${VERSION#v}"
           CURRENT_VERSION=$(node -p "require('./package.json').version")
           LOCK_VERSION=""
+          echo "committed=false" >> "$GITHUB_OUTPUT"
+
           if [ -f package-lock.json ]; then
             LOCK_VERSION=$(node -p "require('./package-lock.json').version")
           fi
@@ -68,28 +71,60 @@ jobs:
 
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add package.json package-lock.json
+          git add package.json
+          if [ -f package-lock.json ]; then
+            git add package-lock.json
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No version changes to commit."
+            exit 0
+          fi
+
           git commit -m "chore: bump version to ${VERSION#v} [skip ci]"
-          git push origin main
+          echo "committed=true" >> "$GITHUB_OUTPUT"
 
-      - name: Create and push tag
-        run: |
-          git tag "${{ steps.version.outputs.tag }}"
-          git push origin "${{ steps.version.outputs.tag }}"
-
-      - name: Publish package
+      - name: Verify package version has not been published
+        id: preflight
         run: |
           PKG_NAME=$(node -p "require('./package.json').name")
           PKG_VERSION=$(node -p "require('./package.json').version")
 
           if npm view "$PKG_NAME@$PKG_VERSION" version --registry=https://registry.npmjs.org > /dev/null 2>&1; then
             echo "$PKG_NAME@$PKG_VERSION is already published."
-            exit 0
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
           fi
 
-          npm publish --provenance --access public
+      - name: Publish package (trusted)
+        id: publish_trusted
+        if: steps.preflight.outputs.publish == 'true'
+        continue-on-error: true
+        run: npm publish --provenance --access public
+
+      - name: Publish package (token fallback)
+        id: publish_token
+        if: steps.preflight.outputs.publish == 'true' && steps.publish_trusted.outcome != 'success' && secrets.NPM_TOKEN != ''
+        continue-on-error: true
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Ensure package publish succeeded
+        if: steps.preflight.outputs.publish == 'true' && steps.publish_trusted.outcome != 'success' && steps.publish_token.outcome != 'success'
+        run: |
+          echo "Package publish failed via trusted publishing and token fallback."
+          exit 1
+
+      - name: Push version commit to main
+        if: steps.version_files.outputs.committed == 'true'
+        run: git push origin main
+
+      - name: Create and push tag
+        run: |
+          git tag "${{ steps.version.outputs.tag }}"
+          git push origin "${{ steps.version.outputs.tag }}"
 
       - name: Create GitHub Release
         env:
