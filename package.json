@@ -1,5 +1,5 @@
 {
-  "name": "@wintermuted/ui-theme",
+  "name": "@wintermuted/wintermuted-ui-library",
   "version": "0.18.0",
   "description": "Shared Wintermuted UI theme derived from the CV styling language.",
   "type": "module",
@@ -20,12 +20,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wintermuted/ui-theme.git"
+    "url": "git+https://github.com/wintermuted/wintermuted-ui-library.git"
   },
   "bugs": {
-    "url": "https://github.com/wintermuted/ui-theme/issues"
+    "url": "https://github.com/wintermuted/wintermuted-ui-library/issues"
   },
-  "homepage": "https://github.com/wintermuted/ui-theme#readme",
+  "homepage": "https://github.com/wintermuted/wintermuted-ui-library#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -61,6 +61,10 @@
   },
   "scripts": {
     "showcase:serve": "python3 -m http.server 4174",
+    "showcase:open": "open http://localhost:4174/showcase/",
+    "showcase:open:sample-data": "open http://localhost:4174/showcase/sample-data.html",
+    "showcase:open:forms": "open http://localhost:4174/showcase/forms.html",
+    "showcase:view": "npm run showcase:serve",
     "link:local": "bash scripts/link-local.sh",
     "unlink:local": "bash scripts/unlink-local.sh",
     "lint": "stylelint \"styles/**/*.css\" \"index.css\""

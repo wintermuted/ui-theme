@@ -12,7 +12,7 @@ for target in "$@"; do
   echo "Unlinking in $consumer_dir"
   cd "$consumer_dir"
 
-  npm unlink @wintermuted/ui-theme || true
+  npm unlink @wintermuted/wintermuted-ui-library || true
   npm install --no-audit --no-fund
 
 done

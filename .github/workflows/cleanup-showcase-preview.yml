@@ -16,6 +16,14 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Remove preview directory from gh-pages
         run: |
           if ! git ls-remote --exit-code --heads origin gh-pages > /dev/null 2>&1; then
@@ -35,9 +43,6 @@ jobs:
           rm -rf "$preview_dir"
 
           cd gh-pages-out
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git add -A
           if ! git diff --staged --quiet; then
             git commit -m "Cleanup preview for PR #${{ github.event.pull_request.number }}"

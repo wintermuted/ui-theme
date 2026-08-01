@@ -8,7 +8,7 @@ fi
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-echo "Linking @wintermuted/ui-theme from $repo_root"
+echo "Linking @wintermuted/wintermuted-ui-library from $repo_root"
 cd "$repo_root"
 npm link
 
@@ -16,8 +16,8 @@ for target in "$@"; do
   consumer_dir="$(cd "$target" && pwd)"
   echo "Linking into $consumer_dir"
   cd "$consumer_dir"
-  npm link @wintermuted/ui-theme
+  npm link @wintermuted/wintermuted-ui-library
 
 done
 
-echo "Done. Local consumers now symlink to your working copy of @wintermuted/ui-theme."
+echo "Done. Local consumers now symlink to your working copy of @wintermuted/wintermuted-ui-library."

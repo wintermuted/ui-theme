@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation &amp; Usage | Wintermuted UI Theme Docs</title>
+    <title>Installation &amp; Usage | Wintermuted UI Library Docs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,16 +25,16 @@
           <span class="page-kicker">Getting Started</span>
           <h2 class="page-title">Installation &amp; Usage</h2>
           <p class="page-lead">
-            Add <code>@wintermuted/ui-theme</code> to any project in two steps: install the package
+            Add <code>@wintermuted/wintermuted-ui-library</code> to any project in two steps: install the package
             and import the stylesheet. The theme ships as a single CSS file with design tokens and
             component classes — no build step required.
           </p>
           <p class="component-source">
             Entry files:
-            <a href="https://github.com/wintermuted/ui-theme/blob/main/index.css">index.css</a>,
-            <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/tokens.css">styles/tokens.css</a>,
-            <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/base.css">styles/base.css</a>,
-            <a href="https://github.com/wintermuted/ui-theme/blob/main/styles/components.css">styles/components.css</a>
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/index.css">index.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/tokens.css">styles/tokens.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/base.css">styles/base.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/components.css">styles/components.css</a>
           </p>
         </header>
 
@@ -43,12 +43,12 @@
           <p>Install from npm:</p>
           <div class="code-sample" data-lang="bash">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
-            <pre class="code-block"><code class="language-bash">npm install @wintermuted/ui-theme</code></pre>
+            <pre class="code-block"><code class="language-bash">npm install @wintermuted/wintermuted-ui-library</code></pre>
           </div>
           <p>Or with yarn:</p>
           <div class="code-sample" data-lang="bash">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
-            <pre class="code-block"><code class="language-bash">yarn add @wintermuted/ui-theme</code></pre>
+            <pre class="code-block"><code class="language-bash">yarn add @wintermuted/wintermuted-ui-library</code></pre>
           </div>
         <hr>
 
@@ -57,12 +57,12 @@
           <p>Import once at your app entry point. In a Vite / bundler project:</p>
           <div class="code-sample" data-lang="js">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
-            <pre class="code-block"><code class="language-javascript">import '@wintermuted/ui-theme';</code></pre>
+            <pre class="code-block"><code class="language-javascript">import '@wintermuted/wintermuted-ui-library';</code></pre>
           </div>
           <p>Or reference directly in HTML:</p>
           <div class="code-sample" data-lang="html">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
-            <pre class="code-block"><code class="language-html">&lt;link rel="stylesheet" href="node_modules/@wintermuted/ui-theme/index.css" /&gt;</code></pre>
+            <pre class="code-block"><code class="language-html">&lt;link rel="stylesheet" href="node_modules/@wintermuted/wintermuted-ui-library/index.css" /&gt;</code></pre>
           </div>
         <hr>
 
@@ -168,11 +168,11 @@ if (saved === 'dark') {
           </p>
           <div class="code-sample" data-lang="bash">
             <button class="code-copy-btn" type="button" data-copy>Copy</button>
-            <pre class="code-block"><code class="language-bash"># In the ui-theme repo
+            <pre class="code-block"><code class="language-bash"># In the wintermuted-ui-library repo
 npm link
 
 # In your consumer project
-npm link @wintermuted/ui-theme</code></pre>
+npm link @wintermuted/wintermuted-ui-library</code></pre>
           </div>
           <p>
             Bundler projects (Vite, webpack) may need to be told to allow symlinked files outside
@@ -187,7 +187,7 @@ export default defineConfig({
     fs: { allow: ['..'] },
   },
   optimizeDeps: {
-    exclude: ['@wintermuted/ui-theme'],
+    exclude: ['@wintermuted/wintermuted-ui-library'],
   },
 });</code></pre>
           </div>
