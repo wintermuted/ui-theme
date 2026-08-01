@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Shell Layout | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=5" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Layout</span>
+          <h2 class="page-title">App Shell — <code>.app-shell</code></h2>
+          <p class="page-lead">
+            Centered, max-width (960 px) page wrapper. Apply to the outermost page container.
+            Provides 1 rem padding on all sides so content never touches the viewport edge on small screens.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/components/layout.css">styles/components/layout.css</a>
+          </p>
+        </header>
+
+        <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+          The inner <code>.app-header</code> holds three horizontal zones: brand column
+          (<code>.app-brand</code>), navigation row (<code>.app-nav</code>), and actions
+          (<code>.app-header-actions</code>). At ≤768 px these collapse to a vertical stack.
+        </p>
+
+        <h3>Architecture</h3>
+        <div class="layout-architecture-card" style="margin-bottom:1rem;">
+          <div class="layout-rect-diagram" aria-label="App shell architecture">
+            <div class="layout-rect-row layout-rect-row-3col">
+              <div class="layout-rect layout-rect-brand">Brand</div>
+              <div class="layout-rect layout-rect-nav">Primary Nav</div>
+              <div class="layout-rect layout-rect-actions">Header Actions</div>
+            </div>
+            <div class="layout-rect layout-rect-surface">Main Workspace Content</div>
+          </div>
+          <p style="margin:0.7rem 0 0;">
+            This layout is intended for product surfaces where identity, navigation, and actions stay persistent while content changes.
+          </p>
+          <p style="margin:0.7rem 0 0;">
+            <a class="btn btn-primary btn-sm" href="./layout-example-app-shell.html" target="_blank" rel="noopener">Open full-page app shell mock</a>
+          </p>
+        </div>
+
+        <!-- Live demo -->
+        <div style="border:1px solid var(--wm-color-border);border-radius:var(--wm-radius-base,8px);overflow:hidden;margin-bottom:1rem;">
+          <div class="app-shell" style="background:var(--wm-color-surface-muted);margin:0;max-width:none;padding:1rem;">
+            <header class="app-header">
+              <div class="app-brand">
+                <h1 style="font-size:1.2rem;margin:0;">My App</h1>
+                <p class="app-byline">Manage your data</p>
+              </div>
+              <nav class="app-nav" aria-label="Main navigation">
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Subscriptions</a>
+                <a href="#">Import</a>
+              </nav>
+              <div class="app-header-actions">
+                <button class="btn btn-secondary btn-sm" type="button">Settings</button>
+              </div>
+            </header>
+            <div style="height:48px;background:var(--wm-color-surface-strong);border-radius:var(--wm-radius-base,8px);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--wm-color-text-muted);">page content</div>
+          </div>
+        </div>
+
+        <div class="code-sample" data-lang="html">
+          <button class="code-copy-btn" type="button" data-copy>Copy</button>
+          <pre class="code-block"><code class="language-html">&lt;div class="app-shell"&gt;
+
+  &lt;header class="app-header"&gt;
+    &lt;div class="app-brand"&gt;
+      &lt;h1&gt;My App&lt;/h1&gt;
+      &lt;p class="app-byline"&gt;Manage your data&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;nav class="app-nav" aria-label="Main navigation"&gt;
+      &lt;a href="/dashboard" class="active"&gt;Dashboard&lt;/a&gt;
+      &lt;a href="/subscriptions"&gt;Subscriptions&lt;/a&gt;
+      &lt;a href="/import"&gt;Import&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;div class="app-header-actions"&gt;
+      &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Settings&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;...&lt;/main&gt;
+
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <hr>
+
+        <h3>Responsive Behaviour</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Viewport</th>
+              <th>App Header</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&gt;768 px</td>
+              <td>Single row: brand / nav / actions side by side</td>
+            </tr>
+            <tr>
+              <td>≤768 px</td>
+              <td>Stacked column: brand → nav → actions</td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+  </body>
+</html>

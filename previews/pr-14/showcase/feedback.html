@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=5" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Status</span>
+          <h2 class="page-title">Feedback</h2>
+          <p class="page-lead">
+            Feedback components communicate outcomes quickly using semantic colors and compact shapes.
+            This page captures alerts, statuses, and badge treatments.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/components/badge.css">styles/components/badge.css</a>
+          </p>
+        </header>
+
+          <h3>Badges</h3>
+          <div class="row">
+            <span class="badge badge-high">High</span>
+            <span class="badge badge-medium">Medium</span>
+            <span class="badge badge-low">Low</span>
+            <span class="badge badge-monthly">Monthly</span>
+            <span class="badge badge-annual">Annual</span>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;span class="badge"&gt;Default&lt;/span&gt;
+
+&lt;!-- Semantic variants --&gt;
+&lt;span class="badge badge-high"&gt;High&lt;/span&gt;
+&lt;span class="badge badge-medium"&gt;Medium&lt;/span&gt;
+&lt;span class="badge badge-low"&gt;Low&lt;/span&gt;
+&lt;span class="badge badge-monthly"&gt;Monthly&lt;/span&gt;
+&lt;span class="badge badge-annual"&gt;Annual&lt;/span&gt;</code></pre>
+          </div>
+        <hr>
+
+          <h3>Alerts</h3>
+          <div class="alerts">
+            <div class="alert success">Payment captured successfully.</div>
+            <div class="alert warning">Card expires in 9 days.</div>
+            <div class="alert danger">Cancellation failed.</div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="alert success"&gt;Payment captured successfully.&lt;/div&gt;
+&lt;div class="alert warning"&gt;Card expires in 9 days.&lt;/div&gt;
+&lt;div class="alert danger"&gt;Cancellation failed.&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Empty State -->
+          <h3>Empty State — <code>.empty-state</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Centered placeholder for zero-data views. Use inside any container to communicate that
+            no items exist yet. Pair with a CTA button to guide the next action.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/components/empty-state.css">styles/components/empty-state.css</a>
+          </p>
+          <div style="border:1px solid var(--wm-color-border);border-radius:var(--wm-radius-base,8px);margin-bottom:1rem;">
+            <div class="empty-state">
+              <h3>No subscriptions yet</h3>
+              <p>Import transactions first, then run detection to find recurring charges.</p>
+              <button class="btn btn-primary btn-sm" type="button">Import Transactions</button>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="empty-state"&gt;
+  &lt;h3&gt;No subscriptions yet&lt;/h3&gt;
+  &lt;p&gt;Import transactions first, then run detection.&lt;/p&gt;
+  &lt;button class="btn btn-primary btn-sm" type="button"&gt;Import Transactions&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Inline Panels -->
+          <h3>Inline Panels — <code>.inline-panel</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Tonal in-context info blocks used inside cards or below form fields. Lighter and
+            more contextual than a full <code>.alert</code> bar — surface information at the
+            point of relevance without interrupting the page flow.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/components/inline-panel.css">styles/components/inline-panel.css</a>
+          </p>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1rem;">
+            <div class="inline-panel">Default muted panel — use for neutral notes or hints.</div>
+            <div class="inline-panel inline-panel-accent">Accent panel — new info, links, or calls to action.</div>
+            <div class="inline-panel inline-panel-success">Success panel — cancellation confirmed. <a href="#">View details</a></div>
+            <div class="inline-panel inline-panel-warning">Warning panel — cancellation flagged as pending.</div>
+            <div class="inline-panel inline-panel-danger">Danger panel — action failed or requires attention.</div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="inline-panel"&gt;Neutral note.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-accent"&gt;Accent info.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-success"&gt;Confirmed.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-warning"&gt;Pending.&lt;/div&gt;
+&lt;div class="inline-panel inline-panel-danger"&gt;Failed.&lt;/div&gt;</code></pre>
+          </div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+  </body>
+</html>

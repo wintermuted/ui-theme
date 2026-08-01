@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Display Overview | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=5" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Dense UI</span>
+          <h2 class="page-title">Data Display Overview</h2>
+          <p class="page-lead">
+            Data display patterns prioritize scan speed. Tables, summary cards, and grouped values should remain clear
+            across themes and viewport widths.
+          </p>
+          <p class="component-source">
+            Source files:
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/base.css">styles/base.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/components/card.css">styles/components/card.css</a>
+          </p>
+        </header>
+
+          <h3>Summary Cards</h3>
+          <div class="component-index">
+            <div class="component-card">
+              <h3>$83.97</h3>
+              <p>Current monthly spend</p>
+            </div>
+            <div class="component-card">
+              <h3>$1,007.64</h3>
+              <p>Projected annual spend</p>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="wm-card card"&gt;
+  &lt;h3&gt;$83.97&lt;/h3&gt;
+  &lt;p&gt;Current monthly spend&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+        <!-- Stat Cards -->
+          <h3>Stat Cards — <code>.stats-grid</code> / <code>.stat-card</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Compact metric display. Use <code>.stats-grid</code> as a responsive wrapper and
+            <code>.stat-card</code> for each cell. Inner <code>.stat-value</code> and
+            <code>.stat-label</code> position the number and descriptor.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui-library/blob/main/styles/components/stat-card.css">styles/components/stat-card.css</a>
+          </p>
+          <div class="stats-grid" style="margin-bottom:1rem;">
+            <div class="stat-card">
+              <div class="stat-value">$214</div>
+              <div class="stat-label">Monthly spend</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">7</div>
+              <div class="stat-label">Subscriptions</div>
+            </div>
+            <div class="stat-card stat-card-success">
+              <div class="stat-value">$48</div>
+              <div class="stat-label">Savings realized</div>
+            </div>
+            <div class="stat-card stat-card-warning">
+              <div class="stat-value">$24</div>
+              <div class="stat-label">Projected savings</div>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="stats-grid"&gt;
+  &lt;div class="stat-card"&gt;
+    &lt;div class="stat-value"&gt;$214&lt;/div&gt;
+    &lt;div class="stat-label"&gt;Monthly spend&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-card stat-card-success"&gt;
+    &lt;div class="stat-value"&gt;$48&lt;/div&gt;
+    &lt;div class="stat-label"&gt;Savings realized&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-card stat-card-warning"&gt;
+    &lt;div class="stat-value"&gt;$24&lt;/div&gt;
+    &lt;div class="stat-label"&gt;Projected savings&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+          <h3>Dedicated Data Views</h3>
+          <p>
+            Detailed table, chart, and gallery patterns now live on focused pages.
+            Use this overview for metric-card composition and jump to the dedicated docs below.
+          </p>
+          <div class="component-index">
+            <a href="./tables.html">
+              <div class="component-card">
+                <h3>Tables</h3>
+                <p>Structured, responsive tabular patterns for transactional data.</p>
+              </div>
+            </a>
+            <a href="./sample-data.html">
+              <div class="component-card">
+                <h3>Sample Data Showcase</h3>
+                <p>Realistic composition of stat cards, chart bars, and merchant table rows.</p>
+              </div>
+            </a>
+            <a href="./charts.html">
+              <div class="component-card">
+                <h3>Charts</h3>
+                <p>Token-aligned chart containers and empty-state examples.</p>
+              </div>
+            </a>
+            <a href="./gallery.html">
+              <div class="component-card">
+                <h3>Gallery</h3>
+                <p>Image grid, caption overlays, lightbox, and pagination patterns.</p>
+              </div>
+            </a>
+          </div>
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=9"></script>
+  </body>
+</html>
