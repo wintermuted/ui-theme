@@ -1,6 +1,6 @@
 (function () {
   const key = "wm-showcase-theme";
-  const repo = "wintermuted/wintermuted-ui-library";
+  const repo = "wintermuted/wintermuted-ui";
 
   const NAV_STRUCTURE = [
     {
@@ -166,7 +166,7 @@
 
     const githubLink = document.createElement("a");
     githubLink.className = "docs-topbar-github";
-    githubLink.href = "https://github.com/wintermuted/wintermuted-ui-library";
+    githubLink.href = "https://github.com/wintermuted/wintermuted-ui";
     githubLink.target = "_blank";
     githubLink.rel = "noopener noreferrer";
     githubLink.setAttribute("aria-label", "View on GitHub");
