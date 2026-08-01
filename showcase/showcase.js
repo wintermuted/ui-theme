@@ -566,11 +566,10 @@
 
     if (chartMount) {
       const maxSpend = Math.max(...data.monthly.map((row) => row.spend));
-      chartMount.innerHTML = data.monthly
         .map((row) => {
           const spendHeight = Math.max(10, Math.round((row.spend / maxSpend) * 140));
           const savingsHeight = Math.max(8, Math.round((row.savings / maxSpend) * 140));
-          return `<div class="sample-data-bar-group"><div class="sample-data-bars"><span class="sample-data-bar sample-data-bar-spend" style="height:${spendHeight}px" title="${row.month} spend ${formatCurrency(row.spend)}"></span><span class="sample-data-bar sample-data-bar-savings" style="height:${savingsHeight}px" title="${row.month} savings ${formatCurrency(row.savings)}"></span></div><span class="sample-data-bar-label">${row.month}</span></div>`;
+          return `<div class="sample-data-bar-group"><div class="sample-data-bars"><span class="sample-data-bar sample-data-bar-spend" style="height:${spendHeight}px" title="${row.month} spend ${formatCurrency(row.spend)}" aria-label="${row.month} spend ${formatCurrency(row.spend)}" role="img" tabindex="0"></span><span class="sample-data-bar sample-data-bar-savings" style="height:${savingsHeight}px" title="${row.month} savings ${formatCurrency(row.savings)}" aria-label="${row.month} savings ${formatCurrency(row.savings)}" role="img" tabindex="0"></span></div><span class="sample-data-bar-label">${row.month}</span></div>`;
         })
         .join("");
     }
