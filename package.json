@@ -20,12 +20,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wintermuted/wintermuted-ui.git"
+    "url": "git+https://github.com/wintermuted/ui-theme.git"
   },
   "bugs": {
-    "url": "https://github.com/wintermuted/wintermuted-ui/issues"
+    "url": "https://github.com/wintermuted/ui-theme/issues"
   },
-  "homepage": "https://github.com/wintermuted/wintermuted-ui#readme",
+  "homepage": "https://github.com/wintermuted/ui-theme#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"

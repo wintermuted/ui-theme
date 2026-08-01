@@ -30,7 +30,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org
 
       - name: Compute next patch version
         id: version
@@ -103,14 +102,14 @@ jobs:
         if: steps.preflight.outputs.publish == 'true'
         continue-on-error: true
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ""
 
       - name: Publish package (token fallback)
         id: publish_token
         if: steps.preflight.outputs.publish == 'true' && steps.publish_trusted.outcome != 'success'
         continue-on-error: true
-        run: npm publish --provenance --access public
+        run: |
+          npm config set //registry.npmjs.org/:_authToken "$NODE_AUTH_TOKEN"
+          npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
