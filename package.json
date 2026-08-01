@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "@wintermuted/wintermuted-ui-library",
   "version": "0.18.0",
   "description": "Shared Wintermuted UI library (design tokens, base resets, and component styles) derived from the CV styling language.",
+=======
+  "name": "@wintermuted/ui-theme",
+  "version": "0.21.0",
+  "description": "Shared Wintermuted UI theme derived from the CV styling language.",
+>>>>>>> origin/main
   "type": "module",
   "main": "./index.js",
   "license": "MIT",
