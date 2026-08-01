@@ -61,9 +61,9 @@
   },
   "scripts": {
     "showcase:serve": "python3 -m http.server 4174",
-    "showcase:open": "open http://localhost:4174/showcase/",
-    "showcase:open:sample-data": "open http://localhost:4174/showcase/sample-data.html",
-    "showcase:open:forms": "open http://localhost:4174/showcase/forms.html",
+    "showcase:open": "sh -c 'command -v open >/dev/null 2>&1 && open http://localhost:4174/showcase/ || xdg-open http://localhost:4174/showcase/'",
+    "showcase:open:sample-data": "sh -c 'command -v open >/dev/null 2>&1 && open http://localhost:4174/showcase/sample-data.html || xdg-open http://localhost:4174/showcase/sample-data.html'",
+    "showcase:open:forms": "sh -c 'command -v open >/dev/null 2>&1 && open http://localhost:4174/showcase/forms.html || xdg-open http://localhost:4174/showcase/forms.html'"
     "showcase:view": "npm run showcase:serve",
     "link:local": "bash scripts/link-local.sh",
     "unlink:local": "bash scripts/unlink-local.sh",
