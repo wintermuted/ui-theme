@@ -359,8 +359,26 @@
     document.body.appendChild(backdrop);
 
     const mobile = window.matchMedia("(max-width: 1000px)");
+
+    // iOS Safari scrolls the visual viewport before CSS overflow:hidden can
+    // intercept touch-drag events.  The only reliable fix is to prevent the
+    // default touchmove action on the document while the sidebar is open,
+    // except for touches that originate inside the sidebar (so the sidebar
+    // panel itself can still scroll its own content).
+    const preventBodyTouchMove = (e) => {
+      if (!sidebar.contains(e.target)) {
+        e.preventDefault();
+      }
+    };
+
     const setOpen = (open) => {
+      document.documentElement.classList.toggle("docs-sidebar-open", open);
       document.body.classList.toggle("docs-sidebar-open", open);
+      if (open) {
+        document.addEventListener("touchmove", preventBodyTouchMove, { passive: false });
+      } else {
+        document.removeEventListener("touchmove", preventBodyTouchMove, { passive: false });
+      }
       toggleButtons.forEach((button) => {
         button.setAttribute("aria-expanded", open ? "true" : "false");
       });
