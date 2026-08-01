@@ -1,4 +1,4 @@
-# Copilot Instructions for ui-theme
+# Copilot Instructions for wintermuted-ui
 
 ## Project overview
 

@@ -1,6 +1,10 @@
 name: Deploy Showcase to GitHub Pages
 # Deploys main to the Pages root while keeping PR previews under previews/pr-<number>/.
 # This allows production and preview deployments to coexist on gh-pages.
+#
+# Two-job design:
+#   deploy  - runs for push and pull_request to build and publish content to gh-pages.
+#   publish - runs for non-PR events and deploys production Pages content.
 
 on:
   push:
@@ -25,10 +29,10 @@ on:
 # pull-requests: write — post/update preview comment
 permissions:
   contents: write
-  pull-requests: write
-  deployments: write
   pages: write
   id-token: write
+  pull-requests: write
+  deployments: write
 
 concurrency:
   group: pages
@@ -80,6 +84,7 @@ jobs:
           else
             git worktree add --orphan -b gh-pages ./gh-pages-out
           fi
+          touch gh-pages-out/.nojekyll
 
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             preview_dir="gh-pages-out/previews/pr-${{ github.event.pull_request.number }}"
@@ -125,29 +130,10 @@ jobs:
         with:
           path: gh-pages-out
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy PR preview to GitHub Pages
+        if: github.event_name == 'pull_request'
+        id: preview_deployment
         uses: actions/deploy-pages@v4
-
-      - name: Health check
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/previews/pr-${{ github.event.pull_request.number }}/showcase/"
-          else
-            url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/showcase/"
-          fi
-          echo "Health check URL: $url"
-          for i in 1 2 3 4 5; do
-            status=$(curl -s -o /dev/null -w "%{http_code}" -L "$url")
-            echo "Attempt $i: HTTP $status"
-            if [ "$status" = "200" ]; then
-              echo "Health check passed."
-              exit 0
-            fi
-            sleep 10
-          done
-          echo "Health check failed: $url did not return 200 after 5 attempts."
-          exit 1
 
       - name: Mark PR deployment success
         if: github.event_name == 'pull_request' && success()
@@ -194,3 +180,15 @@ jobs:
               log_url: runUrl,
               description: 'Preview deployment failed'
             });
+
+  publish:
+    needs: deploy
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

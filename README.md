@@ -17,7 +17,7 @@ npm install @wintermuted/ui-theme
 If you prefer to consume the package directly from GitHub without GitHub Packages auth, install from a tagged release:
 
 ```bash
-npm install github:wintermuted/ui-theme#v0.1.0
+npm install github:wintermuted/wintermuted-ui#v0.1.0
 ```
 
 ## Includes
@@ -80,17 +80,40 @@ npm run showcase:serve
 
 Then open `http://localhost:4174/showcase/`.
 
+Helpful local viewing scripts:
+
+```bash
+npm run showcase:open
+npm run showcase:open:sample-data
+npm run showcase:open:forms
+```
+
 The showcase includes:
 
 - Light and dark theme toggle
 - Buttons, badges, cards, and alerts
 - Form controls and focus states
 - A representative data table
+- A sample-data page that renders stats, chart bars, and table rows from one dataset
 
 Files:
 
 - `showcase/index.html`
+- `showcase/sample-data.html`
 - `showcase/showcase.css`
+
+## GitHub Pages Deployments
+
+The showcase is deployed with a preview/main pattern:
+
+- Pushes to `main` publish production content to the root Pages site.
+- Pull requests to `main` publish isolated previews under `previews/pr-<number>/showcase/`.
+- Closing a pull request removes its preview folder from `gh-pages`.
+
+Workflows:
+
+- `.github/workflows/deploy-showcase-pages.yml`
+- `.github/workflows/cleanup-showcase-preview.yml`
 
 ## Local Symlink Workflow (No Publish Step)
 

@@ -1,7 +1,7 @@
 {
   "name": "@wintermuted/ui-theme",
   "version": "0.21.1",
-  "description": "Shared Wintermuted UI theme derived from the CV styling language.",
+  "description": "Shared Wintermuted UI theme (design tokens, base resets, and component styles) derived from the CV styling language.",
   "type": "module",
   "main": "./index.js",
   "license": "MIT",
@@ -20,12 +20,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wintermuted/ui-theme.git"
+    "url": "git+https://github.com/wintermuted/wintermuted-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/wintermuted/ui-theme/issues"
+    "url": "https://github.com/wintermuted/wintermuted-ui/issues"
   },
-  "homepage": "https://github.com/wintermuted/ui-theme#readme",
+  "homepage": "https://github.com/wintermuted/wintermuted-ui#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
@@ -62,6 +62,10 @@
   },
   "scripts": {
     "showcase:serve": "python3 -m http.server 4174",
+    "showcase:open": "sh -c 'command -v open >/dev/null 2>&1 && open http://localhost:4174/showcase/ || xdg-open http://localhost:4174/showcase/'",
+    "showcase:open:sample-data": "sh -c 'command -v open >/dev/null 2>&1 && open http://localhost:4174/showcase/sample-data.html || xdg-open http://localhost:4174/showcase/sample-data.html'",
+    "showcase:open:forms": "sh -c 'command -v open >/dev/null 2>&1 && open http://localhost:4174/showcase/forms.html || xdg-open http://localhost:4174/showcase/forms.html'",
+    "showcase:view": "npm run showcase:serve",
     "link:local": "bash scripts/link-local.sh",
     "unlink:local": "bash scripts/unlink-local.sh",
     "lint": "stylelint \"styles/**/*.css\" \"index.css\""

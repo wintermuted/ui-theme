@@ -1,6 +1,6 @@
 (function () {
   const key = "wm-showcase-theme";
-  const repo = "wintermuted/ui-theme";
+  const repo = "wintermuted/wintermuted-ui";
 
   const NAV_STRUCTURE = [
     {
@@ -48,6 +48,7 @@
         { page: "code-block.html", label: "Code Block" },
         { page: "mermaid.html", label: "Mermaid" },
         { page: "data-display.html", label: "Data Display Overview" },
+        { page: "sample-data.html", label: "Sample Data Showcase" },
         { page: "tables.html", label: "Tables" },
         { page: "charts.html", label: "Charts" },
         { page: "gallery.html", label: "Gallery" },
@@ -165,7 +166,7 @@
 
     const githubLink = document.createElement("a");
     githubLink.className = "docs-topbar-github";
-    githubLink.href = "https://github.com/wintermuted/ui-theme";
+    githubLink.href = "https://github.com/wintermuted/wintermuted-ui";
     githubLink.target = "_blank";
     githubLink.rel = "noopener noreferrer";
     githubLink.setAttribute("aria-label", "View on GitHub");
@@ -495,6 +496,86 @@
     });
   }
 
+  function formatCurrency(value) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(value);
+  }
+
+  function renderSampleDataShowcase() {
+    const mount = document.querySelector("[data-sample-data-showcase]");
+    if (!mount) {
+      return;
+    }
+
+    const data = {
+      range: "Jan 2026 - Jun 2026",
+      merchants: [
+        { name: "Figma", amount: 180, frequency: "Monthly", status: "Confirmed" },
+        { name: "Notion", amount: 96, frequency: "Annual", status: "Detected" },
+        { name: "Sentry", amount: 264, frequency: "Monthly", status: "Confirmed" },
+        { name: "Linear", amount: 144, frequency: "Monthly", status: "Pending Cancel" },
+      ],
+      monthly: [
+        { month: "Jan", spend: 628, savings: 26 },
+        { month: "Feb", spend: 612, savings: 44 },
+        { month: "Mar", spend: 604, savings: 51 },
+        { month: "Apr", spend: 587, savings: 73 },
+        { month: "May", spend: 571, savings: 86 },
+        { month: "Jun", spend: 552, savings: 102 },
+      ],
+    };
+
+    const totalSpend = data.monthly.reduce((sum, row) => sum + row.spend, 0);
+    const totalSavings = data.monthly.reduce((sum, row) => sum + row.savings, 0);
+    const activeSubscriptions = data.merchants.filter((row) => row.status !== "Pending Cancel").length;
+
+    const statMount = mount.querySelector("[data-sample-stats]");
+    const tableMount = mount.querySelector("[data-sample-table]");
+    const chartMount = mount.querySelector("[data-sample-chart]");
+    const rangeMount = mount.querySelector("[data-sample-range]");
+
+    if (rangeMount) {
+      rangeMount.textContent = data.range;
+    }
+
+    if (statMount) {
+      const cards = [
+        { value: formatCurrency(totalSpend), label: "Total spend" },
+        { value: formatCurrency(totalSavings), label: "Savings identified", tone: "success" },
+        { value: String(activeSubscriptions), label: "Active subscriptions" },
+      ];
+
+      statMount.innerHTML = cards
+        .map((card) => {
+          const toneClass = card.tone === "success" ? " stat-card-success" : "";
+          return `<div class="stat-card${toneClass}"><div class="stat-value">${card.value}</div><div class="stat-label">${card.label}</div></div>`;
+        })
+        .join("");
+    }
+
+    if (tableMount) {
+      tableMount.innerHTML = data.merchants
+        .map((row) => {
+          return `<tr><td>${row.name}</td><td>${formatCurrency(row.amount)}</td><td>${row.frequency}</td><td>${row.status}</td></tr>`;
+        })
+        .join("");
+    }
+
+    if (chartMount) {
+      const maxSpend = Math.max(...data.monthly.map((row) => row.spend));
+        chartMount.innerHTML = data.monthly
+        .map((row) => {
+          const spendHeight = Math.max(10, Math.round((row.spend / maxSpend) * 140));
+          const savingsHeight = Math.max(8, Math.round((row.savings / maxSpend) * 140));
+          return `<div class="sample-data-bar-group"><div class="sample-data-bars"><span class="sample-data-bar sample-data-bar-spend" style="height:${spendHeight}px" title="${row.month} spend ${formatCurrency(row.spend)}" aria-label="${row.month} spend ${formatCurrency(row.spend)}" role="img" tabindex="0"></span><span class="sample-data-bar sample-data-bar-savings" style="height:${savingsHeight}px" title="${row.month} savings ${formatCurrency(row.savings)}" aria-label="${row.month} savings ${formatCurrency(row.savings)}" role="img" tabindex="0"></span></div><span class="sample-data-bar-label">${row.month}</span></div>`;
+        })
+        .join("");
+    }
+  }
+
   buildSidebar();
   buildTopNav();
   buildPageOutline();
@@ -502,6 +583,7 @@
   wireSidebarToggle();
   wireThemeToggle();
   updateFontStatus();
+  renderSampleDataShowcase();
   wireCopyButtons();
 
   // Prism syntax highlighting
