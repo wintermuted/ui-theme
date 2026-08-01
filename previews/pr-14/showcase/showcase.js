@@ -566,6 +566,7 @@
 
     if (chartMount) {
       const maxSpend = Math.max(...data.monthly.map((row) => row.spend));
+        chartMount.innerHTML = data.monthly
         .map((row) => {
           const spendHeight = Math.max(10, Math.round((row.spend / maxSpend) * 140));
           const savingsHeight = Math.max(8, Math.round((row.savings / maxSpend) * 140));
