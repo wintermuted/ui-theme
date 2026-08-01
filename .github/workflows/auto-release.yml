@@ -105,7 +105,7 @@ jobs:
 
       - name: Publish package (token fallback)
         id: publish_token
-        if: steps.preflight.outputs.publish == 'true' && steps.publish_trusted.outcome != 'success' && secrets.NPM_TOKEN != ''
+        if: steps.preflight.outputs.publish == 'true' && steps.publish_trusted.outcome != 'success'
         continue-on-error: true
         run: npm publish --provenance --access public
         env:
