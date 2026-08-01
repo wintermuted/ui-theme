@@ -24,7 +24,7 @@ scripts/              # Helper shell scripts (link-local, unlink-local)
 - Design tokens are defined as CSS custom properties in `styles/tokens.css` and must be used throughout component stylesheets instead of hard-coded values.
 - Each component lives in its own file under `styles/components/` and must also be registered in `styles/components.css` (barrel import) and in the `exports` map in `package.json`.
 - The showcase site uses `.component-index` + `.component-card` for card-style navigation tiles on documentation pages.
-- Versioning is fully automated: merging to `main` triggers `auto-release.yml`, which bumps the minor version, creates a tag, and publishes a GitHub Release. Do **not** manually edit the version in `package.json`.
+- Versioning is fully automated: merging to `main` triggers `auto-release.yml`, which bumps the patch version, creates a tag, and publishes a GitHub Release. Do **not** manually edit the version in `package.json`.
 
 ## Development workflow
 
@@ -37,3 +37,4 @@ scripts/              # Helper shell scripts (link-local, unlink-local)
 - Keep component stylesheets focused and scoped; avoid cross-component style leakage.
 - When adding a new component, update `styles/components.css`, `package.json` exports, the showcase `components.html` page, and `showcase/index.html` navigation as needed.
 - Commit messages should follow conventional commits (`feat:`, `fix:`, `chore:`, `docs:`).
+- If a branch or PR has already been merged, start from the latest `main`, create a new branch, and open a new PR. Do not continue work on merged PR branches unless explicitly requested.
