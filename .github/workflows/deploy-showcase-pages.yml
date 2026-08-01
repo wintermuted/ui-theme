@@ -83,8 +83,8 @@ jobs:
             git worktree add --detach ./gh-pages-out FETCH_HEAD
           else
             git worktree add --orphan -b gh-pages ./gh-pages-out
-            touch gh-pages-out/.nojekyll
           fi
+          touch gh-pages-out/.nojekyll
 
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             preview_dir="gh-pages-out/previews/pr-${{ github.event.pull_request.number }}"
