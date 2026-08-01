@@ -6,11 +6,9 @@ The package is derived from the styling language introduced in the CV project an
 
 ## Install
 
-### GitHub Packages
+### npmjs
 
 ```bash
-echo "@wintermuted:registry=https://npm.pkg.github.com" >> ~/.npmrc
-export NODE_AUTH_TOKEN=YOUR_GITHUB_TOKEN
 npm install @wintermuted/ui-theme
 ```
 
@@ -120,8 +118,14 @@ Scripts:
 
 - `scripts/link-local.sh`
 - `scripts/unlink-local.sh`
+## Publishing
+
+- Merges to main trigger auto-release, which bumps the minor version in package.json, creates a matching vX.Y.Z tag, and creates a GitHub release.
+- Tag pushes matching v* trigger the publish workflow, which publishes to npmjs using npm provenance.
+- Set the NPM_TOKEN repository secret with an npm automation token before running the workflow.
+
 ## Notes
 
 - The package intentionally avoids application-specific layout opinions.
 - Projects should keep product-specific selectors and layout rules in their own repositories.
-- Publishing is handled through GitHub Packages via GitHub Actions, so the package can stay on GitHub's registry instead of npmjs.
+- Publishing is handled through GitHub Actions to npmjs.
