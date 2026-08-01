@@ -41,14 +41,19 @@ jobs:
       - name: Update package.json version
         run: |
           VERSION="${{ steps.version.outputs.tag }}"
+          TARGET_VERSION="${VERSION#v}"
           CURRENT_VERSION=$(node -p "require('./package.json').version")
+          LOCK_VERSION=""
+          if [ -f package-lock.json ]; then
+            LOCK_VERSION=$(node -p "require('./package-lock.json').version")
+          fi
 
-          if [ "$CURRENT_VERSION" = "${VERSION#v}" ]; then
-            echo "package.json is already at $CURRENT_VERSION; skipping version bump."
+          if [ "$CURRENT_VERSION" = "$TARGET_VERSION" ] && { [ -z "$LOCK_VERSION" ] || [ "$LOCK_VERSION" = "$TARGET_VERSION" ]; }; then
+            echo "package.json (and package-lock.json, if present) is already at $CURRENT_VERSION; skipping version bump."
             exit 0
           fi
 
-          npm version "${VERSION#v}" --no-git-tag-version
+          npm version "$TARGET_VERSION" --no-git-tag-version --allow-same-version
 
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
