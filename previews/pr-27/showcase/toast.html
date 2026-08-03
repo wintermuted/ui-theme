@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=6" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Status and Messaging</span>
+          <h2 class="page-title">Toast</h2>
+          <p class="page-lead">
+            Fixed bottom-center notification bar. Show and hide by toggling
+            <code>.wm-toast-visible</code> in JavaScript. Four tonal variants: success, danger, warning,
+            and info. Includes an optional dismiss button.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/toast.css">styles/components/toast.css</a>
+          </p>
+        </header>
+
+        <!-- Live demo -->
+          <h3>Interactive Demo</h3>
+          <p>Click a button to show a toast for 3 seconds. The toast fades in from below.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0;">
+            <button class="btn btn-success" type="button" onclick="showToast('toast-success-demo', 'success')">Show Success</button>
+            <button class="btn btn-danger" type="button" onclick="showToast('toast-danger-demo', 'danger')">Show Danger</button>
+            <button class="btn btn-warning" type="button" onclick="showToast('toast-warning-demo', 'warning')">Show Warning</button>
+            <button class="btn btn-primary" type="button" onclick="showToast('toast-info-demo', 'info')">Show Info</button>
+          </div>
+
+          <!-- Toast elements -->
+          <div id="toast-success-demo" class="wm-toast wm-toast-success" role="status" aria-live="polite">
+            Pattern loaded successfully.
+            <button class="wm-toast-dismiss" type="button" aria-label="Dismiss" onclick="hideToast('toast-success-demo')">&#x2715;</button>
+          </div>
+          <div id="toast-danger-demo" class="wm-toast wm-toast-danger" role="status" aria-live="polite">
+            Failed to parse coordinates.
+            <button class="wm-toast-dismiss" type="button" aria-label="Dismiss" onclick="hideToast('toast-danger-demo')">&#x2715;</button>
+          </div>
+          <div id="toast-warning-demo" class="wm-toast wm-toast-warning" role="status" aria-live="polite">
+            Game running — pause before editing.
+            <button class="wm-toast-dismiss" type="button" aria-label="Dismiss" onclick="hideToast('toast-warning-demo')">&#x2715;</button>
+          </div>
+          <div id="toast-info-demo" class="wm-toast wm-toast-info" role="status" aria-live="polite">
+            URL copied to clipboard.
+            <button class="wm-toast-dismiss" type="button" aria-label="Dismiss" onclick="hideToast('toast-info-demo')">&#x2715;</button>
+          </div>
+
+          <script>
+            function showToast(id, _variant) {
+              const el = document.getElementById(id);
+              if (!el) return;
+              el.classList.remove('wm-toast-hiding');
+              el.classList.add('wm-toast-visible');
+              clearTimeout(el._hideTimer);
+              el._hideTimer = setTimeout(() => hideToast(id), 3000);
+            }
+            function hideToast(id) {
+              const el = document.getElementById(id);
+              if (!el) return;
+              el.classList.add('wm-toast-hiding');
+              setTimeout(() => {
+                el.classList.remove('wm-toast-visible', 'wm-toast-hiding');
+              }, 250);
+            }
+          </script>
+        <hr>
+
+        <!-- Variants static preview -->
+          <h3>Tonal Variants</h3>
+          <p>
+            Each variant uses semantic color tokens. The static examples below are positioned inline
+            (not fixed) so they display in the document flow.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin: 0.75rem 0; max-width: 480px;">
+            <div style="position: relative; display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border-radius: var(--wm-radius-sm); border: 1px solid var(--wm-color-success-border); background: var(--wm-color-success-soft); color: var(--wm-color-success); font-size: 0.875rem; font-weight: 500;">
+              .wm-toast-success — Pattern saved.
+            </div>
+            <div style="position: relative; display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border-radius: var(--wm-radius-sm); border: 1px solid var(--wm-color-danger-border); background: var(--wm-color-danger-soft); color: var(--wm-color-danger); font-size: 0.875rem; font-weight: 500;">
+              .wm-toast-danger — Could not load pattern.
+            </div>
+            <div style="position: relative; display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border-radius: var(--wm-radius-sm); border: 1px solid var(--wm-color-warning-border); background: var(--wm-color-warning-soft); color: var(--wm-color-warning); font-size: 0.875rem; font-weight: 500;">
+              .wm-toast-warning — Unsaved changes may be lost.
+            </div>
+            <div style="position: relative; display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; border-radius: var(--wm-radius-sm); border: 1px solid var(--wm-color-accent-border); background: var(--wm-color-accent-soft); color: var(--wm-color-accent); font-size: 0.875rem; font-weight: 500;">
+              .wm-toast-info — URL copied to clipboard.
+            </div>
+          </div>
+        <hr>
+
+        <!-- Usage -->
+          <h3>Usage Pattern</h3>
+          <p>
+            Render the toast in the DOM at mount time. Show it by adding <code>.wm-toast-visible</code>;
+            hide it by adding <code>.wm-toast-hiding</code>, waiting for the transition, then removing both classes.
+            Auto-dismiss after a timeout via <code>setTimeout</code>.
+          </p>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div id="toast" class="wm-toast wm-toast-success" role="status" aria-live="polite"&gt;
+  Operation complete.
+  &lt;button class="wm-toast-dismiss" type="button" aria-label="Dismiss"&gt;&amp;#x2715;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">function showToast(id, durationMs = 3000) {
+  const el = document.getElementById(id);
+  el.classList.add('wm-toast-visible');
+  setTimeout(() => {
+    el.classList.add('wm-toast-hiding');
+    setTimeout(() => el.classList.remove('wm-toast-visible', 'wm-toast-hiding'), 250);
+  }, durationMs);
+}</code></pre>
+          </div>
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=10"></script>
+  </body>
+</html>

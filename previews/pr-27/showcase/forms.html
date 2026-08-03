@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=6" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Inputs</span>
+          <h2 class="page-title">Forms</h2>
+          <p class="page-lead">
+            Form primitives use the same token system as buttons and cards, with clear focus styles and neutral
+            defaults for data entry surfaces.
+          </p>
+          <p class="component-source">
+            Source files:
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/base.css">styles/base.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/button.css">styles/components/button.css</a>
+          </p>
+        </header>
+
+          <h3>Controls</h3>
+          <div class="stack">
+            <label>
+              Name
+              <input type="text" placeholder="Example input" />
+            </label>
+            <label>
+              Email
+              <input type="email" placeholder="you@example.com" />
+            </label>
+            <label>
+              Plan
+              <select>
+                <option>Starter</option>
+                <option>Professional</option>
+                <option>Enterprise</option>
+              </select>
+            </label>
+            <label>
+              Notes
+              <textarea rows="4" placeholder="Try focus styles and text contrast"></textarea>
+            </label>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;label&gt;
+  Name
+  &lt;input type="text" placeholder="Example input" /&gt;
+&lt;/label&gt;
+
+&lt;label&gt;
+  Plan
+  &lt;select&gt;
+    &lt;option&gt;Starter&lt;/option&gt;
+    &lt;option&gt;Professional&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/label&gt;
+
+&lt;label&gt;
+  Notes
+  &lt;textarea rows="4"&gt;&lt;/textarea&gt;
+&lt;/label&gt;</code></pre>
+          </div>
+        <hr>
+
+          <h3>Form Actions</h3>
+          <div class="row">
+            <button class="btn btn-primary" type="button">Save Changes</button>
+            <button class="btn btn-secondary" type="button">Reset</button>
+            <button class="btn btn-ghost" type="button">Cancel</button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="row"&gt;
+  &lt;button class="btn btn-primary" type="submit"&gt;Save Changes&lt;/button&gt;
+  &lt;button class="btn btn-secondary" type="reset"&gt;Reset&lt;/button&gt;
+  &lt;button class="btn btn-ghost" type="button"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- View Header -->
+          <h3>View Header — <code>.view-header</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Flat section header used above a content area. Provides a consistent title + subtitle
+            treatment without borders or background. Pair with a <code>.card</code> if a raised surface
+            is needed, or use standalone when the page background provides sufficient separation.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/view-header.css">styles/components/view-header.css</a>
+          </p>
+          <div style="background:var(--wm-color-surface-muted);border-radius:var(--wm-radius-base,8px);padding:1.25rem;margin-bottom:1rem;">
+            <header class="view-header">
+              <h2>Import Transactions</h2>
+              <p>Upload a CSV export from your bank or credit card provider.</p>
+            </header>
+            <div style="font-size:0.85rem;color:var(--wm-color-text-muted);">(content area below)</div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;header class="view-header"&gt;
+  &lt;h2&gt;Import Transactions&lt;/h2&gt;
+  &lt;p&gt;Upload a CSV export from your bank or credit card provider.&lt;/p&gt;
+&lt;/header&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- File Upload -->
+          <h3>File Upload — <code>.file-upload</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Drag-and-drop file target zone. Wrap a hidden <code>&lt;input type="file"&gt;</code> inside
+            the label — the entire zone becomes clickable. Border dashes and background fill change on
+            hover to signal interactivity.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/file-upload.css">styles/components/file-upload.css</a>
+          </p>
+          <label class="file-upload" style="margin-bottom:1rem;">
+            <input type="file" accept=".csv" />
+            <span>Click or drag a CSV file here</span>
+          </label>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;label class="file-upload"&gt;
+  &lt;input type="file" accept=".csv" /&gt;
+  &lt;span&gt;Click or drag a CSV file here&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Filter Bar -->
+          <h3>Filter Bar — <code>.filter-bar</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Horizontal strip for sort and filter controls. Uses only a bottom border — no background
+            or card surface — so it reads as an extension of the content below rather than a separate
+            panel. Combine <code>.filter-group</code> + <code>.filter-label</code> +
+            <code>.filter-select</code> for labeled selects.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/view-header.css">styles/components/view-header.css</a>
+          </p>
+          <div class="filter-bar" style="margin-bottom:1rem;">
+            <div class="filter-group">
+              <span class="filter-label">Sort by</span>
+              <select class="filter-select" title="Sort by">
+                <option>Yearly Cost</option>
+                <option>Amount</option>
+                <option>Merchant</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Cadence</span>
+              <select class="filter-select" title="Cadence">
+                <option>All</option>
+                <option>Monthly</option>
+                <option>Annual</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary btn-sm" style="align-self:flex-end;" type="button">↓ Desc</button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="filter-bar"&gt;
+  &lt;div class="filter-group"&gt;
+    &lt;span class="filter-label"&gt;Sort by&lt;/span&gt;
+    &lt;select class="filter-select"&gt;
+      &lt;option&gt;Yearly Cost&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;↓ Desc&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=10"></script>
+  </body>
+</html>

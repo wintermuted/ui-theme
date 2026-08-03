@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=6" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+    <style>
+      /* Demo: make .modal-overlay relative for inline display */
+      .modal-demo-wrap {
+        position: relative;
+        min-height: 280px;
+        background: var(--wm-color-surface-muted);
+        border-radius: var(--wm-radius-base, 8px);
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+      .modal-demo-wrap .modal-overlay {
+        position: absolute;
+        background: rgba(0,0,0,0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Overlay</span>
+          <h2 class="page-title">Modal</h2>
+          <p class="page-lead">
+            Dialog overlay for focused tasks. A fixed backdrop dims the page while the modal panel
+            captures attention. Includes header, scrollable body, and footer zones.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/modal.css">styles/components/modal.css</a>
+          </p>
+        </header>
+
+        <!-- Modal Anatomy -->
+          <h3>Modal Anatomy — <code>.modal-overlay</code> / <code>.modal-panel</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            The modal consists of a full-viewport overlay and a centered panel. The panel is divided
+            into three regions: <code>.modal-header</code>, <code>.modal-body</code>, and
+            <code>.modal-footer</code>.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            In production the <code>.modal-overlay</code> uses <code>position:fixed</code> with full
+            viewport coverage. The demo below uses <code>position:absolute</code> on a constrained
+            container for inline display.
+          </p>
+          <div class="modal-demo-wrap">
+            <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-demo-title">
+              <div class="modal-panel">
+                <header class="modal-header">
+                  <h3 id="modal-demo-title">Cancel Subscription</h3>
+                  <button class="btn btn-ghost btn-sm modal-close" type="button" aria-label="Close">✕</button>
+                </header>
+                <div class="modal-body">
+                  <p>Are you sure you want to cancel <strong>Netflix</strong>? This action cannot be undone from within this app.</p>
+                  <p style="margin-top:0.5rem;">Visit the provider's website to complete cancellation.</p>
+                </div>
+                <footer class="modal-footer">
+                  <button class="btn btn-ghost btn-sm" type="button">Keep subscription</button>
+                  <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener noreferrer">Go to Netflix.com</a>
+                </footer>
+              </div>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;!-- Overlay (fixed, full viewport in production) --&gt;
+&lt;div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title"&gt;
+  &lt;div class="modal-panel"&gt;
+
+    &lt;header class="modal-header"&gt;
+      &lt;h3 id="modal-title"&gt;Cancel Subscription&lt;/h3&gt;
+      &lt;button class="btn btn-ghost btn-sm modal-close" type="button" aria-label="Close"&gt;&amp;#x2715;&lt;/button&gt;
+    &lt;/header&gt;
+
+    &lt;div class="modal-body"&gt;
+      &lt;p&gt;Are you sure you want to cancel &lt;strong&gt;Netflix&lt;/strong&gt;?&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;footer class="modal-footer"&gt;
+      &lt;button class="btn btn-ghost btn-sm" type="button"&gt;Keep subscription&lt;/button&gt;
+      &lt;a class="btn btn-primary btn-sm" href="https://netflix.com" target="_blank" rel="noopener noreferrer"&gt;
+        Go to Netflix.com
+      &lt;/a&gt;
+    &lt;/footer&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Scrollable Body -->
+          <h3>Scrollable Body</h3>
+          <p style="margin-bottom:0.5rem;">
+            The <code>.modal-body</code> has <code>overflow-y: auto</code> and a max-height of
+            <code>60vh</code>, so long content scrolls without the header or footer moving. The panel
+            itself uses <code>max-height: 90vh</code> as a safety net.
+          </p>
+          <div class="modal-demo-wrap" style="min-height:320px;">
+            <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-scroll-title">
+              <div class="modal-panel" style="width:340px;">
+                <header class="modal-header">
+                  <h3 id="modal-scroll-title">Detected Subscriptions</h3>
+                  <button class="btn btn-ghost btn-sm" type="button" aria-label="Close">✕</button>
+                </header>
+                <div class="modal-body" style="max-height:140px;">
+                  <p>Netflix — $18.99/mo</p>
+                  <p style="margin-top:0.5rem;">Spotify — $10.99/mo</p>
+                  <p style="margin-top:0.5rem;">iCloud+ — $2.99/mo</p>
+                  <p style="margin-top:0.5rem;">Adobe CC — $54.99/mo</p>
+                  <p style="margin-top:0.5rem;">Hulu — $17.99/mo</p>
+                  <p style="margin-top:0.5rem;">YouTube Premium — $13.99/mo</p>
+                </div>
+                <footer class="modal-footer">
+                  <button class="btn btn-secondary btn-sm" type="button">Close</button>
+                </footer>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:0.85rem;color:var(--wm-color-text-muted);">
+            Set an explicit <code>max-height</code> on <code>.modal-body</code> in context (or rely on the
+            default <code>60vh</code>) to trigger scroll when content overflows.
+          </p>
+        <hr>
+
+        <!-- Accessibility Notes -->
+          <h3>Accessibility</h3>
+          <ul style="line-height:1.8;font-size:0.9rem;">
+            <li>Add <code>role="dialog"</code> and <code>aria-modal="true"</code> to <code>.modal-overlay</code>.</li>
+            <li>Connect a visible heading via <code>aria-labelledby</code>.</li>
+            <li>Move focus to the first focusable element inside the panel on open.</li>
+            <li>Trap focus within the panel while it is open.</li>
+            <li>Close on <kbd>Escape</kbd> and on backdrop click.</li>
+            <li>Restore focus to the trigger element on close.</li>
+          </ul>
+        <hr>
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=10"></script>
+  </body>
+</html>
