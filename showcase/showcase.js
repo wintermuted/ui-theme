@@ -121,6 +121,20 @@
       : rawPath.split("/").pop() || "index.html";
   }
 
+  function getPageLabel(page) {
+    for (const section of NAV_STRUCTURE) {
+      for (const item of section.items) {
+        if (item.page === page) return item.label;
+        if (item.disclosure) {
+          for (const subItem of item.disclosure) {
+            if (subItem.page === page) return subItem.label;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
   function buildTopNav() {
     const docsShell = document.querySelector(".docs-shell");
 
@@ -178,9 +192,14 @@
     toggleBtn.setAttribute("aria-label", "Toggle theme");
     toggleBtn.textContent = "Toggle Dark";
 
-    actions.append(sidebarToggle, versionSelect, githubLink, toggleBtn);
+    const pageTitle = document.createElement("span");
+    pageTitle.className = "docs-topbar-page-title";
+    const currentLabel = getPageLabel(getCurrentPage());
+    if (currentLabel) pageTitle.textContent = currentLabel;
 
-    inner.append(brand, actions);
+    actions.append(versionSelect, githubLink, toggleBtn);
+
+    inner.append(sidebarToggle, brand, pageTitle, actions);
     topbar.appendChild(inner);
     document.body.insertBefore(topbar, docsShell);
   }
