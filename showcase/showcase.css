@@ -91,6 +91,20 @@ body {
   gap: 0.5rem;
 }
 
+/* Current page title — visible only on mobile where the sidebar is a hidden drawer */
+.docs-topbar-page-title {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--wm-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.25rem;
+}
+
 .docs-topbar-menu {
   display: none;
   align-items: center;
@@ -947,6 +961,16 @@ pre[class*="language-"].code-block {
     display: inline-flex;
   }
 
+  /* Hide brand text — page title takes over on mobile */
+  .docs-topbar-brand span {
+    display: none;
+  }
+
+  /* Show current page title between brand icon and actions */
+  .docs-topbar-page-title {
+    display: block;
+  }
+
   .docs-shell {
     grid-template-columns: 1fr;
     padding-left: 1rem;
@@ -1283,11 +1307,6 @@ pre[class*="language-"].code-block {
     display: none;
   }
 
-  /* Remove decorative left padding from brand so it sits flush */
-  .docs-topbar-brand {
-    padding-left: 0;
-  }
-
   /* Tighter shell vertical padding on small screens */
   .docs-shell {
     padding-top: 1rem;
@@ -1306,11 +1325,6 @@ pre[class*="language-"].code-block {
     gap: 0.4rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-  }
-
-  /* Keep only the brand icon — hide the text label */
-  .docs-topbar-brand span {
-    display: none;
   }
 
   /* Keep only icons in the topbar action buttons — hide text labels */
