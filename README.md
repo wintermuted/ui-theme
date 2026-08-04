@@ -4,6 +4,56 @@ Shared design tokens and base component styles for Wintermuted projects.
 
 The package is derived from the styling language introduced in the CV project and extracts the reusable parts of that system so application repositories can depend on a single source of truth instead of copying CSS.
 
+## Documentation Site
+
+The theme ships with a local static documentation site in `showcase/`.
+
+Start it locally:
+
+```bash
+npm run showcase:serve
+```
+
+Then open `http://localhost:4174/showcase/`.
+
+Primary docs pages:
+
+| Area | Page |
+| --- | --- |
+| Introduction | `showcase/index.html` |
+| Installation | `showcase/installation.html` |
+| Component index | `showcase/components.html` |
+| Forms | `showcase/forms.html` |
+| Tables | `showcase/tables.html` |
+| Gallery patterns | `showcase/gallery.html` |
+| End-to-end data example | `showcase/sample-data.html` |
+
+### Current Local Screenshots
+
+These screenshots were captured from the local running showcase and are used by `showcase/gallery.html`.
+
+![Docs home](showcase/screenshots/docs-home.png)
+![Components overview](showcase/screenshots/docs-components.png)
+![Forms page](showcase/screenshots/docs-forms.png)
+![Sample data page](showcase/screenshots/docs-sample-data.png)
+![Tables page](showcase/screenshots/docs-tables.png)
+![Gallery page](showcase/screenshots/docs-gallery.png)
+![Installation page](showcase/screenshots/docs-installation.png)
+
+### Refreshing Screenshots
+
+Use the running local docs instance at `http://localhost:4174/showcase/` and capture screenshots into:
+
+- `showcase/screenshots/docs-home.png`
+- `showcase/screenshots/docs-components.png`
+- `showcase/screenshots/docs-forms.png`
+- `showcase/screenshots/docs-sample-data.png`
+- `showcase/screenshots/docs-tables.png`
+- `showcase/screenshots/docs-gallery.png`
+- `showcase/screenshots/docs-installation.png`
+
+Use a consistent viewport to avoid visual drift between releases (recommended: `1440x900`).
+
 ## Install
 
 ### npmjs
@@ -68,7 +118,6 @@ Available modular entry points:
 - `@wintermuted/ui-theme/styles/components/list.css`
 - `@wintermuted/ui-theme/styles/components/separator.css`
 - `@wintermuted/ui-theme/styles/components/side-nav.css`
-
 
 ## Static Design System Test Page
 
@@ -141,6 +190,7 @@ Scripts:
 
 - `scripts/link-local.sh`
 - `scripts/unlink-local.sh`
+
 ## Publishing
 
 - Merges to main trigger auto-release, which bumps the minor version in package.json, creates a matching vX.Y.Z tag, and creates a GitHub release.
