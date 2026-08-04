@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=6" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Patterns</span>
+          <h2 class="page-title">Navigation</h2>
+          <p class="page-lead">
+            Side navigation and in-page anchor patterns. Left-bar active indicators, compact uppercase labels,
+            and scroll-linked highlighting.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/side-nav.css">styles/components/side-nav.css</a>
+          </p>
+        </header>
+
+          <h3>Side Navigation — <code>.wm-side-nav</code></h3>
+          <p style="margin-bottom:1rem;">
+            Sticky sidebar nav with left-bar active indicator. Use <code>.active</code> or
+            <code>aria-current</code> to mark the current item.
+          </p>
+          <div style="display:flex;gap:2rem;align-items:flex-start;">
+            <div style="width:160px;border-right:1px solid var(--wm-color-border);padding-right:1rem;">
+              <ul class="wm-side-nav">
+                <li><a href="#" class="active">Summary</a></li>
+                <li><a href="#">Experience</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Education</a></li>
+              </ul>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.85rem;">
+                The active link gets a 2 px left border in <code>--wm-color-text</code> and a muted surface
+                background. Hover reveals the same background without the border.
+              </p>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;ul class="wm-side-nav"&gt;
+  &lt;li&gt;&lt;a href="#summary" class="active"&gt;Summary&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#experience"&gt;Experience&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#skills"&gt;Skills&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#projects"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Or use aria-current for screen reader support --&gt;
+&lt;li&gt;&lt;a href="#summary" aria-current="true"&gt;Summary&lt;/a&gt;&lt;/li&gt;</code></pre>
+          </div>
+        <hr>
+
+          <h3>Docs Sidebar (this page)</h3>
+          <p>
+            The sidebar you see on the left uses the same left-bar pattern, implemented via
+            <code>.docs-nav-link</code> in <code>showcase.css</code>. Token references are identical to
+            <code>.wm-side-nav</code>.
+          </p>
+        <hr>
+
+        <!-- Tab Bar -->
+          <h3>Tab Bar — <code>.tab-bar</code> / <code>.tab-btn</code></h3>
+          <p style="margin-bottom:1rem;">
+            Segmented control for switching between views or sub-sections. Add
+            <code>.tab-btn-active</code> to the current tab. Use <code>.tab-count</code> to show a
+            numeric badge inside the tab button.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:0.75rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/tab-bar.css">styles/components/tab-bar.css</a>
+          </p>
+          <div class="tab-bar" role="tablist" style="margin-bottom:1rem;">
+            <button class="tab-btn tab-btn-active" role="tab" aria-selected="true" type="button">
+              Active <span class="tab-count">12</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" type="button">
+              Pending <span class="tab-count">3</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" type="button">
+              Archived
+            </button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="tab-bar" role="tablist"&gt;
+  &lt;button class="tab-btn tab-btn-active" role="tab" aria-selected="true"&gt;
+    Active &lt;span class="tab-count"&gt;12&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="tab-btn" role="tab" aria-selected="false"&gt;Pending&lt;/button&gt;
+  &lt;button class="tab-btn" role="tab" aria-selected="false"&gt;Archived&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Viewport-fixed controls nav -->
+          <h3>Viewport-Fixed Controls Nav — <code>.floating-nav</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            CV-style utility nav cluster pinned to the viewport corner. Use for theme/view/print
+            controls that should remain visible while scrolling.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            This pattern mirrors the resume's fixed control cluster (<code>.controls</code>). In this
+            embedded demo we override to <code>position:absolute</code> inside a container so it is
+            visible without covering the whole docs page.
+          </p>
+          <div style="position:relative;min-height:5.2rem;border:1px dashed var(--wm-color-border);border-radius:var(--wm-radius-base);padding:0.75rem 0.75rem 0.9rem;">
+            <div class="floating-nav" style="position:absolute;top:0.6rem;right:0.6rem;">
+              <button class="btn-pill" type="button">Light</button>
+              <button class="btn-pill" type="button">Summary</button>
+              <button class="btn-pill" type="button">Print</button>
+            </div>
+            <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin:2.6rem 0 0;">
+              Scroll content below; this control cluster remains pinned when used with
+              <code>position:fixed</code>.
+            </p>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="floating-nav"&gt;
+  &lt;button class="btn-pill" type="button"&gt;Light&lt;/button&gt;
+  &lt;button class="btn-pill" type="button"&gt;Summary&lt;/button&gt;
+  &lt;button class="btn-pill" type="button"&gt;Print&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Left-pinned variant --&gt;
+&lt;div class="floating-nav floating-nav-left"&gt;...&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Status Toggle -->
+          <h3>Status Toggle — <code>.status-toggle</code> / <code>.status-toggle-btn</code></h3>
+          <p style="margin-bottom:1rem;">
+            Pill-shaped filter bar for multi-state status filtering. Each button carries a semantic
+            color modifier. The <code>.status-toggle-btn-active</code> class fills with a tonal background
+            matching the status color. Inactive buttons show a colored border hint so users know what
+            color the filter will become when selected.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:0.75rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/tab-bar.css">styles/components/tab-bar.css</a>
+          </p>
+          <div class="status-toggle" role="group" style="margin-bottom:1rem;">
+            <button class="status-toggle-btn status-toggle-btn-active" type="button">
+              All <span class="tab-count">18</span>
+            </button>
+            <button class="status-toggle-btn status-toggle-btn-success" type="button">
+              Confirmed <span class="tab-count">6</span>
+            </button>
+            <button class="status-toggle-btn status-toggle-btn-warning" type="button">
+              Pending <span class="tab-count">3</span>
+            </button>
+            <button class="status-toggle-btn status-toggle-btn-muted" type="button">
+              Cancelled <span class="tab-count">9</span>
+            </button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="status-toggle" role="group"&gt;
+  &lt;button class="status-toggle-btn status-toggle-btn-active" type="button"&gt;
+    All &lt;span class="tab-count"&gt;18&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="status-toggle-btn status-toggle-btn-success" type="button"&gt;
+    Confirmed &lt;span class="tab-count"&gt;6&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="status-toggle-btn status-toggle-btn-warning" type="button"&gt;
+    Pending &lt;span class="tab-count"&gt;3&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="status-toggle-btn status-toggle-btn-muted" type="button"&gt;
+    Cancelled &lt;span class="tab-count"&gt;9&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Checkbox Filter -->
+          <h3>Checkbox Filter — <code>.checkbox-filter-group</code></h3>
+          <p style="margin-bottom:0.5rem;">
+            Vertical list of labeled checkbox rows used inside sidebar filter panels. Each row is a
+            full-width <code>&lt;label&gt;</code> that wraps the checkbox so the entire row is
+            tappable. An optional count badge sits at the far right.
+          </p>
+          <p style="font-size:0.8rem;color:var(--wm-color-text-muted);margin-bottom:1rem;">
+            Source: <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/checkbox-filter.css">styles/components/checkbox-filter.css</a>
+          </p>
+          <div style="width:220px;margin-bottom:1rem;">
+            <div class="checkbox-filter-group">
+              <label class="checkbox-filter-label">
+                <input type="checkbox" checked />
+                <span class="checkbox-filter-name">Monthly</span>
+                <span class="checkbox-filter-count">14</span>
+              </label>
+              <label class="checkbox-filter-label">
+                <input type="checkbox" />
+                <span class="checkbox-filter-name">Annual</span>
+                <span class="checkbox-filter-count">3</span>
+              </label>
+              <label class="checkbox-filter-label">
+                <input type="checkbox" checked />
+                <span class="checkbox-filter-name">Weekly</span>
+                <span class="checkbox-filter-count">1</span>
+              </label>
+            </div>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="checkbox-filter-group"&gt;
+  &lt;label class="checkbox-filter-label"&gt;
+    &lt;input type="checkbox" checked /&gt;
+    &lt;span class="checkbox-filter-name"&gt;Monthly&lt;/span&gt;
+    &lt;span class="checkbox-filter-count"&gt;14&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;label class="checkbox-filter-label"&gt;
+    &lt;input type="checkbox" /&gt;
+    &lt;span class="checkbox-filter-name"&gt;Annual&lt;/span&gt;
+    &lt;span class="checkbox-filter-count"&gt;3&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=10"></script>
+  </body>
+</html>

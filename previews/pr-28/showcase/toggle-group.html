@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle Group | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=6" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Inputs and Actions</span>
+          <h2 class="page-title">Toggle Group</h2>
+          <p class="page-lead">
+            Exclusive segmented control — pick one option from a small set. Distinct from
+            <code>.tab-bar</code> (page navigation) in that it drives a value selection, not a view switch.
+            Supports horizontal, vertical, and full-width layouts.
+          </p>
+          <p class="component-source">
+            Source file:
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components/toggle-group.css">styles/components/toggle-group.css</a>
+          </p>
+        </header>
+
+        <!-- Horizontal -->
+          <h3>Horizontal (Default)</h3>
+          <p>
+            Wrap buttons in <code>.wm-toggle-group</code>. Mark the selected option with
+            <code>.wm-toggle-group-btn-active</code> or <code>aria-pressed="true"</code>.
+          </p>
+          <div class="wm-toggle-group" role="group" aria-label="View mode" style="margin: 0.75rem 0;">
+            <button class="wm-toggle-group-btn wm-toggle-group-btn-active" type="button">Day</button>
+            <button class="wm-toggle-group-btn" type="button">Week</button>
+            <button class="wm-toggle-group-btn" type="button">Month</button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="wm-toggle-group" role="group" aria-label="View mode"&gt;
+  &lt;button class="wm-toggle-group-btn wm-toggle-group-btn-active" type="button"&gt;Day&lt;/button&gt;
+  &lt;button class="wm-toggle-group-btn" type="button"&gt;Week&lt;/button&gt;
+  &lt;button class="wm-toggle-group-btn" type="button"&gt;Month&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Vertical full-width — color palette use case -->
+          <h3>Vertical Full-Width</h3>
+          <p>
+            Add <code>.wm-toggle-group-vertical</code> and <code>.wm-toggle-group-full</code> for a stacked
+            full-width palette or option list. Ideal for sidebar controls.
+          </p>
+          <div class="wm-toggle-group wm-toggle-group-vertical wm-toggle-group-full" role="group" aria-label="Color palette" style="max-width: 280px; margin: 0.75rem 0;">
+            <button class="wm-toggle-group-btn wm-toggle-group-btn-active" type="button">
+              <span class="wm-toggle-group-swatch" style="background: #00ff41; border-color: #004d00;"></span>
+              Matrix
+            </button>
+            <button class="wm-toggle-group-btn" type="button">
+              <span class="wm-toggle-group-swatch" style="background: #adbac7; border-color: #444c56;"></span>
+              Classic
+            </button>
+            <button class="wm-toggle-group-btn" type="button">
+              <span class="wm-toggle-group-swatch" style="background: #ff6b35; border-color: #c0440e;"></span>
+              Ember
+            </button>
+            <button class="wm-toggle-group-btn" type="button">
+              <span class="wm-toggle-group-swatch" style="background: #7aa0e8; border-color: #2a3560;"></span>
+              Midnight
+            </button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="wm-toggle-group wm-toggle-group-vertical wm-toggle-group-full"
+     role="group" aria-label="Color palette"&gt;
+  &lt;button class="wm-toggle-group-btn wm-toggle-group-btn-active" type="button"&gt;
+    &lt;span class="wm-toggle-group-swatch" style="background: #00ff41;"&gt;&lt;/span&gt;
+    Matrix
+  &lt;/button&gt;
+  &lt;!-- repeat --&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Disabled -->
+          <h3>Disabled State</h3>
+          <p>Apply <code>disabled</code> to individual buttons. Disabled items are 50% opaque with a not-allowed cursor.</p>
+          <div class="wm-toggle-group" role="group" aria-label="Export format" style="margin: 0.75rem 0;">
+            <button class="wm-toggle-group-btn wm-toggle-group-btn-active" type="button">PNG</button>
+            <button class="wm-toggle-group-btn" type="button">SVG</button>
+            <button class="wm-toggle-group-btn" type="button" disabled>PDF</button>
+          </div>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;div class="wm-toggle-group" role="group"&gt;
+  &lt;button class="wm-toggle-group-btn wm-toggle-group-btn-active" type="button"&gt;PNG&lt;/button&gt;
+  &lt;button class="wm-toggle-group-btn" type="button"&gt;SVG&lt;/button&gt;
+  &lt;button class="wm-toggle-group-btn" type="button" disabled&gt;PDF&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Differences from tab-bar -->
+          <h3>Toggle Group vs Tab Bar</h3>
+          <div class="wm-inline-panel wm-inline-panel-accent" style="margin: 0.75rem 0;">
+            Use <strong>.wm-toggle-group</strong> when selecting a value (color palette, speed preset,
+            export format). Use <strong>.tab-bar</strong> when switching between views or content panels.
+            The visual style is similar; the semantic intent differs.
+          </div>
+
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=10"></script>
+  </body>
+</html>

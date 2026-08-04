@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Installation &amp; Usage | Wintermuted UI Library Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" crossorigin />
+    <link rel="stylesheet" href="./showcase.css?v=6" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside class="docs-sidebar wm-card card"></aside>
+
+      <main class="docs-main">
+        <header class="page-header wm-card card">
+          <span class="page-kicker">Getting Started</span>
+          <h2 class="page-title">Installation &amp; Usage</h2>
+          <p class="page-lead">
+            Add <code>@wintermuted/ui-theme</code> to any project in two steps: install the package
+            and import the stylesheet. The theme ships as a single CSS file with design tokens and
+            component classes — no build step required.
+          </p>
+          <p class="component-source">
+            Entry files:
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/index.css">index.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/tokens.css">styles/tokens.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/base.css">styles/base.css</a>,
+            <a href="https://github.com/wintermuted/wintermuted-ui/blob/main/styles/components.css">styles/components.css</a>
+          </p>
+        </header>
+
+        <!-- Install -->
+          <h3>Install</h3>
+          <p>Install from npm:</p>
+          <div class="code-sample" data-lang="bash">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-bash">npm install @wintermuted/ui-theme</code></pre>
+          </div>
+          <p>Or with yarn:</p>
+          <div class="code-sample" data-lang="bash">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-bash">yarn add @wintermuted/ui-theme</code></pre>
+          </div>
+        <hr>
+
+        <!-- Import the stylesheet -->
+          <h3>Import the Stylesheet</h3>
+          <p>Import once at your app entry point. In a Vite / bundler project:</p>
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">import '@wintermuted/ui-theme';</code></pre>
+          </div>
+          <p>Or reference directly in HTML:</p>
+          <div class="code-sample" data-lang="html">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-html">&lt;link rel="stylesheet" href="node_modules/@wintermuted/ui-theme/index.css" /&gt;</code></pre>
+          </div>
+        <hr>
+
+        <!-- Dark mode -->
+          <h3>Dark Mode</h3>
+          <p>
+            Dark tokens activate when the <code>data-theme="dark"</code> attribute is set on
+            <code>document.documentElement</code>. Remove the attribute to restore light mode.
+          </p>
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">// Enable dark mode
+document.documentElement.setAttribute('data-theme', 'dark');
+
+// Restore light mode
+document.documentElement.removeAttribute('data-theme');</code></pre>
+          </div>
+          <p>Persist the preference across sessions:</p>
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">const saved = localStorage.getItem('theme');
+if (saved === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+}</code></pre>
+          </div>
+        <hr>
+
+        <!-- Design tokens -->
+          <h3>Design Tokens</h3>
+          <p>
+            All tokens are CSS custom properties on <code>:root</code>. Dark overrides live on
+            <code>[data-theme="dark"]</code>. Use them directly in your own CSS:
+          </p>
+          <div class="code-sample" data-lang="css">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-css">.my-card {
+  background: var(--wm-color-surface-solid);
+  border: 1px solid var(--wm-color-border);
+  border-radius: var(--wm-radius-sm);
+  color: var(--wm-color-text);
+  font-family: var(--wm-font-sans);
+}</code></pre>
+          </div>
+
+          <h4 style="margin-top: 1.1rem; margin-bottom: 0.55rem; font-size: 0.84rem; font-weight: 600;">Color tokens</h4>
+          <ul class="token-list">
+            <li><code>--wm-color-bg</code> — page background</li>
+            <li><code>--wm-color-surface-solid</code> / <code>--wm-color-surface-strong</code> / <code>--wm-color-surface-muted</code> — layered surface levels</li>
+            <li><code>--wm-color-text</code> / <code>--wm-color-text-secondary</code> / <code>--wm-color-text-muted</code> — text hierarchy</li>
+            <li><code>--wm-color-border</code> / <code>--wm-color-border-strong</code> — border levels</li>
+            <li><code>--wm-color-accent</code> / <code>--wm-color-accent-soft</code> / <code>--wm-color-accent-border</code> — brand accent</li>
+            <li><code>--wm-color-success</code> / <code>--wm-color-warning</code> / <code>--wm-color-danger</code> — semantic states (each with <code>-soft</code> and <code>-border</code> variants)</li>
+          </ul>
+
+          <h4 style="margin-top: 1.1rem; margin-bottom: 0.55rem; font-size: 0.84rem; font-weight: 600;">Spacing &amp; shape tokens</h4>
+          <ul class="token-list">
+            <li><code>--wm-radius-xs</code> <code>--wm-radius-base</code> <code>--wm-radius-sm</code> <code>--wm-radius-md</code> <code>--wm-radius-lg</code> <code>--wm-radius-pill</code> — border radius scale</li>
+            <li><code>--wm-font-sans</code> — system font stack (Inter + fallbacks)</li>
+            <li><code>--wm-shadow-soft</code> — card/modal elevation shadow</li>
+          </ul>
+        <hr>
+
+        <!-- Component classes -->
+          <h3>Component Classes</h3>
+          <p>
+            The stylesheet includes opt-in component classes. All classes ship with both a
+            <code>wm-</code> prefixed alias and a short alias for convenience.
+          </p>
+
+          <table class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Alias</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>.wm-card</code></td><td><code>.card</code></td><td>Surface card with border, radius, and optional shadow</td></tr>
+                <tr><td><code>.wm-btn</code></td><td><code>.btn</code></td><td>Base button reset — combine with modifier below</td></tr>
+                <tr><td><code>.btn-primary</code></td><td>—</td><td>Tonal primary action button</td></tr>
+                <tr><td><code>.btn-secondary</code></td><td>—</td><td>Tonal secondary button</td></tr>
+                <tr><td><code>.btn-ghost</code></td><td>—</td><td>Transparent with hover fill</td></tr>
+                <tr><td><code>.btn-danger</code></td><td>—</td><td>Tonal destructive action</td></tr>
+                <tr><td><code>.btn-sm</code></td><td><code>.wm-btn-sm</code></td><td>Compact size modifier for <code>.btn</code></td></tr>
+                <tr><td><code>.wm-tag</code></td><td><code>.tag</code></td><td>Neutral pill — for keyword / skill lists</td></tr>
+                <tr><td><code>.wm-tag-accent</code></td><td><code>.tag-accent</code></td><td>Accent-tinted pill — for linked references</td></tr>
+                <tr><td><code>.badge</code></td><td>—</td><td>Inline status badge (combine with semantic modifier)</td></tr>
+                <tr><td><code>.wm-list</code></td><td>—</td><td>Custom dot-bullet list (no default list styling)</td></tr>
+                <tr><td><code>.wm-separator</code></td><td>—</td><td>Themed <code>&lt;hr&gt;</code></td></tr>
+                <tr><td><code>.wm-side-nav</code></td><td>—</td><td>Sticky sidebar nav with left-bar active indicator</td></tr>
+              </tbody>
+            </table>
+          </table>
+        <hr>
+
+        <!-- Local development -->
+          <h3>Local Development</h3>
+          <p>
+            To iterate on the theme without publishing to npm, use <code>npm link</code> to symlink
+            the local package into a consumer project:
+          </p>
+          <div class="code-sample" data-lang="bash">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-bash"># In the wintermuted-ui repo
+npm link
+
+# In your consumer project
+npm link @wintermuted/ui-theme</code></pre>
+          </div>
+          <p>
+            Bundler projects (Vite, webpack) may need to be told to allow symlinked files outside
+            the project root. In Vite, set <code>server.fs.allow</code> and exclude the package
+            from dep pre-bundling:
+          </p>
+          <div class="code-sample" data-lang="js">
+            <button class="code-copy-btn" type="button" data-copy>Copy</button>
+            <pre class="code-block"><code class="language-javascript">// vite.config.ts
+export default defineConfig({
+  server: {
+    fs: { allow: ['..'] },
+  },
+  optimizeDeps: {
+    exclude: ['@wintermuted/ui-theme'],
+  },
+});</code></pre>
+          </div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" crossorigin></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" crossorigin></script>
+    <script src="./showcase.js?v=10"></script>
+  </body>
+</html>
