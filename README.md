@@ -8,14 +8,7 @@ The package is derived from the styling language introduced in the CV project an
 
 The theme ships with a local static documentation site in `showcase/`.
 
-Start it locally:
-
-```bash
-npm run showcase:serve
-```
-
-Then open `http://localhost:4174/showcase/`.
-
+See **Static Design System Test Page** below for the local serving command and helper scripts.
 Primary docs pages:
 
 | Area | Page |
