@@ -186,7 +186,7 @@ Scripts:
 
 ## Publishing
 
-- Merges to main trigger auto-release, which bumps the minor version in package.json, creates a matching vX.Y.Z tag, and creates a GitHub release.
+- Merges to main trigger auto-release, which bumps the patch version in package.json, creates a matching vX.Y.Z tag, and creates a GitHub release.
 - Tag pushes matching v* trigger the publish workflow, which publishes to npmjs using npm provenance.
 - Set the NPM_TOKEN repository secret with an npm automation token before running the workflow.
 
